@@ -43,7 +43,7 @@
       "command": "powershell.exe",
       "args": [
         "-Command",
-        "New-Item -ItemType Directory -Force 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod'; Copy-Item '.godot/mono/temp/bin/Debug/LinkuraMod.*' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'mod_manifest.json' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'LinkuraMod.pck' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force"
+        "New-Item -ItemType Directory -Force 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod'; Copy-Item '.godot/mono/temp/bin/Debug/LinkuraMod.dll' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item '.godot/mono/temp/bin/Debug/LinkuraMod.pdb' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'LinkuraMod.json' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'LinkuraMod.pck' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force"
       ],
       "group": "build",
       "presentation": {
@@ -56,7 +56,7 @@
       "command": "powershell.exe",
       "args": [
         "-Command",
-        "New-Item -ItemType Directory -Force 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod'; Copy-Item '.godot/mono/temp/bin/ExportRelease/LinkuraMod.*' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'mod_manifest.json' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'LinkuraMod.pck' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force"
+        "New-Item -ItemType Directory -Force 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod'; Copy-Item '.godot/mono/temp/bin/ExportRelease/LinkuraMod.dll' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\'; Copy-Item '.godot/mono/temp/bin/ExportRelease/LinkuraMod.pdb' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'LinkuraMod.json' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'LinkuraMod.pck' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force"
       ],
       "group": "build",
       "presentation": {

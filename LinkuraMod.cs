@@ -1,11 +1,19 @@
-using MegaCrit.Sts2.Core.Logging;
+using Godot;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 
 namespace RuriMegu;
 
-[ModInitializer("Initialize")]
+[ModInitializer(nameof(Initialize))]
 public static class LinkuraMod {
+  public const string ModId = "linkuramod";
+
+  public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } =
+    new(ModId, MegaCrit.Sts2.Core.Logging.LogType.Generic);
+
   public static void Initialize() {
-    Log.Info("Link! Like! LoveLive!");
+    Logger.Info("Link! Like! LoveLive! - LinkuraMod Initializing...");
+    Harmony harmony = new(ModId);
+    harmony.PatchAll();
   }
 }

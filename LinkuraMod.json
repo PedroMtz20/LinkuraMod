@@ -6,5 +6,8 @@
   "description": "Adds contents inspired by Link! Like! LoveLive!.",
   "has_dll": true,
   "has_pck": true,
-  "affects_gameplay": true
+  "affects_gameplay": true,
+  "dependencies": [
+    "BaseLib"
+  ]
 }
