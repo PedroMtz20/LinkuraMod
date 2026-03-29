@@ -1,0 +1,6 @@
+{
+  "RURIMEGU-BURST_HEART.title": "爆心",
+  "RURIMEGU-BURST_HEART.description": "增加已收集的心数，但不超过爆心上限。",
+  "RURIMEGU-COLLECT_HEART.title": "收心",
+  "RURIMEGU-COLLECT_HEART.description": "对一个随机敌人造成等于你已收集的心数的伤害，然后失去所有已收集的心数。"
+}

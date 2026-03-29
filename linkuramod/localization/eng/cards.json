@@ -1,0 +1,6 @@
+{
+  "RURIMEGU-DEFEND_LINKURA.description": "Gain {Block:diff()} Block.",
+  "RURIMEGU-DEFEND_LINKURA.title": "Defend",
+  "RURIMEGU-STRIKE_LINKURA.description": "Deal {Damage:diff()} damage.",
+  "RURIMEGU-STRIKE_LINKURA.title": "Strike"
+}

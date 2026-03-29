@@ -1,0 +1,6 @@
+{
+  "RURIMEGU-DEFEND_LINKURA.description": "获得{Block:diff()}点格挡。",
+  "RURIMEGU-DEFEND_LINKURA.title": "防御",
+  "RURIMEGU-STRIKE_LINKURA.description": "造成{Damage:diff()}点伤害。",
+  "RURIMEGU-STRIKE_LINKURA.title": "打击"
+}

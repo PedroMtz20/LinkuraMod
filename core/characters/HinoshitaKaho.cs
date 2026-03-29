@@ -17,12 +17,11 @@ namespace RuriMegu.Core.Characters;
 public class HinoshitaKaho : PlaceholderCharacterModel {
   public const string CharacterId = "HinoshitaKaho";
 
-  // A warm pink/coral color inspired by her character design
-  public static readonly Color Color = new("e8789a");
+  public static readonly Color Color = new("f8b400");
 
   public override Color NameColor => Color;
   public override CharacterGender Gender => CharacterGender.Feminine;
-  public override int StartingHp => 72;
+  public override int StartingHp => 80;
 
   public override IEnumerable<CardModel> StartingDeck => [
     ModelDb.Card<StrikeLinkura>(),
@@ -38,7 +37,7 @@ public class HinoshitaKaho : PlaceholderCharacterModel {
   ];
 
   public override IReadOnlyList<RelicModel> StartingRelics => [
-    ModelDb.Relic<LinkuraCharm>(),
+    ModelDb.Relic<LinkuraSystem>(),
   ];
 
   public override CardPoolModel CardPool => ModelDb.CardPool<LinkuraCardPool>();
