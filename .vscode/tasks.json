@@ -1,0 +1,92 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build debug",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/LinkuraMod.sln",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary",
+        "--configuration",
+        "Debug"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build",
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "build release",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/LinkuraMod.sln",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary",
+        "--configuration",
+        "ExportRelease"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build",
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "deploy debug",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-Command",
+        "New-Item -ItemType Directory -Force 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod'; Copy-Item '.godot/mono/temp/bin/Debug/LinkuraMod.*' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'mod_manifest.json' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'LinkuraMod.pck' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "deploy release",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-Command",
+        "New-Item -ItemType Directory -Force 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod'; Copy-Item '.godot/mono/temp/bin/ExportRelease/LinkuraMod.*' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'mod_manifest.json' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force; Copy-Item 'LinkuraMod.pck' 'D:\\SteamLibrary\\steamapps\\common\\Slay the Spire 2\\mods\\LinkuraMod\\' -Force"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "build & deploy debug",
+      "dependsOn": ["build debug", "deploy debug"],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build & deploy release",
+      "dependsOn": ["build release", "deploy release"],
+      "dependsOrder": "sequence",
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "clean",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["clean", "${workspaceFolder}/LinkuraMod.sln"],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    }
+  ]
+}
