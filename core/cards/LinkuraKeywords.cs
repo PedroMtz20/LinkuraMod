@@ -6,6 +6,6 @@ namespace RuriMegu.Core.Cards;
 
 public static class LinkuraKeywords {
 
-  [CustomEnum("Collect_Hearts"), KeywordProperties(AutoKeywordPosition.After)]
+  [CustomEnum("Collect_Hearts"), KeywordProperties(AutoKeywordPosition.None)]
   public static CardKeyword CollectHearts;
 }
