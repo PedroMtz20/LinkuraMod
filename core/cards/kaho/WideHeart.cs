@@ -8,7 +8,7 @@ using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho;
 
-public class WideHeart() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
+public class WideHeart() : LinkuraCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new ExpandHeartsVar(3),
     new CardsVar(1),
