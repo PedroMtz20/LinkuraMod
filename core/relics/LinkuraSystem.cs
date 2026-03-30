@@ -3,7 +3,7 @@
 using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using RuriMegu.Core.Extensions;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Relics;
 

@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace RuriMegu.Core.Extensions;
+namespace RuriMegu.Core.Utils;
 
 /// <summary>
 /// Utility extension methods for resolving asset paths within the mod.
@@ -36,5 +36,9 @@ public static class StringExtensions {
 
   public static string CharacterUiPath(this string path, string characterId = "") {
     return Path.Join(LinkuraMod.ModId, "images", "charui", characterId, path);
+  }
+
+  public static string CharacterScenePath(this string path, string characterId = "") {
+    return Path.Join(LinkuraMod.ModId, "scenes", characterId, path);
   }
 }

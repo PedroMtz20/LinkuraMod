@@ -4,8 +4,8 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Cards.Kaho;
-using RuriMegu.Core.Extensions;
 using RuriMegu.Core.Relics;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Characters;
 
@@ -20,6 +20,14 @@ public class HinoshitaKaho : PlaceholderCharacterModel {
 
   public override Color NameColor => Color;
   public override CharacterGender Gender => CharacterGender.Feminine;
+
+  /// <summary>
+  /// Point the game's energy counter loader at Kaho's custom scene.
+  /// Path format matches what BaseLib's PlaceholderCharacterModel.GetCustomEnergyCounterAssetPath
+  /// expects: a mod-relative path without the leading "res://" prefix.
+  /// </summary>
+  public override string CustomEnergyCounterPath => "energy_counter.tscn".CharacterScenePath(CharacterId);
+
   public override int StartingHp => 80;
 
   public override IEnumerable<CardModel> StartingDeck => [
@@ -31,13 +39,15 @@ public class HinoshitaKaho : PlaceholderCharacterModel {
     ModelDb.Card<KahoDefend>(),
     ModelDb.Card<KahoDefend>(),
     ModelDb.Card<KahoDefend>(),
+    ModelDb.Card<LinkuraEnergy>(),
+    ModelDb.Card<WideHeart>(),
   ];
 
   public override IReadOnlyList<RelicModel> StartingRelics => [
     ModelDb.Relic<LinkuraSystem>(),
   ];
 
-  public override CardPoolModel CardPool => ModelDb.CardPool<LinkuraCardPool>();
+  public override CardPoolModel CardPool => ModelDb.CardPool<HinoshitaKahoCardPool>();
   public override RelicPoolModel RelicPool => ModelDb.RelicPool<LinkuraRelicPool>();
   public override PotionPoolModel PotionPool => ModelDb.PotionPool<LinkuraPotionPool>();
 
@@ -46,5 +56,5 @@ public class HinoshitaKaho : PlaceholderCharacterModel {
   public override string CustomCharacterSelectIconPath => "char_select.png".CharacterUiPath(CharacterId);
   public override string CustomCharacterSelectLockedIconPath => "char_select_locked.png".CharacterUiPath(CharacterId);
   public override string CustomMapMarkerPath => "map_marker.png".CharacterUiPath(CharacterId);
-  public override string CustomCharacterSelectBg => "select_bg.tscn".CharacterUiPath(CharacterId);
+  public override string CustomCharacterSelectBg => "select_bg.tscn".CharacterScenePath(CharacterId);
 }

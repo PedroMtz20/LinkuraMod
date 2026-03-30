@@ -1,6 +1,6 @@
 using BaseLib.Abstracts;
 using Godot;
-using RuriMegu.Core.Extensions;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Characters;
 

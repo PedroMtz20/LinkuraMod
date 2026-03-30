@@ -1,13 +1,15 @@
 using BaseLib.Abstracts;
 using Godot;
-using RuriMegu.Core.Extensions;
+using MegaCrit.Sts2.Core.Models;
+using RuriMegu.Core.Cards.Kaho;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Characters;
 
 /// <summary>
-/// Card pool for Linkura-colored cards.
+/// Card pool for Hinoshita Kaho-colored cards.
 /// </summary>
-public class LinkuraCardPool : CustomCardPoolModel {
+public class HinoshitaKahoCardPool : CustomCardPoolModel {
   public override string Title => HinoshitaKaho.CharacterName;
 
   public override string BigEnergyIconPath => "charui/big_energy.png".ImagePath();
@@ -20,4 +22,12 @@ public class LinkuraCardPool : CustomCardPoolModel {
   public override Color DeckEntryCardColor => new("be1400");
 
   public override bool IsColorless => false;
+
+  protected override CardModel[] GenerateAllCards() {
+    return [
+      ModelDb.Card<KahoStrike>(),
+      ModelDb.Card<KahoDefend>(),
+      ModelDb.Card<WideHeart>(),
+    ];
+  }
 }
