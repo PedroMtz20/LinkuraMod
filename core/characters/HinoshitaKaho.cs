@@ -3,9 +3,7 @@ using BaseLib.Abstracts;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Relics;
-using RuriMegu.Core.Cards;
+using RuriMegu.Core.Cards.Kaho;
 using RuriMegu.Core.Extensions;
 using RuriMegu.Core.Relics;
 
@@ -15,7 +13,8 @@ namespace RuriMegu.Core.Characters;
 /// Hinoshita Kaho (日野下花帆)
 /// </summary>
 public class HinoshitaKaho : PlaceholderCharacterModel {
-  public const string CharacterId = "HinoshitaKaho";
+  public const string CharacterId = "kaho";
+  public const string CharacterName = "Hinoshita Kaho";
 
   public static readonly Color Color = new("f8b400");
 
@@ -24,16 +23,14 @@ public class HinoshitaKaho : PlaceholderCharacterModel {
   public override int StartingHp => 80;
 
   public override IEnumerable<CardModel> StartingDeck => [
-    ModelDb.Card<StrikeLinkura>(),
-    ModelDb.Card<StrikeLinkura>(),
-    ModelDb.Card<StrikeLinkura>(),
-    ModelDb.Card<StrikeLinkura>(),
-    ModelDb.Card<StrikeLinkura>(),
-    ModelDb.Card<DefendLinkura>(),
-    ModelDb.Card<DefendLinkura>(),
-    ModelDb.Card<DefendLinkura>(),
-    ModelDb.Card<DefendLinkura>(),
-    ModelDb.Card<DefendLinkura>(),
+    ModelDb.Card<KahoStrike>(),
+    ModelDb.Card<KahoStrike>(),
+    ModelDb.Card<KahoStrike>(),
+    ModelDb.Card<KahoStrike>(),
+    ModelDb.Card<KahoDefend>(),
+    ModelDb.Card<KahoDefend>(),
+    ModelDb.Card<KahoDefend>(),
+    ModelDb.Card<KahoDefend>(),
   ];
 
   public override IReadOnlyList<RelicModel> StartingRelics => [
@@ -45,8 +42,9 @@ public class HinoshitaKaho : PlaceholderCharacterModel {
   public override PotionPoolModel PotionPool => ModelDb.PotionPool<LinkuraPotionPool>();
 
   // Asset paths - placeholder until custom art is added
-  public override string CustomIconTexturePath => "character_icon_kaho.png".CharacterUiPath();
-  public override string CustomCharacterSelectIconPath => "char_select_kaho.png".CharacterUiPath();
-  public override string CustomCharacterSelectLockedIconPath => "char_select_kaho_locked.png".CharacterUiPath();
-  public override string CustomMapMarkerPath => "map_marker_kaho.png".CharacterUiPath();
+  public override string CustomIconTexturePath => "character_icon.png".CharacterUiPath(CharacterId);
+  public override string CustomCharacterSelectIconPath => "char_select.png".CharacterUiPath(CharacterId);
+  public override string CustomCharacterSelectLockedIconPath => "char_select_locked.png".CharacterUiPath(CharacterId);
+  public override string CustomMapMarkerPath => "map_marker.png".CharacterUiPath(CharacterId);
+  public override string CustomCharacterSelectBg => "select_bg.tscn".CharacterUiPath(CharacterId);
 }

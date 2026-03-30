@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br7vt53eku457"
-path="res://.godot/imported/char_select_char_kaho_locked.png-c6adde2c501e97fe27803a657e256977.ctex"
+uid="uid://diey1k7n2sihn"
+path="res://.godot/imported/kaho_defend.png-d50a504433fabe01d0569ae99751eb6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/charui/char_select_char_kaho_locked.png"
-dest_files=["res://.godot/imported/char_select_char_kaho_locked.png-c6adde2c501e97fe27803a657e256977.ctex"]
+source_file="res://linkuramod/images/card_portraits/big/kaho_defend.png"
+dest_files=["res://.godot/imported/kaho_defend.png-d50a504433fabe01d0569ae99751eb6c.ctex"]
 
 [params]
 

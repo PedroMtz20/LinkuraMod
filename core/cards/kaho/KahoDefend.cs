@@ -6,24 +6,24 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace RuriMegu.Core.Cards;
+namespace RuriMegu.Core.Cards.Kaho;
 
 /// <summary>
-/// Strike card for Hinoshita Kaho.
-/// Basic attack: Deal 6 damage. Upgrade: Deal 9 damage.
+/// Defend card for Hinoshita Kaho.
+/// Basic skill: Gain 5 block. Upgrade: Gain 8 block.
 /// </summary>
-public class StrikeLinkura() : LinkuraCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy) {
-  protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
+public class KahoDefend() : LinkuraCard(1, CardType.Skill, CardRarity.Basic, TargetType.None) {
+  protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new DamageVar(6, ValueProp.Move),
+    new BlockVar(5, ValueProp.Move),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play) {
-    await CommonActions.CardAttack(this, play.Target).Execute(choiceContext);
+    await CommonActions.CardBlock(this, play);
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.Damage.UpgradeValueBy(3m);
+    DynamicVars.Block.UpgradeValueBy(3m);
   }
 }

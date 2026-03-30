@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1p0rkwyhajk"
-path="res://.godot/imported/strike_linkura.png-9a78b9d4d9bd19107ad24940bb768e98.ctex"
+uid="uid://cbjufdejhwww"
+path="res://.godot/imported/char_select_locked.png-d7800aa71541376f08723f7271c2d58c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/strike_linkura.png"
-dest_files=["res://.godot/imported/strike_linkura.png-9a78b9d4d9bd19107ad24940bb768e98.ctex"]
+source_file="res://linkuramod/images/charui/kaho/char_select_locked.png"
+dest_files=["res://.godot/imported/char_select_locked.png-d7800aa71541376f08723f7271c2d58c.ctex"]
 
 [params]
 

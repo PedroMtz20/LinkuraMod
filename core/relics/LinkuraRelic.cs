@@ -12,4 +12,6 @@ namespace RuriMegu.Core.Relics;
 [Pool(typeof(LinkuraRelicPool))]
 public abstract class LinkuraRelic : CustomRelicModel {
   public override RelicRarity Rarity => RelicRarity.Common;
+
+
 }

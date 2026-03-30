@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhtec0frk436w"
-path="res://.godot/imported/text_energy.png-c643f86a3fe61aa9ba7f09aefe5a3749.ctex"
+uid="uid://bxob8veb1owl3"
+path="res://.godot/imported/kaho_strike.png-fe508ab1e5c9ad61aa328de4103c872a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/charui/text_energy.png"
-dest_files=["res://.godot/imported/text_energy.png-c643f86a3fe61aa9ba7f09aefe5a3749.ctex"]
+source_file="res://linkuramod/images/card_portraits/kaho_strike.png"
+dest_files=["res://.godot/imported/kaho_strike.png-fe508ab1e5c9ad61aa328de4103c872a.ctex"]
 
 [params]
 

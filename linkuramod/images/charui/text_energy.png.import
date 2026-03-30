@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2010qh28ooi8"
-path="res://.godot/imported/map_marker_char_kaho.png-769f2c2f26e4cf77b8db48f3ce6acee3.ctex"
+uid="uid://dhtec0frk436w"
+path="res://.godot/imported/text_energy.png-cea04f010cdff72a76fa0880953412ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/charui/map_marker_char_kaho.png"
-dest_files=["res://.godot/imported/map_marker_char_kaho.png-769f2c2f26e4cf77b8db48f3ce6acee3.ctex"]
+source_file="res://linkuramod/images/charui/text_energy.png"
+dest_files=["res://.godot/imported/text_energy.png-cea04f010cdff72a76fa0880953412ca.ctex"]
 
 [params]
 

@@ -34,7 +34,7 @@ public static class StringExtensions {
     return Path.Join(LinkuraMod.ModId, "images", "relics", "big", path);
   }
 
-  public static string CharacterUiPath(this string path) {
-    return Path.Join(LinkuraMod.ModId, "images", "charui", path);
+  public static string CharacterUiPath(this string path, string characterId = "") {
+    return Path.Join(LinkuraMod.ModId, "images", "charui", characterId, path);
   }
 }

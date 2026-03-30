@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqcf1duhg5yxd"
-path="res://.godot/imported/char_select_char_kaho.png-0c9670e2d392f9d00a9822edcd71f404.ctex"
+uid="uid://dayd2at4saimr"
+path="res://.godot/imported/linkura_system_outline.png-8641192794bd0c4c0d4dfd4a6d8165e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/charui/char_select_char_kaho.png"
-dest_files=["res://.godot/imported/char_select_char_kaho.png-0c9670e2d392f9d00a9822edcd71f404.ctex"]
+source_file="res://linkuramod/images/relics/linkura_system_outline.png"
+dest_files=["res://.godot/imported/linkura_system_outline.png-8641192794bd0c4c0d4dfd4a6d8165e1.ctex"]
 
 [params]
 

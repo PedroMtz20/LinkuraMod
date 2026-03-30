@@ -1,6 +1,6 @@
 {
-  "RURIMEGU-BURST_HEART.title": "Burst",
-  "RURIMEGU-BURST_HEART.description": "Increase the number of collected hearts, without exceeding the Burst Heart limit.",
-  "RURIMEGU-COLLECT_HEART.title": "Collect",
-  "RURIMEGU-COLLECT_HEART.description": "Deal damage to a random enemy equal to the number of hearts you have collected, then lose all collected hearts."
+  "RURIMEGU-BURST_HEARTS.title": "Burst",
+  "RURIMEGU-BURST_HEARTS.description": "Increase the number of collected hearts, without exceeding the Burst Heart limit.",
+  "RURIMEGU-COLLECT_HEARTS.title": "Collect",
+  "RURIMEGU-COLLECT_HEARTS.description": "Deal damage to a random enemy equal to the number of hearts you have collected, then lose all collected hearts."
 }
