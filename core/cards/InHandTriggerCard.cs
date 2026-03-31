@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards;
 
@@ -21,13 +22,18 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
 
   private int _triggerCount;
 
-  protected bool TryTrigger() {
-    if (!CanTrigger) return false;
+  protected bool TryTrigger(CardPlay cardPlay) {
+    if (!CanTrigger(cardPlay)) return false;
     _triggerCount++;
     return true;
   }
 
-  protected bool CanTrigger => _triggerCount < MAX_TRIGGERS_PER_PLAY;
+  protected virtual bool CanTrigger(CardPlay cardPlay) {
+    if (_triggerCount >= MAX_TRIGGERS_PER_PLAY) return false;
+    if (cardPlay.Card == this || cardPlay.Card.Owner != Owner) return false;
+    if (!this.IsInHand()) return false;
+    return true;
+  }
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
     await base.AfterCardPlayed(context, cardPlay);

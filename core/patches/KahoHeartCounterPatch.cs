@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using RuriMegu.Core.Characters;
-using RuriMegu.Core.Nodes.Combat;
+using RuriMegu.Nodes.Combat;
 
 namespace RuriMegu.Core.Patches;
 
@@ -27,18 +27,20 @@ public static class KahoHeartCounterPatch {
     if (me.Character is not HinoshitaKaho) return;
 
     // The energy counter was added to EnergyCounterContainer; find the embedded HeartCounter.
+    // After BaseLib's NEnergyCounterFactory re-parents nodes the unique-name owner is lost,
+    // so we use FindChild + GetNodeOrNull instead of the %UniqueNameLookup.
     Control energyCounterContainer = __instance.EnergyCounterContainer;
     NHeartCounter heartCounter = null;
 
     foreach (Node child in energyCounterContainer.GetChildren()) {
-      heartCounter = child.GetNodeOrNull<NHeartCounter>("%HeartCounter");
-      if (heartCounter is not null) break;
+      Node found = child.FindChild("HeartCounter", owned: false);
+      if (found is NHeartCounter hc) { heartCounter = hc; break; }
     }
 
     if (heartCounter is null) {
       LinkuraMod.Logger.Warn(
         "KahoHeartCounterPatch: HeartCounter not found inside energy counter — " +
-        "check that kaho_energy_counter.tscn contains a HeartCounter child.");
+        "check that energy_counter.tscn contains a HeartCounter child.");
       return;
     }
 

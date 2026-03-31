@@ -47,7 +47,7 @@ public static class StringExtensions {
   }
 
   public static HoverTip HoverTip(this string locKey, params DynamicVar[] vars) {
-    string text = StringHelper.Slugify(locKey);
+    string text = locKey;
     LocString locString = L10NStatic(text + ".title");
     LocString locString2 = L10NStatic(text + ".description");
     foreach (DynamicVar dynamicVar in vars) {

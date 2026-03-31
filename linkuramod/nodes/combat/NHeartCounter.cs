@@ -4,12 +4,12 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using RuriMegu.Core.Utils;
 
-namespace RuriMegu.Core.Nodes.Combat;
+namespace RuriMegu.Nodes.Combat;
 
 /// <summary>
 /// Displays Hinoshita Kaho's "Hearts" counter — a secondary resource
 /// that mirrors the Regent's star counter in layout, but with Kaho's
-/// golden-pink Love Live theme. Backed by <see cref="PlayerCombatState.Stars"/>.
+/// golden-pink Love Live theme.
 /// </summary>
 public partial class NHeartCounter : Control {
   private Player _player;

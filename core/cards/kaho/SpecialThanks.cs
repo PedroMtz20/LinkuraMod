@@ -25,9 +25,8 @@ public class SpecialThanks() : InHandTriggerCard(1, CardType.Skill, CardRarity.U
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
     await base.AfterCardPlayed(context, cardPlay);
-    if (cardPlay.Card == this || cardPlay.Card.Owner != Owner) return;
     if (cardPlay.Card.Type != CardType.Attack) return;
-    if (!TryTrigger()) return;
+    if (!TryTrigger(cardPlay)) return;
     await LinkuraCardActions.BurstHearts(this);
   }
 
