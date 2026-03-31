@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace RuriMegu.Core.Cards;
 
@@ -10,8 +9,6 @@ namespace RuriMegu.Core.Cards;
 /// Base class for cards whose effect triggers when a certain condition is met
 /// while the card is in the player's hand.
 ///
-/// The framework calls <see cref="AfterCardPlayedLate"/> for cards that are
-/// currently in the player's hand after another card finishes being played.
 /// A guard of <see cref="MAX_TRIGGERS_PER_PLAY"/> prevents runaway loops.
 /// </summary>
 public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rarity, TargetType target)
