@@ -11,8 +11,8 @@ public class AutoBurstPower : LinkuraPower {
   public override PowerType Type => PowerType.Buff;
   public override PowerStackType StackType => PowerStackType.Counter;
 
-  public override string CustomPackedIconPath => "power.png".PowerImagePath();
-  public override string CustomBigIconPath => "power.png".BigPowerImagePath();
+  public override string CustomPackedIconPath => "auto_burst.png".PowerImagePath();
+  public override string CustomBigIconPath => "auto_burst.png".PowerImagePath();
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
     int amount = Amount;
