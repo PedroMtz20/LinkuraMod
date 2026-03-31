@@ -32,8 +32,8 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
 
   protected bool CanTrigger => _triggerCount < MAX_TRIGGERS_PER_PLAY;
 
-  public override async Task AfterCardPlayedLate(PlayerChoiceContext context, CardPlay cardPlay) {
-    await base.AfterCardPlayedLate(context, cardPlay);
+  public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
+    await base.AfterCardPlayed(context, cardPlay);
     // Reset counter only when this card is manually played by the player.
     if (cardPlay.Card == this && !cardPlay.IsAutoPlay) {
       _triggerCount = 0;

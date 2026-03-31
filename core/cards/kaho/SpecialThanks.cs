@@ -23,8 +23,8 @@ public class SpecialThanks() : InHandTriggerCard(1, CardType.Skill, CardRarity.U
     await CommonActions.Draw(this, choiceContext);
   }
 
-  public override async Task AfterCardPlayedLate(PlayerChoiceContext context, CardPlay cardPlay) {
-    await base.AfterCardPlayedLate(context, cardPlay);
+  public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
+    await base.AfterCardPlayed(context, cardPlay);
     if (cardPlay.Card == this || cardPlay.Card.Owner != Owner) return;
     if (cardPlay.Card.Type != CardType.Attack) return;
     if (!TryTrigger()) return;
