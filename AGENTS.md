@@ -42,73 +42,26 @@ Sub-namespaces follow the folder path, e.g. `RuriMegu.Core.Cards.Kaho`.
 
 ## Naming Conventions
 
-| What | Convention | Example |
-|---|---|---|
-| Constants (`const`) | `UPPER_SNAKE_CASE` | `MAX_TRIGGERS_PER_PLAY`, `DEFAULT_MAX_HEARTS` |
-| Public identifiers (classes, properties, methods) | `PascalCase` | `BurstHearts()`, `CanonicalVars` |
-| Private fields | `_camelCase` | `_triggerCount` |
-| Localization keys | `RURIMEGU-CLASS_NAME.field` | `RURIMEGU-SPECIAL_THANKS.title` |
-| CustomEnum strings (keywords/DynamicVars) | `PascalCase_Words` | `"Collect_Hearts"`, `"Backstage"` |
+| What                                              | Convention                  | Example                                       |
+| ------------------------------------------------- | --------------------------- | --------------------------------------------- |
+| Constants (`const`)                               | `UPPER_SNAKE_CASE`          | `MAX_TRIGGERS_PER_PLAY`, `DEFAULT_MAX_HEARTS` |
+| Public identifiers (classes, properties, methods) | `PascalCase`                | `BurstHearts()`, `CanonicalVars`              |
+| Private fields                                    | `_camelCase`                | `_triggerCount`                               |
+| Localization keys                                 | `RURIMEGU-CLASS_NAME.field` | `RURIMEGU-SPECIAL_THANKS.title`               |
+| CustomEnum strings (keywords/DynamicVars)         | `PascalCase_Words`          | `"Collect_Hearts"`, `"Backstage"`             |
 
 > **Do NOT use PascalCase for constants.** Always `UPPER_SNAKE_CASE`.
 
----
 
-## Adding a New Card
-
-### 1. Create the card class
-
-Place in `core/cards/kaho/` (or `core/cards/` for shared cards).
-
-```csharp
-namespace RuriMegu.Core.Cards.Kaho;
-
-public class MyCard() : LinkuraCard(cost, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
-  protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new DamageVar(6, ValueProp.Move),
-  ];
-
-  protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    await CommonActions.Attack(this, ctx);
-  }
-
-  protected override void OnUpgrade() {
-    DynamicVars.Damage().UpgradeValueBy(3m);
-  }
-}
-```
-
-### 2. Register in the card pool
-
-`core/characters/HinoshitaKahoCardPool.cs` → `GenerateAllCards()`:
-
-```csharp
-ModelDb.Card<MyCard>(),
-```
-
-### 3. Add localization
-
-Both language files must be updated when adding any card.
-
-`linkuramod/localization/eng/cards.json`:
-```json
-"RURIMEGU-MY_CARD.title": "My Card",
-"RURIMEGU-MY_CARD.description": "Deal {Damage:diff()} damage."
-```
-
-`linkuramod/localization/zhs/cards.json`:
-```json
-"RURIMEGU-MY_CARD.title": "我的牌",
-"RURIMEGU-MY_CARD.description": "造成{Damage:diff()}点伤害。"
-```
+Card creation workflow lives in `.github/skills/add-linkura-card/SKILL.md`.
 
 ---
 
 ## Card Base Classes
 
-| Class | Use When |
-|---|---|
-| `LinkuraCard` | Standard card |
+| Class               | Use When                                                                          |
+| ------------------- | --------------------------------------------------------------------------------- |
+| `LinkuraCard`       | Standard card                                                                     |
 | `InHandTriggerCard` | Card with a **Backstage** effect — triggers while in hand when a condition is met |
 
 ## Localization
