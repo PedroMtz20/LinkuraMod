@@ -8,4 +8,7 @@ public static class LinkuraKeywords {
 
   [CustomEnum("Collect_Hearts"), KeywordProperties(AutoKeywordPosition.None)]
   public static CardKeyword CollectHearts;
+
+  [CustomEnum("Backstage"), KeywordProperties(AutoKeywordPosition.None)]
+  public static CardKeyword Backstage;
 }

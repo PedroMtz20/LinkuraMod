@@ -28,6 +28,7 @@ public class HinoshitaKahoCardPool : CustomCardPoolModel {
       ModelDb.Card<KahoStrike>(),
       ModelDb.Card<KahoDefend>(),
       ModelDb.Card<WideHeart>(),
+      ModelDb.Card<SpecialThanks>(),
     ];
   }
 }
