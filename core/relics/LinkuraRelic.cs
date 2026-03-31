@@ -1,7 +1,11 @@
+using System.Collections.Generic;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.HoverTips;
+using RuriMegu.Core.Cards;
 using RuriMegu.Core.Characters;
+using RuriMegu.Core.Powers;
 
 namespace RuriMegu.Core.Relics;
 
@@ -13,5 +17,8 @@ namespace RuriMegu.Core.Relics;
 public abstract class LinkuraRelic : CustomRelicModel {
   public override RelicRarity Rarity => RelicRarity.Common;
 
-
+  protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    HoverTipFactory.FromPower<AutoBurstPower>(),
+    HoverTipFactory.FromKeyword(LinkuraKeywords.Collect)
+  ];
 }
