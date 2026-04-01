@@ -11,22 +11,37 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace RuriMegu.Core.Utils;
 
 public static class LinkuraCmd {
-
-  public static Task IncreaseMaxHearts(Player player, int amount, CardModel source = null) {
-    return HeartsState.AddMaxHearts(player, amount, source);
+  public static async Task IncreaseMaxHearts(Player player, int amount, CardModel source = null) {
+    var ev = new Events.IncreaseMaxHeartsEvent(player, amount, source);
+    if (!Events.IncreaseMaxHearts.InvokeAllEarly(ev)) return;
+    var childEv = await HeartsState.AddMaxHearts(player, amount, source);
+    if (childEv.IsNullOrCancelled()) return;
+    ev.ActualAmount = childEv.NewMaxHearts - childEv.OldMaxHearts;
+    Events.IncreaseMaxHearts.InvokeAllLate(ev);
   }
 
-  public static Task BurstHearts(Player player, int amount, CardModel source = null) {
-    return HeartsState.AddHearts(player, amount, source);
+  public static async Task BurstHearts(Player player, int amount, CardModel source = null) {
+    var ev = new Events.BurstHeartsEvent(player, amount, source);
+    if (!Events.BurstHearts.InvokeAllEarly(ev)) return;
+    var childEv = await HeartsState.AddHearts(player, amount, source);
+    if (childEv.IsNullOrCancelled()) return;
+    ev.ActualAmount = childEv.NewHearts - childEv.OldHearts;
+    Events.BurstHearts.InvokeAllLate(ev);
   }
 
   public static async Task CollectHearts(Player player, PlayerChoiceContext context, CardModel source = null, Creature target = null) {
+    var ev = new Events.CollectHeartsEvent(player, source);
+    if (!Events.CollectHearts.InvokeAllEarly(ev)) return;
     int hearts = HeartsState.GetHearts(player);
-    await ApplyHeartDamage(hearts, target, player, context);
-    await HeartsState.SetHearts(player, 0, source);
+    IReadOnlyList<Creature> targets = await ApplyHeartDamage(hearts, target, player, context);
+    var childEv = await HeartsState.SetHearts(player, 0, source);
+    if (childEv.IsNullOrCancelled()) return;
+    ev.Amount = hearts;
+    ev.Targets = targets;
+    Events.CollectHearts.InvokeAllLate(ev);
   }
 
-  private static async Task<IEnumerable<Creature>> ApplyHeartDamage(decimal value, Creature target, Player player, PlayerChoiceContext choiceContext) {
+  private static async Task<IReadOnlyList<Creature>> ApplyHeartDamage(int value, Creature target, Player player, PlayerChoiceContext choiceContext) {
     List<Creature> list = [.. from e in player.Creature.CombatState.GetOpponentsOf(player.Creature)
                            where e.IsHittable
                            select e];

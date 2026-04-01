@@ -27,4 +27,14 @@ public static class CardExtensions {
     CardPile handPile = PileType.Hand.GetPile(card.Owner);
     return handPile != null && handPile.Cards.Contains(card);
   }
+
+  public static bool IsInDrawPile(this CardModel card) {
+    CardPile drawPile = PileType.Draw.GetPile(card.Owner);
+    return drawPile != null && drawPile.Cards.Contains(card);
+  }
+
+  public static bool IsInDiscardPile(this CardModel card) {
+    CardPile discardPile = PileType.Discard.GetPile(card.Owner);
+    return discardPile != null && discardPile.Cards.Contains(card);
+  }
 }

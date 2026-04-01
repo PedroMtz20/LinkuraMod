@@ -9,29 +9,8 @@ using RuriMegu.Core.Powers;
 namespace RuriMegu.Core.Utils;
 
 public static class HeartsState {
-  public readonly record struct HeartsChangedEvent(
-    Player Player,
-    int OldHearts,
-    int NewHearts,
-    int MaxHearts,
-    int Delta,
-    CardModel Source
-  );
-
-  public readonly record struct MaxHeartsChangedEvent(
-    Player Player,
-    int OldMaxHearts,
-    int NewMaxHearts,
-    int Hearts,
-    int Delta,
-    CardModel Source
-  );
-
   public const int DEFAULT_MAX_HEARTS = 9;
   public const int MAX_MAX_HEARTS = 9999;
-
-  public static event Action<HeartsChangedEvent> HeartsChanged;
-  public static event Action<MaxHeartsChangedEvent> MaxHeartsChanged;
 
   public static int GetHearts(Player player) => GetAmount<HeartsPower>(player);
 
@@ -45,67 +24,68 @@ public static class HeartsState {
     await SetHearts(player, 0);
   }
 
-  public static Task AddHearts(Player player, int amount, CardModel source = null) {
+  public static Task<Events.HeartsChangedEvent> AddHearts(Player player, int amount, CardModel source = null) {
     return SetHearts(player, GetHearts(player) + amount, source);
   }
 
-  public static Task AddMaxHearts(Player player, int amount, CardModel source = null) {
+  public static Task<Events.MaxHeartsChangedEvent> AddMaxHearts(Player player, int amount, CardModel source = null) {
     return SetMaxHearts(player, GetMaxHearts(player) + amount, source);
   }
 
-  public static IDisposable SubscribeHeartsChanged(Action<HeartsChangedEvent> handler) {
-    HeartsChanged += handler;
-    return new Subscription(() => HeartsChanged -= handler);
-  }
-
-  public static IDisposable SubscribeMaxHeartsChanged(Action<MaxHeartsChangedEvent> handler) {
-    MaxHeartsChanged += handler;
-    return new Subscription(() => MaxHeartsChanged -= handler);
-  }
-
-  public static async Task SetHearts(Player player, int amount, CardModel source = null) {
+  public static async Task<Events.HeartsChangedEvent> SetHearts(Player player, int amount, CardModel source = null) {
     int oldHearts = GetHearts(player);
     int clampedAmount = Math.Clamp(amount, 0, GetMaxHearts(player));
     if (oldHearts == clampedAmount) {
-      return;
+      return null;
     }
 
-    await SetAmount<HeartsPower>(player, clampedAmount, source);
-
-    HeartsChanged?.Invoke(new HeartsChangedEvent(
+    var ev = new Events.HeartsChangedEvent(
       player,
       oldHearts,
       clampedAmount,
       GetMaxHearts(player),
       clampedAmount - oldHearts,
       source
-    ));
+    );
+
+    if (!Events.HeartsChanged.InvokeAllEarly(ev)) return ev;
+
+    await SetAmount<HeartsPower>(player, clampedAmount, source);
+
+    Events.HeartsChanged.InvokeAllLate(ev);
+    return ev;
   }
 
-  public static async Task SetMaxHearts(Player player, int amount, CardModel source = null) {
+  public static async Task<Events.MaxHeartsChangedEvent> SetMaxHearts(Player player, int amount, CardModel source = null) {
     int clampedAmount = Math.Clamp(amount, 0, MAX_MAX_HEARTS);
     int oldMaxHearts = GetMaxHearts(player);
-    await SetAmount<MaxHeartsPower>(player, clampedAmount, source);
 
-    if (GetHearts(player) > clampedAmount) {
-      await SetHearts(player, clampedAmount, source);
-    }
-    
-    MaxHeartsChanged?.Invoke(new MaxHeartsChangedEvent(
+    var ev = new Events.MaxHeartsChangedEvent(
       player,
       oldMaxHearts,
       clampedAmount,
       GetHearts(player),
       clampedAmount - oldMaxHearts,
       source
-    ));
+    );
+
+    if (!Events.MaxHeartsChanged.InvokeAllEarly(ev)) return ev;
+
+    await SetAmount<MaxHeartsPower>(player, clampedAmount, source);
+
+    if (GetHearts(player) > clampedAmount) {
+      await SetHearts(player, clampedAmount, source);
+    }
+
+    Events.MaxHeartsChanged.InvokeAllLate(ev);
+    return ev;
   }
 
   private static int GetAmount<TPower>(Player player) where TPower : PowerModel {
     return (int)(player.Creature.Powers.OfType<TPower>().FirstOrDefault()?.Amount ?? 0m);
   }
 
-  private static Task SetAmount<TPower>(Player player, int amount, CardModel source = null) where TPower : PowerModel {
+  private static Task<TPower> SetAmount<TPower>(Player player, int amount, CardModel source = null) where TPower : PowerModel {
     return PowerCmd.SetAmount<TPower>(player.Creature, amount, player.Creature, source);
   }
 }

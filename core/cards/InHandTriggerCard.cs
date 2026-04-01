@@ -22,9 +22,15 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
 
   private int _triggerCount;
 
-  protected bool TryTrigger(CardPlay cardPlay) {
+  protected abstract Task OnBackstageTrigger(PlayerChoiceContext context, CardPlay cardPlay);
+
+  protected async Task<bool> TryTrigger(PlayerChoiceContext context, CardPlay cardPlay) {
     if (!CanTrigger(cardPlay)) return false;
+    var ev = new Events.TriggerBackstageEvent(Owner, this);
+    if (!Events.TriggerBackstage.InvokeAllEarly(ev)) return false;
     _triggerCount++;
+    await OnBackstageTrigger(context, cardPlay);
+    Events.TriggerBackstage.InvokeAllLate(ev);
     return true;
   }
 

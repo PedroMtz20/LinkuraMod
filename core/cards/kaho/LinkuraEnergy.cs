@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho;
 
-public class LinkuraEnergy() : LinkuraCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
+public class LinkuraEnergy() : LinkuraCard(1, CardType.Skill, CardRarity.Basic, TargetType.None) {
   public override IEnumerable<CardKeyword> CanonicalKeywords => [LinkuraKeywords.Collect];
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
