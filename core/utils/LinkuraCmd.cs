@@ -21,6 +21,7 @@ public static class LinkuraCmd {
   }
 
   public static async Task BurstHearts(Player player, int amount, CardModel source = null) {
+    if (amount <= 0) return;
     var ev = new Events.BurstHeartsEvent(player, amount, source);
     if (!Events.BurstHearts.InvokeAllEarly(ev)) return;
     var childEv = await HeartsState.AddHearts(player, amount, source);

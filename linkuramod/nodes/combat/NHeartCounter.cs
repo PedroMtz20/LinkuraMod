@@ -68,8 +68,8 @@ public partial class NHeartCounter : Control {
     _heartsVelocity = 0f;
     _maxHeartsVelocity = 0f;
 
-    _heartsChangedSubscription = HeartsState.SubscribeHeartsChanged(OnHeartsStateChanged);
-    _maxHeartsChangedSubscription = HeartsState.SubscribeMaxHeartsChanged(OnMaxHeartsStateChanged);
+    _heartsChangedSubscription = Events.HeartsChanged.SubscribeLate(OnHeartsStateChanged);
+    _maxHeartsChangedSubscription = Events.MaxHeartsChanged.SubscribeLate(OnMaxHeartsStateChanged);
 
     OnHeartsChanged(_targetHearts, _targetMaxHearts);
     RefreshVisibility();
@@ -79,7 +79,7 @@ public partial class NHeartCounter : Control {
   // Helpers
   // ──────────────────────────────────────────────────────────────
 
-  private void OnHeartsStateChanged(HeartsState.HeartsChangedEvent evt) {
+  private void OnHeartsStateChanged(Events.HeartsChangedEvent evt) {
     if (_player is null || evt.Player != _player) {
       return;
     }
@@ -88,7 +88,7 @@ public partial class NHeartCounter : Control {
     _targetMaxHearts = evt.MaxHearts;
   }
 
-  private void OnMaxHeartsStateChanged(HeartsState.MaxHeartsChangedEvent evt) {
+  private void OnMaxHeartsStateChanged(Events.MaxHeartsChangedEvent evt) {
     if (_player is null || evt.Player != _player) {
       return;
     }

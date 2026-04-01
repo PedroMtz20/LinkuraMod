@@ -22,21 +22,20 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
 
   private int _triggerCount;
 
-  protected abstract Task OnBackstageTrigger(PlayerChoiceContext context, CardPlay cardPlay);
-
-  protected async Task<bool> TryTrigger(PlayerChoiceContext context, CardPlay cardPlay) {
-    if (!CanTrigger(cardPlay)) return false;
+  protected Events.TriggerBackstageEvent TryTrigger() {
+    if (!CanTrigger()) return null;
     var ev = new Events.TriggerBackstageEvent(Owner, this);
-    if (!Events.TriggerBackstage.InvokeAllEarly(ev)) return false;
-    _triggerCount++;
-    await OnBackstageTrigger(context, cardPlay);
-    Events.TriggerBackstage.InvokeAllLate(ev);
-    return true;
+    if (!Events.TriggerBackstage.InvokeAllEarly(ev)) return null;
+    return ev;
   }
 
-  protected virtual bool CanTrigger(CardPlay cardPlay) {
+  protected void AfterTrigger(Events.TriggerBackstageEvent ev) {
+    _triggerCount++;
+    Events.TriggerBackstage.InvokeAllLate(ev);
+  }
+
+  protected virtual bool CanTrigger() {
     if (_triggerCount >= MAX_TRIGGERS_PER_PLAY) return false;
-    if (cardPlay.Card == this || cardPlay.Card.Owner != Owner) return false;
     if (!this.IsInHand()) return false;
     return true;
   }

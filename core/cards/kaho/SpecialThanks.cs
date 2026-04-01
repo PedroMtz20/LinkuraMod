@@ -16,7 +16,7 @@ namespace RuriMegu.Core.Cards.Kaho;
 public class SpecialThanks() : InHandTriggerCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new CardsVar(1),
-    new BurstHeartsVar(4),
+    new BurstHeartsVar(2),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play) {
@@ -25,15 +25,15 @@ public class SpecialThanks() : InHandTriggerCard(1, CardType.Skill, CardRarity.U
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
     await base.AfterCardPlayed(context, cardPlay);
+    if (cardPlay.Card == this || cardPlay.Card.Owner != Owner) return;
     if (cardPlay.Card.Type != CardType.Attack) return;
-    await TryTrigger(context, cardPlay);
-  }
-
-  protected override async Task OnBackstageTrigger(PlayerChoiceContext context, CardPlay cardPlay) {
+    var ev = TryTrigger();
+    if (ev.IsNullOrCancelled()) return;
     await LinkuraCardActions.BurstHearts(this);
+    AfterTrigger(ev);
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.BurstHearts().UpgradeValueBy(2m);
+    DynamicVars.BurstHearts().UpgradeValueBy(1m);
   }
 }

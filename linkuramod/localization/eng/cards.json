@@ -4,5 +4,21 @@
   "RURIMEGU-KAHO_STRIKE.description": "Deal {Damage:diff()} damage.",
   "RURIMEGU-KAHO_STRIKE.title": "Strike",
   "RURIMEGU-SPECIAL_THANKS.title": "Special Thanks",
-  "RURIMEGU-SPECIAL_THANKS.description": "Draw {Cards:diff()} card. [gold]Backstage[/gold]: whenever you play an Attack, [gold]Burst[/gold] {RURIMEGU-BURST:diff()}."
+  "RURIMEGU-SPECIAL_THANKS.description": "Draw {Cards:diff()} card. [gold]Backstage[/gold]: whenever you play an Attack, [gold]Burst[/gold] {RURIMEGU-BURST:diff()}.",
+  "RURIMEGU-BUDDING_PREMONITION.title": "Budding Premonition",
+  "RURIMEGU-BUDDING_PREMONITION.description": "Increase max ♥ by {RURIMEGU-EXPAND_HEARTS:diff()}. Deal damage equal to your current max ♥. [gold]Exhaust[/gold].",
+  "RURIMEGU-FINAL_APPEAL.title": "Final Appeal",
+  "RURIMEGU-FINAL_APPEAL.description": "Deal damage equal to your current ♥. Lose all ♥.",
+  "RURIMEGU-TRAINING_OUTCOMES.title": "Training Outcomes",
+  "RURIMEGU-TRAINING_OUTCOMES.description": "Deal {Damage:diff()} damage. [gold]Backstage[/gold]: whenever you [gold]Collect[/gold], this card costs 1 less energy next time it is played.",
+  "RURIMEGU-KAHO_SMASH.title": "Kaho Smash",
+  "RURIMEGU-KAHO_SMASH.description": "Deal {Damage:diff()} damage. [gold]Collect[/gold].",
+  "RURIMEGU-FANTASY375.title": "37.5°C's Fantasy",
+  "RURIMEGU-FANTASY375.description": "Deal {Damage:diff()} damage. Your next Skill card costs {CostReduction:diff()} less energy this turn.",
+  "RURIMEGU-STEP_UP.title": "Step Up!",
+  "RURIMEGU-STEP_UP.description": "Deal {Damage:diff()} damage. Increase max ♥ by {RURIMEGU-EXPAND_HEARTS:diff()}.",
+  "RURIMEGU-BUNNY_PYON_PYON.title": "Bunny Pyon Pyon",
+  "RURIMEGU-BUNNY_PYON_PYON.description": "Deal {Damage:diff()} damage. [gold]Burst[/gold] equal to the damage dealt.",
+  "RURIMEGU-CERISE_BOUQUET.title": "Cerise Bouquet",
+  "RURIMEGU-CERISE_BOUQUET.description": "Deal {Damage:diff()} damage to ALL enemies 3 times."
 }

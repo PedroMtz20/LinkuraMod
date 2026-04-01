@@ -7,5 +7,8 @@
   "RURIMEGU-HEARTS_POWER.smartDescription": "已经收集的❤️数。",
   "RURIMEGU-MAX_HEARTS_POWER.title": "最大心数",
   "RURIMEGU-MAX_HEARTS_POWER.description": "可以拥有的最大❤️数。",
-  "RURIMEGU-MAX_HEARTS_POWER.smartDescription": "可以拥有的最大❤️数。"
+  "RURIMEGU-MAX_HEARTS_POWER.smartDescription": "可以拥有的最大❤️数。",
+  "RURIMEGU-SKILL_COST_REDUCTION_POWER.title": "技能折扣",
+  "RURIMEGU-SKILL_COST_REDUCTION_POWER.description": "技能牌费用降低。打出下一张技能牌后失效。",
+  "RURIMEGU-SKILL_COST_REDUCTION_POWER.smartDescription": "技能牌费用降低{Amount}。打出下一张技能牌后失效。"
 }

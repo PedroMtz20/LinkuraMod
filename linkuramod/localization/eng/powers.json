@@ -7,5 +7,8 @@
   "RURIMEGU-HEARTS_POWER.smartDescription": "Internal combat state for Kaho hearts.",
   "RURIMEGU-MAX_HEARTS_POWER.title": "Max Hearts",
   "RURIMEGU-MAX_HEARTS_POWER.description": "Internal combat state for Kaho max hearts.",
-  "RURIMEGU-MAX_HEARTS_POWER.smartDescription": "Internal combat state for Kaho max hearts."
+  "RURIMEGU-MAX_HEARTS_POWER.smartDescription": "Internal combat state for Kaho max hearts.",
+  "RURIMEGU-SKILL_COST_REDUCTION_POWER.title": "Skill Discount",
+  "RURIMEGU-SKILL_COST_REDUCTION_POWER.description": "Skill cards cost {Amount} less Energy. Expires after the next Skill card is played.",
+  "RURIMEGU-SKILL_COST_REDUCTION_POWER.smartDescription": "[gold]Skill[/gold] cards cost {Amount} less Energy. Expires after the next [gold]Skill[/gold] card is played."
 }

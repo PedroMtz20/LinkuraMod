@@ -28,6 +28,16 @@ public class HinoshitaKahoCardPool : CustomCardPoolModel {
       ModelDb.Card<KahoStrike>(),
       ModelDb.Card<KahoDefend>(),
       ModelDb.Card<WideHeart>(),
+      // Common attack cards
+      ModelDb.Card<BuddingPremonition>(),
+      ModelDb.Card<FinalAppeal>(),
+      ModelDb.Card<TrainingOutcomes>(),
+      ModelDb.Card<KahoSmash>(),
+      ModelDb.Card<Fantasy375>(),
+      ModelDb.Card<StepUp>(),
+      ModelDb.Card<BunnyPyonPyon>(),
+      ModelDb.Card<CeriseBouquet>(),
+      // Uncommon skill cards
       ModelDb.Card<SpecialThanks>(),
     ];
   }

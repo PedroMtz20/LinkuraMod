@@ -65,6 +65,26 @@ public static class Events {
     public event Action<TEvent> Late;
     public event Action<TEvent> VeryLate;
 
+    public Subscription SubscribeVeryEarly(Action<TEvent> handler) {
+      VeryEarly += handler;
+      return new Subscription(() => VeryEarly -= handler);
+    }
+
+    public Subscription SubscribeEarly(Action<TEvent> handler) {
+      Early += handler;
+      return new Subscription(() => Early -= handler);
+    }
+
+    public Subscription SubscribeLate(Action<TEvent> handler) {
+      Late += handler;
+      return new Subscription(() => Late -= handler);
+    }
+
+    public Subscription SubscribeVeryLate(Action<TEvent> handler) {
+      VeryLate += handler;
+      return new Subscription(() => VeryLate -= handler);
+    }
+
     /// <summary>
     /// Returns true if the event was not cancelled.
     /// </summary>
@@ -109,11 +129,6 @@ public static class Events {
 }
 
 public static class EventExtensions {
-  public static Subscription Subscribe<T>(this Action<T> action, Action<T> handler) where T : Events.Event {
-    action += handler;
-    return new Subscription(() => action -= handler);
-  }
-
   public static bool IsNullOrCancelled<T>(this T ev) where T : Events.Event {
     return ev == null || ev.IsCancelled;
   }

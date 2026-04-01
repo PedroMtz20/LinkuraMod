@@ -52,7 +52,6 @@ Sub-namespaces follow the folder path, e.g. `RuriMegu.Core.Cards.Kaho`.
 
 > **Do NOT use PascalCase for constants.** Always `UPPER_SNAKE_CASE`.
 
-
 Card creation workflow lives in `.github/skills/add-linkura-card/SKILL.md`.
 
 ---
@@ -71,6 +70,12 @@ Card creation workflow lives in `.github/skills/add-linkura-card/SKILL.md`.
 - Class name in the key is the C# class name converted to `UPPER_SNAKE_CASE`.
 - In-game rich text tags: `[gold]Keyword Name[/gold]` for highlighted keyword references in descriptions.
 - Variable references in descriptions: `{VariableName:diff()}`.
+
+---
+
+## Decompiled Source
+
+The decompiled source code of the original game is located in the `../sts2` folder. You can use it as a reference for the original game's implementation.
 
 ---
 

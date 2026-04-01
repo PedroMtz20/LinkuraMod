@@ -1,0 +1,23 @@
+using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.ValueProps;
+using RuriMegu.Core.Utils;
+
+namespace RuriMegu.Core.Cards.Kaho;
+
+/// <summary>
+/// Final Appeal — Cost 1, Attack, Common.
+/// Deal damage equal to your current ♥. Lose all ♥.
+/// </summary>
+public class FinalAppeal() : LinkuraCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
+  protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    int hearts = HeartsState.GetHearts(Owner);
+    await DamageCmd.Attack(hearts)
+      .FromCard(this)
+      .Targeting(play.Target)
+      .Execute(ctx);
+    await HeartsState.SetHearts(Owner, 0, this);
+  }
+}

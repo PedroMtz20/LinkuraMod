@@ -1,7 +1,7 @@
 ---
 name: add-linkura-card
-description: 'Create a new LinkuraMod card for Slay the Spire 2. Use when adding a new card, registering it in the character card pool, updating eng and zhs localization, and adding placeholder card portrait assets.'
-argument-hint: 'Provide the card name, target character or shared scope, and whether it uses standard or Backstage behavior.'
+description: "Create a new LinkuraMod card for Slay the Spire 2. Use when adding a new card, registering it in the character card pool, updating eng and zhs localization, and adding placeholder card portrait assets."
+argument-hint: "Provide the card name, target character or shared scope, and whether it uses standard or Backstage behavior."
 ---
 
 # Add Linkura Card
@@ -73,6 +73,8 @@ Update both language files when adding any card.
 ```
 
 Localization key rule: convert the C# class name to `UPPER_SNAKE_CASE` and use `RURIMEGU-{CLASS_NAME}.{field}`.
+
+Note that most of the built-in keywords, and the keywords annotated with `AutoKeywordPosition.Before` or `AutoKeywordPosition.After` will be automatically added to the card description, so no need to add them to i18n files again.
 
 ### 4. Add placeholder portrait assets
 
