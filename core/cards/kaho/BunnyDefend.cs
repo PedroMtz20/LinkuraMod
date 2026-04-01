@@ -17,10 +17,14 @@ namespace RuriMegu.Core.Cards.Kaho;
 public class BunnyDefend() : LinkuraCard(2, CardType.Skill, CardRarity.Common, TargetType.None) {
   protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
 
-  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain, CardKeyword.Exhaust];
+  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     int maxHearts = HeartsState.GetMaxHearts(Owner);
     await CreatureCmd.GainBlock(Owner.Creature, maxHearts, ValueProp.Move, play);
+  }
+
+  protected override void OnUpgrade() {
+    AddKeyword(CardKeyword.Retain);
   }
 }
