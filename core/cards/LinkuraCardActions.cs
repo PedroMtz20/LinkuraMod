@@ -15,7 +15,7 @@ public static class LinkuraCardActions {
     return LinkuraCmd.BurstHearts(card.Owner, card.DynamicVars.BurstHearts().IntValue, card);
   }
 
-  public static Task CollectHearts(CardModel card, PlayerChoiceContext context, Creature target = null) {
-    return LinkuraCmd.CollectHearts(card.Owner, context, card, target);
+  public static Task CollectHearts(CardModel card, PlayerChoiceContext context, Creature target = null, int triggers = 1) {
+    return LinkuraCmd.CollectHearts(card.Owner, context, card, target, triggers);
   }
 }

@@ -10,5 +10,11 @@
   "RURIMEGU-MAX_HEARTS_POWER.smartDescription": "可以拥有的最大❤️数。",
   "RURIMEGU-SKILL_COST_REDUCTION_POWER.title": "技能折扣",
   "RURIMEGU-SKILL_COST_REDUCTION_POWER.description": "技能牌费用降低。打出下一张技能牌后失效。",
-  "RURIMEGU-SKILL_COST_REDUCTION_POWER.smartDescription": "技能牌费用降低{Amount}。打出下一张技能牌后失效。"
+  "RURIMEGU-SKILL_COST_REDUCTION_POWER.smartDescription": "技能牌费用降低{Amount}。打出下一张技能牌后失效。",
+  "RURIMEGU-ATTACK_COST_REDUCTION_POWER.title": "攻击折扣",
+  "RURIMEGU-ATTACK_COST_REDUCTION_POWER.description": "攻击牌费用降低。打出下一张攻击牌后失效。",
+  "RURIMEGU-ATTACK_COST_REDUCTION_POWER.smartDescription": "攻击牌费用降低{Amount}。打出下一张攻击牌后失效。",
+  "RURIMEGU-GLOWING_ROUTINE_POWER.title": "闪耀的日常",
+  "RURIMEGU-GLOWING_ROUTINE_POWER.description": "在你的回合开始时，[gold]爆心[/gold]。",
+  "RURIMEGU-GLOWING_ROUTINE_POWER.smartDescription": "在你的回合开始时，[gold]爆心[/gold]{Amount}。"
 }

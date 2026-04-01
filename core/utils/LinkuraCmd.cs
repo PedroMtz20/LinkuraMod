@@ -12,6 +12,7 @@ namespace RuriMegu.Core.Utils;
 
 public static class LinkuraCmd {
   public static async Task IncreaseMaxHearts(Player player, int amount, CardModel source = null) {
+    if (amount <= 0) return;
     var ev = new Events.IncreaseMaxHeartsEvent(player, amount, source);
     if (!Events.IncreaseMaxHearts.InvokeAllEarly(ev)) return;
     var childEv = await HeartsState.AddMaxHearts(player, amount, source);
@@ -30,11 +31,12 @@ public static class LinkuraCmd {
     Events.BurstHearts.InvokeAllLate(ev);
   }
 
-  public static async Task CollectHearts(Player player, PlayerChoiceContext context, CardModel source = null, Creature target = null) {
+  public static async Task CollectHearts(Player player, PlayerChoiceContext context, CardModel source = null, Creature target = null, int triggers = 1) {
+    int hearts = HeartsState.GetHearts(player);
+    if (hearts <= 0) return;
     var ev = new Events.CollectHeartsEvent(player, source);
     if (!Events.CollectHearts.InvokeAllEarly(ev)) return;
-    int hearts = HeartsState.GetHearts(player);
-    IReadOnlyList<Creature> targets = await ApplyHeartDamage(hearts, target, player, context);
+    var targets = await ApplyHeartDamage(hearts, target, player, context, triggers);
     var childEv = await HeartsState.SetHearts(player, 0, source);
     if (childEv.IsNullOrCancelled()) return;
     ev.Amount = hearts;
@@ -42,14 +44,21 @@ public static class LinkuraCmd {
     Events.CollectHearts.InvokeAllLate(ev);
   }
 
-  private static async Task<IReadOnlyList<Creature>> ApplyHeartDamage(int value, Creature target, Player player, PlayerChoiceContext choiceContext) {
+  private static async Task<IReadOnlyList<Creature>> ApplyHeartDamage(int value, Creature target, Player player, PlayerChoiceContext choiceContext, int triggers) {
     List<Creature> list = [.. from e in player.Creature.CombatState.GetOpponentsOf(player.Creature)
                            where e.IsHittable
                            select e];
     if (list.Count == 0) {
       return [];
     }
-    IReadOnlyList<Creature> targets = (target == null) ? [player.RunState.Rng.CombatTargets.NextItem(list)] : [target];
+    List<Creature> targets = [];
+    if (target != null) {
+      targets.Add(target);
+      triggers--;
+    }
+    for (int i = 0; i < triggers; i++) {
+      targets.Add(player.RunState.Rng.CombatTargets.NextItem(list));
+    }
     await CreatureCmd.Damage(choiceContext, targets, value, ValueProp.Unpowered, player.Creature);
     return targets;
   }

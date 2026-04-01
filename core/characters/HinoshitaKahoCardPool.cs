@@ -37,6 +37,20 @@ public class HinoshitaKahoCardPool : CustomCardPoolModel {
       ModelDb.Card<StepUp>(),
       ModelDb.Card<BunnyPyonPyon>(),
       ModelDb.Card<CeriseBouquet>(),
+      // Common skill cards
+      ModelDb.Card<SpringBreezeSwing>(),
+      ModelDb.Card<BunnyDefend>(),
+      ModelDb.Card<GenyouYakou>(),
+      ModelDb.Card<Zanyou>(),
+      ModelDb.Card<NewBlack>(),
+      ModelDb.Card<CurtainCall>(),
+      ModelDb.Card<FullOfPower>(),
+      ModelDb.Card<AgileSteps>(),
+      ModelDb.Card<LoveIt>(),
+      ModelDb.Card<MixShake>(),
+      ModelDb.Card<FanService>(),
+      // Common power cards
+      ModelDb.Card<GlowingRoutine>(),
       // Uncommon skill cards
       ModelDb.Card<SpecialThanks>(),
     ];

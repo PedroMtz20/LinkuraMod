@@ -10,5 +10,11 @@
   "RURIMEGU-MAX_HEARTS_POWER.smartDescription": "Internal combat state for Kaho max hearts.",
   "RURIMEGU-SKILL_COST_REDUCTION_POWER.title": "Skill Discount",
   "RURIMEGU-SKILL_COST_REDUCTION_POWER.description": "Skill cards cost {Amount} less Energy. Expires after the next Skill card is played.",
-  "RURIMEGU-SKILL_COST_REDUCTION_POWER.smartDescription": "[gold]Skill[/gold] cards cost {Amount} less Energy. Expires after the next [gold]Skill[/gold] card is played."
+  "RURIMEGU-SKILL_COST_REDUCTION_POWER.smartDescription": "[gold]Skill[/gold] cards cost {Amount} less Energy. Expires after the next [gold]Skill[/gold] card is played.",
+  "RURIMEGU-ATTACK_COST_REDUCTION_POWER.title": "Attack Discount",
+  "RURIMEGU-ATTACK_COST_REDUCTION_POWER.description": "Attack cards cost {Amount} less Energy. Expires after the next Attack card is played.",
+  "RURIMEGU-ATTACK_COST_REDUCTION_POWER.smartDescription": "[gold]Attack[/gold] cards cost {Amount} less Energy. Expires after the next [gold]Attack[/gold] card is played.",
+  "RURIMEGU-GLOWING_ROUTINE_POWER.title": "Glowing Routine",
+  "RURIMEGU-GLOWING_ROUTINE_POWER.description": "At the start of your turn, Burst {Amount} Hearts.",
+  "RURIMEGU-GLOWING_ROUTINE_POWER.smartDescription": "At the start of your turn, [gold]Burst[/gold] {Amount} Hearts."
 }

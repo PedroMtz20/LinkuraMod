@@ -41,7 +41,6 @@ public class HinoshitaKaho : PlaceholderCharacterModel {
     ModelDb.Card<KahoDefend>(),
     ModelDb.Card<LinkuraEnergy>(),
     ModelDb.Card<WideHeart>(),
-    ModelDb.Card<SpecialThanks>(),
   ];
 
   public override IReadOnlyList<RelicModel> StartingRelics => [

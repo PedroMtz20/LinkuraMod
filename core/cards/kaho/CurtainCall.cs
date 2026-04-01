@@ -1,0 +1,31 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+using RuriMegu.Core.Utils;
+
+namespace RuriMegu.Core.Cards.Kaho;
+
+/// <summary>
+/// Curtain Call (演出落幕) — Cost 1, Skill, Common.
+/// Gain 8 (11) block. Collect.
+/// </summary>
+public class CurtainCall() : LinkuraCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
+  public override IEnumerable<CardKeyword> CanonicalKeywords => [LinkuraKeywords.Collect];
+
+  protected override IEnumerable<DynamicVar> CanonicalVars => [
+    new BlockVar(8, ValueProp.Move),
+  ];
+
+  protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    await CommonActions.CardBlock(this, play);
+    await LinkuraCardActions.CollectHearts(this, ctx);
+  }
+
+  protected override void OnUpgrade() {
+    DynamicVars.Block.UpgradeValueBy(3m);
+  }
+}

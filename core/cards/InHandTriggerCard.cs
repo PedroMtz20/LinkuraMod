@@ -22,11 +22,15 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
 
   private int _triggerCount;
 
-  protected Events.TriggerBackstageEvent TryTrigger() {
-    if (!CanTrigger()) return null;
+  protected Events.TriggerBackstageEvent Trigger() {
     var ev = new Events.TriggerBackstageEvent(Owner, this);
     if (!Events.TriggerBackstage.InvokeAllEarly(ev)) return null;
     return ev;
+  }
+
+  protected Events.TriggerBackstageEvent TryTrigger() {
+    if (!CanTrigger()) return null;
+    return Trigger();
   }
 
   protected void AfterTrigger(Events.TriggerBackstageEvent ev) {
