@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho;
 
 /// <summary>
-/// Full of Power (活力全开) — Cost 2, Skill, Common.
+/// Full Of Power (活力全开) — Cost 2, Skill, Common.
 /// Gain 11 (14) block. Burst 10 (14).
 /// </summary>
 public class FullOfPower() : LinkuraCard(2, CardType.Skill, CardRarity.Common, TargetType.None) {
