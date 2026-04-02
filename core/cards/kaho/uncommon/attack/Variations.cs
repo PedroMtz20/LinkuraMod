@@ -21,6 +21,7 @@ public class Variations() : InHandTriggerCard(1, CardType.Attack, CardRarity.Unc
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(4, ValueProp.Move),
     new CardsVar(1),
+    new EnergyVar(1),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {

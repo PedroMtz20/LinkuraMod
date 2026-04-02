@@ -12,14 +12,15 @@ namespace RuriMegu.Core.Cards.Kaho.Rare.Attack;
 
 /// <summary>
 /// S.R.K. — Cost 3, Attack, Rare.
-/// Deal 3 damage. Increase max ❤️ by 3. Burst 3. Gain [E] [E] [E]. Draw 3 cards. (Innate.) Exhaust.
+/// Deal 3 damage. Increase max ❤️ by 3. Burst 3. Gain {Energy:energyIcons()}. Draw 3 cards. (Innate.) Exhaust.
 /// </summary>
 public class Srk() : LinkuraCard(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(3, ValueProp.Move),
     new ExpandHeartsVar(3),
     new BurstHeartsVar(3),
-    new CardsVar(3)
+    new CardsVar(3),
+    new EnergyVar(3)
   ];
 
   public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];

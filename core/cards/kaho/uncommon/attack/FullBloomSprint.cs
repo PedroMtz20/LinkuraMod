@@ -17,6 +17,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 public class FullBloomSprint() : LinkuraCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(11, ValueProp.Move),
+    new EnergyVar(2),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {

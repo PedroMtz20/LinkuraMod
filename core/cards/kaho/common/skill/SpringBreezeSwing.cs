@@ -19,6 +19,7 @@ public class SpringBreezeSwing() : InHandTriggerCard(1, CardType.Skill, CardRari
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new CardsVar(1),
+    new EnergyVar(1),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {

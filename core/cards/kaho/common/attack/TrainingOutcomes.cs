@@ -23,6 +23,7 @@ public class TrainingOutcomes() : InHandTriggerCard(4, CardType.Attack, CardRari
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(12, ValueProp.Move),
+    new EnergyVar(1),
   ];
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {

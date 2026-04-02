@@ -17,6 +17,7 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 public class AgileSteps() : LinkuraCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new BurstHeartsVar(5),
+    new EnergyVar(1),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
