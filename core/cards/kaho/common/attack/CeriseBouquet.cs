@@ -1,0 +1,27 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+
+namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
+
+/// <summary>
+/// Cerise Bouquet — Cost 2, Attack, Common.
+/// Deal 5 (7) damage to ALL enemies 3 times.
+/// </summary>
+public class CeriseBouquet() : LinkuraCard(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies) {
+  protected override IEnumerable<DynamicVar> CanonicalVars => [
+    new DamageVar(5, ValueProp.Move),
+  ];
+
+  protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    await CommonActions.CardAttack(this, play, hitCount: 3).Execute(ctx);
+  }
+
+  protected override void OnUpgrade() {
+    DynamicVars.Damage.UpgradeValueBy(2m);
+  }
+}

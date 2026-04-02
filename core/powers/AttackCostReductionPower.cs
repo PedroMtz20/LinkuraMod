@@ -8,7 +8,7 @@ namespace RuriMegu.Core.Powers;
 
 /// <summary>
 /// Reduces the cost of the NEXT Attack card by <c>Amount</c> while it is in the Hand or Play pile.
-/// Applied by <see cref="RuriMegu.Core.Cards.Kaho.AgileSteps"/>.
+/// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Common.Skill.AgileSteps"/>.
 /// Consumed (removed entirely) the first time any Attack card is played.
 /// </summary>
 public class AttackCostReductionPower : LinkuraPower {

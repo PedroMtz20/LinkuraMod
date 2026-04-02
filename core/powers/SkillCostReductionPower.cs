@@ -10,7 +10,7 @@ namespace RuriMegu.Core.Powers;
 /// Reduces the cost of ALL Skill cards by <c>Amount</c> while they are in Hand or Play pile.
 /// This covers cards drawn or generated after the effect is applied.
 /// Consumed (removed entirely) the first time any Skill card is played.
-/// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Fantasy375"/>.
+/// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Common.Attack.Fantasy375"/>.
 /// </summary>
 public class SkillCostReductionPower : LinkuraPower {
   public override PowerType Type => PowerType.Buff;

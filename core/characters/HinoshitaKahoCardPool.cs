@@ -1,7 +1,13 @@
 using BaseLib.Abstracts;
 using Godot;
 using MegaCrit.Sts2.Core.Models;
-using RuriMegu.Core.Cards.Kaho;
+using RuriMegu.Core.Cards.Kaho.Basic.Attack;
+using RuriMegu.Core.Cards.Kaho.Basic.Skill;
+using RuriMegu.Core.Cards.Kaho.Common.Attack;
+using RuriMegu.Core.Cards.Kaho.Common.Power;
+using RuriMegu.Core.Cards.Kaho.Common.Skill;
+using RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
+using RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Characters;
