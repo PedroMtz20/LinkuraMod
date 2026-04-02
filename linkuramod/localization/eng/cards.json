@@ -68,5 +68,7 @@
   "RURIMEGU-SRK.title": "S.R.K.",
   "RURIMEGU-SRK.description": "Deal {Damage:diff()} damage. Increase max ❤️ by {RURIMEGU-EXPAND_HEARTS:diff()}. [gold]Burst[/gold] {RURIMEGU-BURST:diff()}. Gain {Energy:energyIcons()}. Draw {Cards:diff()} cards.",
   "RURIMEGU-EMBRACING_PETALS.title": "Embracing Petals",
-  "RURIMEGU-EMBRACING_PETALS.description": "Deal damage equal to your [gold]Auto Burst[/gold] amount to ALL enemies {Repeat:diff()} times. [rur_backstage]: whenever you [gold]Collect[/gold], gain 1 [gold]Auto Burst[/gold]."
+  "RURIMEGU-EMBRACING_PETALS.description": "Deal damage equal to your [gold]Auto Burst[/gold] amount to ALL enemies {Repeat:diff()} times. [rur_backstage]: whenever you [gold]Collect[/gold], gain 1 [gold]Auto Burst[/gold].",
+  "RURIMEGU-SAYO_SHIGURE.title": "Sayo-Shigure",
+  "RURIMEGU-SAYO_SHIGURE.description": "Deal {Damage:diff()} damage to ALL enemies. [gold]Backstage[/gold]: whenever you [gold]Burst[/gold] 10, [gold]Burst[/gold] {RURIMEGU-BURST:diff()}. (Current: {SAYO_SHIGURE_TRACKER})"
 }

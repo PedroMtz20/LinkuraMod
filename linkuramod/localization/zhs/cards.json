@@ -72,5 +72,7 @@
   "RURIMEGU-SRK.title": "S.R.K.",
   "RURIMEGU-SRK.description": "造成{Damage:diff()}点伤害。增加{RURIMEGU-EXPAND_HEARTS:diff()}点❤️上限。[gold]爆心[/gold]{RURIMEGU-BURST:diff()}。获得{Energy:energyIcons()}。抽{Cards:diff()}张牌。",
   "RURIMEGU-EMBRACING_PETALS.title": "拥抱花瓣",
-  "RURIMEGU-EMBRACING_PETALS.description": "对所有敌人造成等同于[gold]自然爆心[/gold]层数的伤害{Repeat:diff()}次。[rur_backstage]：每当你[gold]收心[/gold]，获得1层[gold]自然爆心[/gold]。"
+  "RURIMEGU-EMBRACING_PETALS.description": "对所有敌人造成等同于[gold]自然爆心[/gold]层数的伤害{Repeat:diff()}次。[rur_backstage]：每当你[gold]收心[/gold]，获得1层[gold]自然爆心[/gold]。",
+  "RURIMEGU-SAYO_SHIGURE.title": "小夜时雨",
+  "RURIMEGU-SAYO_SHIGURE.description": "对所有敌人造成{Damage:diff()}点伤害。[gold]幕后[/gold]：每当你[gold]爆心[/gold]10，[gold]爆心[/gold]{RURIMEGU-BURST:diff()}。（当前：{SAYO_SHIGURE_TRACKER}）"
 }

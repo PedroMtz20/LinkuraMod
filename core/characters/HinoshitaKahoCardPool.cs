@@ -74,6 +74,7 @@ public class HinoshitaKahoCardPool : CustomCardPoolModel {
       // Rare attack cards
       ModelDb.Card<Srk>(),
       ModelDb.Card<EmbracingPetals>(),
+      ModelDb.Card<SayoShigure>(),
     ];
   }
 }
