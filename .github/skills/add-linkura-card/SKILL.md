@@ -74,7 +74,7 @@ Update both language files when adding any card.
 
 Localization key rule: convert the C# class name to `UPPER_SNAKE_CASE` and use `RURIMEGU-{CLASS_NAME}.{field}`.
 
-Note that most of the built-in keywords, and the keywords annotated with `AutoKeywordPosition.Before` or `AutoKeywordPosition.After` will be automatically added to the card description, so no need to add them to i18n files again.
+Note that most of the built-in keywords, and the keywords annotated with `AutoKeywordPosition.Before` or `AutoKeywordPosition.After` will be automatically added to the card description, so no need to add them to i18n files again. Examples: `Ethereal`, `Exhaust`, `Retain`.
 
 ### 4. Add placeholder portrait assets
 

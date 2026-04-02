@@ -68,5 +68,11 @@
   "RURIMEGU-BACKSTAGE_PREPARATION.title": "幕后筹备",
   "RURIMEGU-BACKSTAGE_PREPARATION.description": "造成{Damage:diff()}点伤害。你下一次打出的[gold]幕后[/gold]牌耗能减少1[E]。",
   "RURIMEGU-OVERFLOWING_EMOTION.title": "满溢的情感",
-  "RURIMEGU-OVERFLOWING_EMOTION.description": "造成{Damage:diff()}点伤害。[gold]幕后[/gold]：每当你[gold]收心[/gold]，永久增加此牌{OVERFLOWING_EMOTION_GROWTH:diff()}点伤害。"
+  "RURIMEGU-OVERFLOWING_EMOTION.description": "造成{Damage:diff()}点伤害。[gold]幕后[/gold]：每当你[gold]收心[/gold]，永久增加此牌{OVERFLOWING_EMOTION_GROWTH:diff()}点伤害。",
+  "RURIMEGU-SRK.title": "S.R.K.",
+  "RURIMEGU-SRK.description": "造成{Damage:diff()}点伤害。增加{RURIMEGU-EXPAND_HEARTS:diff()}点❤️上限。[gold]爆心[/gold]{RURIMEGU-BURST:diff()}。获得[E] [E] [E]。抽{Cards:diff()}张牌。",
+  "RURIMEGU-THE_GRAND_FINALE.title": "盛大终章",
+  "RURIMEGU-THE_GRAND_FINALE.description": "对{IfUpgraded:show:所有|一名}敌人造成等同于你当前最大❤️的伤害。将最大❤️重置为9。",
+  "RURIMEGU-EMBRACING_PETALS.title": "拥抱花瓣",
+  "RURIMEGU-EMBRACING_PETALS.description": "对所有敌人造成等同于[gold]自然爆心[/gold]层数的伤害{Repeat:diff()}次。[rur_backstage]：每当你[gold]收心[/gold]，获得1层[gold]自然爆心[/gold]。"
 }

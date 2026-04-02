@@ -6,6 +6,7 @@ using RuriMegu.Core.Cards.Kaho.Basic.Skill;
 using RuriMegu.Core.Cards.Kaho.Common.Attack;
 using RuriMegu.Core.Cards.Kaho.Common.Power;
 using RuriMegu.Core.Cards.Kaho.Common.Skill;
+using RuriMegu.Core.Cards.Kaho.Rare.Attack;
 using RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 using RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 using RuriMegu.Core.Utils;
@@ -70,6 +71,10 @@ public class HinoshitaKahoCardPool : CustomCardPoolModel {
       ModelDb.Card<OverflowingEmotion>(),
       // Uncommon skill cards
       ModelDb.Card<SpecialThanks>(),
+      // Rare attack cards
+      ModelDb.Card<Srk>(),
+      ModelDb.Card<TheGrandFinale>(),
+      ModelDb.Card<EmbracingPetals>(),
     ];
   }
 }

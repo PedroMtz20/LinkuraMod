@@ -1,0 +1,38 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+using RuriMegu.Core.Utils;
+
+namespace RuriMegu.Core.Cards.Kaho.Rare.Attack;
+
+/// <summary>
+/// S.R.K. — Cost 3, Attack, Rare.
+/// Deal 3 damage. Increase max ❤️ by 3. Burst 3. Gain [E] [E] [E]. Draw 3 cards. (Innate.) Exhaust.
+/// </summary>
+public class Srk() : LinkuraCard(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) {
+  protected override IEnumerable<DynamicVar> CanonicalVars => [
+    new DamageVar(3, ValueProp.Move),
+    new ExpandHeartsVar(3),
+    new BurstHeartsVar(3),
+    new CardsVar(3)
+  ];
+
+  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
+  protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    await CommonActions.CardAttack(this, play.Target).Execute(ctx);
+    await LinkuraCardActions.IncreaseMaxHearts(this);
+    await LinkuraCardActions.BurstHearts(this);
+    await PlayerCmd.GainEnergy(3m, Owner);
+    await CommonActions.Draw(this, ctx);
+  }
+
+  protected override void OnUpgrade() {
+    AddKeyword(CardKeyword.Innate);
+  }
+}

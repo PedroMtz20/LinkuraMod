@@ -64,5 +64,11 @@
   "RURIMEGU-BACKSTAGE_PREPARATION.title": "Backstage Preparation",
   "RURIMEGU-BACKSTAGE_PREPARATION.description": "Deal {Damage:diff()} damage. Your next [gold]Backstage[/gold] card costs 1 less [E].",
   "RURIMEGU-OVERFLOWING_EMOTION.title": "Overflowing Emotion",
-  "RURIMEGU-OVERFLOWING_EMOTION.description": "Deal {Damage:diff()} damage. [gold]Backstage[/gold]: whenever you [gold]Collect[/gold], permanently gain +{OVERFLOWING_EMOTION_GROWTH:diff()} damage."
+  "RURIMEGU-OVERFLOWING_EMOTION.description": "Deal {Damage:diff()} damage. [gold]Backstage[/gold]: whenever you [gold]Collect[/gold], permanently gain +{OVERFLOWING_EMOTION_GROWTH:diff()} damage.",
+  "RURIMEGU-SRK.title": "S.R.K.",
+  "RURIMEGU-SRK.description": "Deal {Damage:diff()} damage. Increase max ❤️ by {RURIMEGU-EXPAND_HEARTS:diff()}. [gold]Burst[/gold] {RURIMEGU-BURST:diff()}. Gain [E] [E] [E]. Draw {Cards:diff()} cards.",
+  "RURIMEGU-THE_GRAND_FINALE.title": "The Grand Finale",
+  "RURIMEGU-THE_GRAND_FINALE.description": "Deal damage equal to your current max ❤️ to {IfUpgraded:show:ALL enemies|one enemy}. Reset max ❤️ to 9.",
+  "RURIMEGU-EMBRACING_PETALS.title": "Embracing Petals",
+  "RURIMEGU-EMBRACING_PETALS.description": "Deal damage equal to your [gold]Auto Burst[/gold] amount to ALL enemies {Repeat:diff()} times. [rur_backstage]: whenever you [gold]Collect[/gold], gain 1 [gold]Auto Burst[/gold]."
 }

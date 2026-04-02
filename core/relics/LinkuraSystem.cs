@@ -19,7 +19,6 @@ namespace RuriMegu.Core.Relics;
 /// </summary>
 public class LinkuraSystem : LinkuraRelic {
   public override RelicRarity Rarity => RelicRarity.Starter;
-  public override bool ShouldReceiveCombatHooks => true;
 
   public override string PackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImagePath();
   protected override string PackedIconOutlinePath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png".RelicImagePath();
