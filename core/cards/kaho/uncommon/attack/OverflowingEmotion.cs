@@ -11,8 +11,7 @@ using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
-/// <summary>
-/// Overflowing Emotion — Cost 2, Attack, Uncommon, Exhaust.
+/// Overflowing Emotion — Cost 2, Attack, Uncommon, Ethereal, Exhaust.
 /// Deal 9 (12) damage.
 /// Backstage: whenever you Collect, permanently gain +2 (+3) damage.
 /// </summary>
@@ -52,6 +51,7 @@ public class OverflowingEmotion() : InHandTriggerCard(2, CardType.Attack, CardRa
   public override IEnumerable<CardKeyword> CanonicalKeywords => [
     LinkuraKeywords.Backstage,
     CardKeyword.Exhaust,
+    CardKeyword.Ethereal,
   ];
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
