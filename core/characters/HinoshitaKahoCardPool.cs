@@ -73,7 +73,6 @@ public class HinoshitaKahoCardPool : CustomCardPoolModel {
       ModelDb.Card<SpecialThanks>(),
       // Rare attack cards
       ModelDb.Card<Srk>(),
-      ModelDb.Card<TheGrandFinale>(),
       ModelDb.Card<EmbracingPetals>(),
     ];
   }
