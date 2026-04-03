@@ -12,7 +12,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
 /// Full Bloom! (盛开！) — Cost 0, Skill, Uncommon.
-/// If your ❤️ is at max, gain {Energy:energyIcons()} energy and draw {Cards:diff()} card(s).
+/// If your ❤️ is at max, gain {Energy:energyIcons()} and draw {Cards:diff()} card(s).
 /// </summary>
 public class FullBloom() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [

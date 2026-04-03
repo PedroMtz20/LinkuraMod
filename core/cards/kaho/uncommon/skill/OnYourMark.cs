@@ -10,9 +10,9 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
 /// On Your Mark — X Cost, Skill, Uncommon.
-/// Increase max ❤️ by 4 (6) × X. Exhaust.
+/// Increase max ❤️ by 4 (6) X. Exhaust.
 /// </summary>
-public class OnYourMark() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
+public class OnYourMark() : LinkuraCard(-1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -20,10 +20,10 @@ public class OnYourMark() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, 
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    // For X-cost cards, the cost is determined by energy spent in play
-    // We'll use a fixed scaling: 4 hearts per energy cost
-    int heartIncrease = DynamicVars.ExpandHearts().IntValue;
-    await LinkuraCmd.IncreaseMaxHearts(Owner, heartIncrease, this);
+    int heartIncrease = DynamicVars.ExpandHearts().IntValue * play.Resources.EnergySpent;
+    if (heartIncrease > 0) {
+      await LinkuraCmd.IncreaseMaxHearts(Owner, heartIncrease, this);
+    }
   }
 
   protected override void OnUpgrade() {

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Rooms;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards;
@@ -10,13 +11,13 @@ namespace RuriMegu.Core.Cards;
 /// Base class for cards whose effect triggers when a certain condition is met
 /// while the card is in the player's hand.
 ///
-/// A guard of <see cref="MAX_TRIGGERS_PER_PLAY"/> prevents runaway loops.
+/// A guard of <see cref="MaxTriggersPerPlay"/> prevents runaway loops.
 /// </summary>
 public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rarity, TargetType target)
   : LinkuraCard(cost, type, rarity, target) {
 
   /// <summary>Maximum times this card's in-hand effect may fire per player card play.</summary>
-  public const int MAX_TRIGGERS_PER_PLAY = 999;
+  protected virtual int MaxTriggersPerPlay => 999;
 
   public override IEnumerable<CardKeyword> CanonicalKeywords => [LinkuraKeywords.Backstage];
 
@@ -39,7 +40,7 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
   }
 
   protected virtual bool CanTrigger() {
-    if (_triggerCount >= MAX_TRIGGERS_PER_PLAY) return false;
+    if (_triggerCount >= MaxTriggersPerPlay) return false;
     if (!this.IsInHand()) return false;
     return true;
   }
@@ -50,5 +51,10 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
     if (cardPlay.Card == this && !cardPlay.IsAutoPlay) {
       _triggerCount = 0;
     }
+  }
+
+  public override Task AfterCombatEnd(CombatRoom room) {
+    _triggerCount = 0;
+    return base.AfterCombatEnd(room);
   }
 }

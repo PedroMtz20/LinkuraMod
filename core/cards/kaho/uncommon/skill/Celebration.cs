@@ -10,15 +10,12 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
 /// Celebration! — Cost 1, Skill, Uncommon.
-/// Draw 1 card. Backstage: for every 5 (4) Burst Hearts, draw 1 card. (Current: X) (Innate.)
+/// Draw 1 card. Backstage: for every 5 (4)❤️ Burst, draw 1 card. (Current: X)
 /// </summary>
 public class Celebration() : InHandTriggerCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   private const string TRACKER_VAR = "CELEBRATION_TRACKER";
   private const string THRESHOLD_VAR = "CELEBRATION_THRESHOLD";
-  private int _burstAccumulated;
   private Subscription _burstSubscription;
-
-  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Innate];
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new CardsVar(1),
@@ -31,26 +28,26 @@ public class Celebration() : InHandTriggerCard(1, CardType.Skill, CardRarity.Unc
   }
 
   public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.BurstHearts.SubscribeLate(OnBurstHearts);
+    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
+
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
     _burstSubscription?.Dispose();
+    _burstSubscription = null;
     return Task.CompletedTask;
   }
 
-  private async Task OnBurstHearts(Events.BurstHeartsEvent ev) {
+  private async Task OnBurstHearts(Events.BurstEvent ev) {
     if (ev.Player != Owner) return;
-    _burstAccumulated += ev.ActualAmount;
-    DynamicVars[TRACKER_VAR].BaseValue = _burstAccumulated;
+    DynamicVars[TRACKER_VAR].BaseValue += ev.ActualAmount;
 
     int threshold = DynamicVars[THRESHOLD_VAR].IntValue;
-    while (_burstAccumulated >= threshold) {
+    while (DynamicVars[TRACKER_VAR].IntValue >= threshold) {
       var triggerEv = await TryTrigger();
       if (triggerEv.IsNullOrCancelled()) break;
-      _burstAccumulated -= threshold;
-      DynamicVars[TRACKER_VAR].BaseValue = _burstAccumulated;
+      DynamicVars[TRACKER_VAR].BaseValue -= threshold;
       // Draw 1 card as part of the trigger
       await CommonActions.Draw(this, null);
       await AfterTrigger(triggerEv);

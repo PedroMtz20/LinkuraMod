@@ -67,7 +67,7 @@ public class OverflowingEmotion() : InHandTriggerCard(2, CardType.Attack, CardRa
   }
 
   public override Task BeforeCombatStartLate() {
-    _collectSubscription = Events.CollectHearts.SubscribeLate(OnCollectHearts);
+    _collectSubscription = Events.Collect.SubscribeLate(OnCollectHearts);
     return Task.CompletedTask;
   }
 
@@ -77,7 +77,7 @@ public class OverflowingEmotion() : InHandTriggerCard(2, CardType.Attack, CardRa
     return Task.CompletedTask;
   }
 
-  private async Task OnCollectHearts(Events.CollectHeartsEvent ev) {
+  private async Task OnCollectHearts(Events.CollectEvent ev) {
     if (ev.Player != Owner) return;
 
     var triggerEv = await TryTrigger();

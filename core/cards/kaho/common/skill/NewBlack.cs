@@ -17,7 +17,6 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 /// </summary>
 public class NewBlack() : InHandTriggerCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
   private const int BURST_PER_TRIGGER = 6;
-  private int _burstAccumulated;
   private Subscription _burstSubscription;
   private const string TRACKER_VAR = "NEW_BLACK_TRACKER";
 
@@ -32,35 +31,27 @@ public class NewBlack() : InHandTriggerCard(1, CardType.Skill, CardRarity.Common
   }
 
   public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.BurstHearts.SubscribeLate(OnBurstHearts);
+    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
     _burstSubscription?.Dispose();
     _burstSubscription = null;
-    _burstAccumulated = 0;
-    UpdateTracker();
+    DynamicVars[TRACKER_VAR].BaseValue = 0;
     return Task.CompletedTask;
   }
 
-  private async Task OnBurstHearts(Events.BurstHeartsEvent ev) {
+  private async Task OnBurstHearts(Events.BurstEvent ev) {
     if (ev.Player != Owner || ev.ActualAmount <= 0) return;
-    _burstAccumulated += ev.ActualAmount;
-    UpdateTracker();
-    while (_burstAccumulated >= BURST_PER_TRIGGER) {
+    DynamicVars[TRACKER_VAR].BaseValue += ev.ActualAmount;
+    while (DynamicVars[TRACKER_VAR].IntValue >= BURST_PER_TRIGGER) {
       var triggerEv = await TryTrigger();
       if (triggerEv.IsNullOrCancelled()) return;
-      _burstAccumulated -= BURST_PER_TRIGGER;
-      UpdateTracker();
+      DynamicVars[TRACKER_VAR].BaseValue -= BURST_PER_TRIGGER;
       await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue, ValueProp.Move, null);
       await AfterTrigger(triggerEv);
     }
-  }
-
-  private void UpdateTracker() {
-    if (!IsMutable) return;
-    DynamicVars[TRACKER_VAR].BaseValue = _burstAccumulated;
   }
 
   protected override void OnUpgrade() {

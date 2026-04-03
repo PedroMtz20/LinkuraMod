@@ -27,7 +27,7 @@ public class Afterglow() : LinkuraCard(0, CardType.Attack, CardRarity.Uncommon, 
   }
 
   public override Task BeforeCombatStartLate() {
-    _collectHeartsSubscription = Events.CollectHearts.SubscribeLate(OnCollectHearts);
+    _collectHeartsSubscription = Events.Collect.SubscribeLate(OnCollectHearts);
     return Task.CompletedTask;
   }
 
@@ -37,7 +37,7 @@ public class Afterglow() : LinkuraCard(0, CardType.Attack, CardRarity.Uncommon, 
     return Task.CompletedTask;
   }
 
-  private async Task OnCollectHearts(Events.CollectHeartsEvent ev) {
+  private async Task OnCollectHearts(Events.CollectEvent ev) {
     if (ev.Player != Owner) return;
     if (!this.IsInDiscardPile()) return;
     await CardPileCmd.Add(this, PileType.Hand);

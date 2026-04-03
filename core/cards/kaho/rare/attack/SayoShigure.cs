@@ -18,7 +18,6 @@ public class SayoShigure() : InHandTriggerCard(1, CardType.Attack, CardRarity.Ra
   private const int BURSTS_PER_TRIGGER = 10;
   private const string TRACKER_VAR = "SAYO_SHIGURE_TRACKER";
 
-  private int _burstAccumulated;
   private Subscription _burstSubscription;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -32,41 +31,32 @@ public class SayoShigure() : InHandTriggerCard(1, CardType.Attack, CardRarity.Ra
   }
 
   public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.BurstHearts.SubscribeLate(OnBurstHearts);
-    UpdateDisplayVars();
+    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
     _burstSubscription?.Dispose();
     _burstSubscription = null;
-    _burstAccumulated = 0;
-    UpdateDisplayVars();
+    DynamicVars[TRACKER_VAR].BaseValue = 0;
     return Task.CompletedTask;
   }
 
-  private async Task OnBurstHearts(Events.BurstHeartsEvent ev) {
+  private async Task OnBurstHearts(Events.BurstEvent ev) {
     if (ev.Player != Owner) return;
     if (ev.ActualAmount <= 0) return;
     if (!this.IsInHand()) return;
 
-    _burstAccumulated += ev.ActualAmount;
+    DynamicVars[TRACKER_VAR].BaseValue += ev.ActualAmount;
 
-    while (_burstAccumulated >= BURSTS_PER_TRIGGER) {
+    while (DynamicVars[TRACKER_VAR].IntValue >= BURSTS_PER_TRIGGER) {
       var triggerEv = await TryTrigger();
       if (triggerEv.IsNullOrCancelled()) break;
 
-      _burstAccumulated -= BURSTS_PER_TRIGGER;
+      DynamicVars[TRACKER_VAR].BaseValue -= BURSTS_PER_TRIGGER;
       await LinkuraCardActions.BurstHearts(this);
       await AfterTrigger(triggerEv);
     }
-
-    UpdateDisplayVars();
-  }
-
-  private void UpdateDisplayVars() {
-    if (!IsMutable) return;
-    DynamicVars[TRACKER_VAR].BaseValue = _burstAccumulated;
   }
 
   protected override void OnUpgrade() {

@@ -31,7 +31,7 @@ public static class Events {
     CardModel Source
   ) : Event;
 
-  public record BurstHeartsEvent(
+  public record BurstEvent(
     Player Player,
     int RequestedAmount,
     CardModel Source
@@ -39,7 +39,15 @@ public static class Events {
     public int ActualAmount { get; set; } = 0;
   }
 
-  public record CollectHeartsEvent(
+  public record AutoBurstEvent(
+    Player Player,
+    int BaseAmount,
+    CardModel Source
+  ) : Event {
+    public BurstEvent BurstEvent { get; set; } = null;
+  }
+
+  public record CollectEvent(
     Player Player,
     CardModel Source
   ) : Event {
@@ -143,8 +151,9 @@ public static class Events {
 
   public static readonly PhasedEvent<HeartsChangedEvent> HeartsChanged = new();
   public static readonly PhasedEvent<MaxHeartsChangedEvent> MaxHeartsChanged = new();
-  public static readonly PhasedEvent<BurstHeartsEvent> BurstHearts = new();
-  public static readonly PhasedEvent<CollectHeartsEvent> CollectHearts = new();
+  public static readonly PhasedEvent<BurstEvent> Burst = new();
+  public static readonly PhasedEvent<AutoBurstEvent> AutoBurst = new();
+  public static readonly PhasedEvent<CollectEvent> Collect = new();
   public static readonly PhasedEvent<IncreaseMaxHeartsEvent> IncreaseMaxHearts = new();
   public static readonly PhasedEvent<TriggerBackstageEvent> TriggerBackstage = new();
 }

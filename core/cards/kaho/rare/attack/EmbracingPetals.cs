@@ -27,7 +27,7 @@ public class EmbracingPetals() : InHandTriggerCard(2, CardType.Attack, CardRarit
   ];
 
   public override Task BeforeCombatStartLate() {
-    _collectHeartsSubscription = Events.CollectHearts.SubscribeLate(OnCollectHearts);
+    _collectHeartsSubscription = Events.Collect.SubscribeLate(OnCollectHearts);
     return Task.CompletedTask;
   }
 
@@ -37,7 +37,7 @@ public class EmbracingPetals() : InHandTriggerCard(2, CardType.Attack, CardRarit
     return Task.CompletedTask;
   }
 
-  private async Task OnCollectHearts(Events.CollectHeartsEvent ev) {
+  private async Task OnCollectHearts(Events.CollectEvent ev) {
     if (ev.Player != Owner) return;
 
     var triggerEv = await TryTrigger();

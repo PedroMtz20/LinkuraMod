@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dreq828c6dob8"
-path="res://.godot/imported/final_appeal.png-70a100f017791bff215099d58dce2de0.ctex"
+path="res://.godot/imported/final_act.png-462f74239033888f3fc37a5897ae2537.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/big/final_appeal.png"
-dest_files=["res://.godot/imported/final_appeal.png-70a100f017791bff215099d58dce2de0.ctex"]
+source_file="res://linkuramod/images/card_portraits/big/final_act.png"
+dest_files=["res://.godot/imported/final_act.png-462f74239033888f3fc37a5897ae2537.ctex"]
 
 [params]
 

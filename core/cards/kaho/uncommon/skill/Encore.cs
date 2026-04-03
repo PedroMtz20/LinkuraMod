@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,40 +12,50 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Encore (安可) — Cost 1, Skill, Uncommon.
-/// This turn, gain 1 Block for every Burst Heart triggered. (Current: X) (Innate. Retain.)
+/// Encore (安可) — Cost 1 (0), Skill, Uncommon.
+/// Gain 1 Block for every Burst triggered this turn. (Current: X) (Innate. Retain.)
 /// </summary>
 public class Encore() : LinkuraCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   private const string TRACKER_VAR = "ENCORE_TRACKER";
   private Subscription _burstSubscription;
-
-  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Innate, CardKeyword.Retain];
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DynamicVar(TRACKER_VAR, 0),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    // Gain block on burst during this turn
-    await Task.CompletedTask;
+    int block = DynamicVars[TRACKER_VAR].IntValue;
+    if (block > 0) {
+      await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, play);
+    }
+  }
+
+  public override Task BeforeSideTurnStart(PlayerChoiceContext ctx, CombatSide side, CombatState combatState) {
+    if (side == Owner.Creature.Side) {
+      DynamicVars[TRACKER_VAR].BaseValue = 0;
+    }
+    return base.BeforeSideTurnStart(ctx, side, combatState);
   }
 
   public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.BurstHearts.SubscribeLate(OnBurstHearts);
+    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
     _burstSubscription?.Dispose();
+    _burstSubscription = null;
+    DynamicVars[TRACKER_VAR].BaseValue = 0;
     return Task.CompletedTask;
   }
 
-  private async Task OnBurstHearts(Events.BurstHeartsEvent ev) {
-    if (ev.Player != Owner) return;
-    DynamicVars[TRACKER_VAR].BaseValue = DynamicVars[TRACKER_VAR].IntValue + ev.ActualAmount;
+  private async Task OnBurstHearts(Events.BurstEvent ev) {
+    if (ev.Player != Owner || ev.ActualAmount <= 0) return;
+    DynamicVars[TRACKER_VAR].BaseValue++;
   }
 
   protected override void OnUpgrade() {
-    // No upgrade changes
+    AddKeyword(CardKeyword.Innate);
+    AddKeyword(CardKeyword.Retain);
   }
 }

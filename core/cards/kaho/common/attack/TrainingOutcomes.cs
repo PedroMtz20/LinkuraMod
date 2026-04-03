@@ -38,7 +38,7 @@ public class TrainingOutcomes() : InHandTriggerCard(4, CardType.Attack, CardRari
 
   // Override BeforeCombatStartLate to subscribe to CollectHearts events.
   public override Task BeforeCombatStartLate() {
-    _collectHeartsSubscription = Events.CollectHearts.SubscribeLate(OnCollectHearts);
+    _collectHeartsSubscription = Events.Collect.SubscribeLate(OnCollectHearts);
     return Task.CompletedTask;
   }
 
@@ -49,7 +49,7 @@ public class TrainingOutcomes() : InHandTriggerCard(4, CardType.Attack, CardRari
     return Task.CompletedTask;
   }
 
-  private async Task OnCollectHearts(Events.CollectHeartsEvent ev) {
+  private async Task OnCollectHearts(Events.CollectEvent ev) {
     if (ev.Player != Owner) return;
     var triggerEv = await TryTrigger();
     if (triggerEv.IsNullOrCancelled()) return;

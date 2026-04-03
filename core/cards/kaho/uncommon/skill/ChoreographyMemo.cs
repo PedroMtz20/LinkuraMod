@@ -15,7 +15,6 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 public class ChoreographyMemo() : InHandTriggerCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   private const string TRACKER_VAR = "CHOREOGRAPHY_TRACKER";
   private const string THRESHOLD_VAR = "CHOREOGRAPHY_THRESHOLD";
-  private int _cardsPlayedCount;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new CardsVar(1),
@@ -31,15 +30,13 @@ public class ChoreographyMemo() : InHandTriggerCard(1, CardType.Skill, CardRarit
     await base.AfterCardPlayed(context, cardPlay);
     if (cardPlay.Card.Owner != Owner) return;
 
-    _cardsPlayedCount++;
-    DynamicVars[TRACKER_VAR].BaseValue = _cardsPlayedCount;
+    DynamicVars[TRACKER_VAR].BaseValue++;
 
     int threshold = DynamicVars[THRESHOLD_VAR].IntValue;
-    while (_cardsPlayedCount >= threshold) {
+    while (DynamicVars[TRACKER_VAR].IntValue >= threshold) {
       var triggerEv = await TryTrigger();
       if (triggerEv.IsNullOrCancelled()) break;
-      _cardsPlayedCount -= threshold;
-      DynamicVars[TRACKER_VAR].BaseValue = _cardsPlayedCount;
+      DynamicVars[TRACKER_VAR].BaseValue -= threshold;
       await LinkuraCardActions.CollectHearts(this, context);
       await AfterTrigger(triggerEv);
     }

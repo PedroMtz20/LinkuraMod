@@ -27,7 +27,7 @@ public class SpringBreezeSwing() : InHandTriggerCard(1, CardType.Skill, CardRari
   }
 
   public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.BurstHearts.SubscribeLate(OnBurstHearts);
+    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
     return Task.CompletedTask;
   }
 
@@ -37,7 +37,7 @@ public class SpringBreezeSwing() : InHandTriggerCard(1, CardType.Skill, CardRari
     return Task.CompletedTask;
   }
 
-  private async Task OnBurstHearts(Events.BurstHeartsEvent ev) {
+  private async Task OnBurstHearts(Events.BurstEvent ev) {
     if (ev.Player != Owner) return;
     if (ev.ActualAmount <= 0) return;
     // Trigger only if hearts are now at their maximum (burst just filled to cap).
