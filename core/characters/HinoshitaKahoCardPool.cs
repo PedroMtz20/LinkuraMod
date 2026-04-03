@@ -37,7 +37,7 @@ public class HinoshitaKahoCardPool : CustomCardPoolModel {
       ModelDb.Card<WideHeart>(),
       // Common attack cards
       ModelDb.Card<BuddingPremonition>(),
-      ModelDb.Card<FinalAppeal>(),
+      ModelDb.Card<FinalAct>(),
       ModelDb.Card<TrainingOutcomes>(),
       ModelDb.Card<KahoSmash>(),
       ModelDb.Card<Fantasy375>(),
