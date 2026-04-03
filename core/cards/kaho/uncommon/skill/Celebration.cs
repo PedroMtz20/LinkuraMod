@@ -28,7 +28,7 @@ public class Celebration() : InHandTriggerCard(1, CardType.Skill, CardRarity.Unc
   }
 
   public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
+    _burstSubscription = Events.Burst.SubscribeVeryEarly(OnBurstHearts);
 
     return Task.CompletedTask;
   }
@@ -40,7 +40,7 @@ public class Celebration() : InHandTriggerCard(1, CardType.Skill, CardRarity.Unc
   }
 
   private async Task OnBurstHearts(Events.BurstEvent ev) {
-    if (ev.Player != Owner || ev.ActualAmount <= 0 || !this.IsInHand()) return;
+    if (ev.Player != Owner || !this.IsInHand()) return;
     DynamicVars[TRACKER_VAR].BaseValue++;
 
     int threshold = DynamicVars[THRESHOLD_VAR].IntValue;

@@ -23,7 +23,7 @@ public class MentalGuardPower : LinkuraPower {
 
   public override Task AfterApplied(Creature applier, CardModel cardSource) {
     _sub?.Dispose();
-    _sub = Events.Burst.SubscribeVeryEarly(OnBurst);
+    _sub = Events.Burst.SubscribeEarly(OnBurst);
     return base.AfterApplied(applier, cardSource);
   }
 

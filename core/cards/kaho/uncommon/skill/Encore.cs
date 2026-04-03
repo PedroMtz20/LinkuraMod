@@ -38,7 +38,7 @@ public class Encore() : LinkuraCard(1, CardType.Skill, CardRarity.Uncommon, Targ
   }
 
   public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
+    _burstSubscription = Events.Burst.SubscribeVeryEarly(OnBurstHearts);
     return Task.CompletedTask;
   }
 
@@ -50,7 +50,7 @@ public class Encore() : LinkuraCard(1, CardType.Skill, CardRarity.Uncommon, Targ
   }
 
   private async Task OnBurstHearts(Events.BurstEvent ev) {
-    if (ev.Player != Owner || ev.ActualAmount <= 0) return;
+    if (ev.Player != Owner) return;
     DynamicVars[TRACKER_VAR].BaseValue++;
   }
 

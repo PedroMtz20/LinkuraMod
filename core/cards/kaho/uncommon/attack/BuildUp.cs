@@ -40,7 +40,7 @@ public class BuildUp() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncomm
   }
 
   public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
+    _burstSubscription = Events.Burst.SubscribeVeryEarly(OnBurstHearts);
     UpdateDisplayVars();
     return Task.CompletedTask;
   }
@@ -54,7 +54,7 @@ public class BuildUp() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncomm
   }
 
   private async Task OnBurstHearts(Events.BurstEvent ev) {
-    if (ev.Player != Owner || ev.ActualAmount <= 0 || !this.IsInHand()) return;
+    if (ev.Player != Owner || !this.IsInHand()) return;
 
     var triggerEv = await TryTrigger(ev.Context);
     if (triggerEv.IsNullOrCancelled()) return;

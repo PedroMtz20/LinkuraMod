@@ -13,9 +13,9 @@ namespace RuriMegu.Core.Utils;
 
 public static class LinkuraCmd {
   public static async Task<Events.IncreaseMaxHeartsEvent> IncreaseMaxHearts(Player player, PlayerChoiceContext ctx, int amount, CardModel source = null) {
-    if (amount <= 0) return null;
     var ev = new Events.IncreaseMaxHeartsEvent(player, ctx, amount, source);
     if (!await Events.IncreaseMaxHearts.InvokeAllEarly(ev)) return ev;
+    if (amount <= 0) return ev;
     var childEv = await HeartsState.AddMaxHearts(player, ctx, amount, source);
     if (childEv.IsNullOrCancelled()) return ev;
     ev.ActualAmount = childEv.NewMaxHearts - childEv.OldMaxHearts;
@@ -35,9 +35,9 @@ public static class LinkuraCmd {
   }
 
   public static async Task<Events.BurstEvent> BurstHearts(Player player, PlayerChoiceContext ctx, int amount, CardModel source = null) {
-    if (amount <= 0) return null;
     var ev = new Events.BurstEvent(player, ctx, amount, source);
     if (!await Events.Burst.InvokeAllEarly(ev)) return ev;
+    if (amount <= 0) return ev;
     var childEv = await HeartsState.AddHearts(player, ctx, amount, source);
     if (childEv.IsNullOrCancelled()) return ev;
     ev.ActualAmount = childEv.NewHearts - childEv.OldHearts;
@@ -47,9 +47,9 @@ public static class LinkuraCmd {
 
   public static async Task<Events.CollectEvent> CollectHearts(Player player, PlayerChoiceContext context, CardModel source = null, Creature target = null, int triggers = 1) {
     int hearts = HeartsState.GetHearts(player);
-    if (hearts <= 0) return null;
     var ev = new Events.CollectEvent(player, context, source);
     if (!await Events.Collect.InvokeAllEarly(ev)) return ev;
+    if (hearts <= 0) return ev;
     var targets = await ApplyHeartDamage(hearts, target, player, context, triggers);
     var childEv = await HeartsState.SetHearts(player, context, 0, source);
     if (childEv.IsNullOrCancelled()) return ev;
