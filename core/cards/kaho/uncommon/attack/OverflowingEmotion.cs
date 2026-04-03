@@ -50,7 +50,6 @@ public class OverflowingEmotion() : InHandTriggerCard(2, CardType.Attack, CardRa
 
   public override IEnumerable<CardKeyword> CanonicalKeywords => [
     LinkuraKeywords.Backstage,
-    CardKeyword.Exhaust,
     CardKeyword.Ethereal,
   ];
 

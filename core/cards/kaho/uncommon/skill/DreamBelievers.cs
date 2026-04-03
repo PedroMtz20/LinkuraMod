@@ -14,7 +14,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 /// Dream Believers — Cost 1 (0), Skill, Uncommon.
 /// For every 6 ❤️ you have, gain {Energy:energyIcons()}. Collect. Exhaust.
 /// </summary>
-public class DreamBelievers() : LinkuraCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
+public class DreamBelievers() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   private const int HEARTS_PER_ENERGY = 6;
 
   public override IEnumerable<CardKeyword> CanonicalKeywords => [
@@ -36,6 +36,6 @@ public class DreamBelievers() : LinkuraCard(1, CardType.Skill, CardRarity.Uncomm
   }
 
   protected override void OnUpgrade() {
-    EnergyCost.UpgradeBy(-1);
+    RemoveKeyword(CardKeyword.Exhaust);
   }
 }

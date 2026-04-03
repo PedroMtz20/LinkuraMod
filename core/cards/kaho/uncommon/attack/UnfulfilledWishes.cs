@@ -26,4 +26,8 @@ public class UnfulfilledWishes() : LinkuraCard(2, CardType.Attack, CardRarity.Un
 
     await CreatureCmd.GainBlock(Owner.Creature, hearts, ValueProp.Move, play);
   }
+
+  protected override void OnUpgrade() {
+    AddKeyword(CardKeyword.Retain);
+  }
 }

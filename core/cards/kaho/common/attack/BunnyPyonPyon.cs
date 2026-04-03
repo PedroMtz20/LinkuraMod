@@ -13,12 +13,11 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
 /// Bunny Pyon Pyon — Cost 1, Attack, Common.
-/// Deal 6 (9) damage. Burst equal to the damage dealt.
+/// Deal 7 (10) damage. Burst equal to the damage dealt.
 /// </summary>
 public class BunnyPyonPyon() : LinkuraCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new DamageVar(6, ValueProp.Move),
-    new BurstHeartsVar(6),
+    new DamageVar(7, ValueProp.Move),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
@@ -37,6 +36,5 @@ public class BunnyPyonPyon() : LinkuraCard(1, CardType.Attack, CardRarity.Common
 
   protected override void OnUpgrade() {
     DynamicVars.Damage.UpgradeValueBy(3m);
-    DynamicVars.BurstHearts().UpgradeValueBy(3m);
   }
 }
