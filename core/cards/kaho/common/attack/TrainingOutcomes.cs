@@ -13,7 +13,7 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 /// <summary>
 /// Training Outcomes — Cost 4 (3), Attack, Common.
 /// Deal 12 (16) damage.
-/// Backstage: whenever you Collect, this card costs 1 less energy next time it is played.
+/// Backstage: whenever you Collect, this card costs 1 less in this combat.
 /// </summary>
 public class TrainingOutcomes() : InHandTriggerCard(4, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
   private const int BASE_COST = 4;

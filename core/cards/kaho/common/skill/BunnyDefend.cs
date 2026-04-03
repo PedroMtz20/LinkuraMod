@@ -12,12 +12,10 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
 /// Bunny Defend — Cost 2, Skill, Common.
-/// Gain block equal to current max ♥. Retain. Exhaust.
+/// Gain block equal to current max ♥. (Retain.)
 /// </summary>
 public class BunnyDefend() : LinkuraCard(2, CardType.Skill, CardRarity.Common, TargetType.None) {
   protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
-
-  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     int maxHearts = HeartsState.GetMaxHearts(Owner);

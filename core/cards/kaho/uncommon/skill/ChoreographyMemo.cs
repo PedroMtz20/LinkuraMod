@@ -10,20 +10,20 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
 /// Choreography Memo (舞步编排) — Cost 1, Skill, Uncommon.
-/// Draw 1 card. Backstage: for every 3 (2) cards you play, Collect. (Current: X)
+/// On play: Burst 6 (9).
+/// Backstage: for every 3 (2) cards you play, Collect. (Current: X)
 /// </summary>
 public class ChoreographyMemo() : InHandTriggerCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   private const string TRACKER_VAR = "CHOREOGRAPHY_TRACKER";
   private const string THRESHOLD_VAR = "CHOREOGRAPHY_THRESHOLD";
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new CardsVar(1),
+    new BurstHeartsVar(6),
     new DynamicVar(TRACKER_VAR, 0),
     new DynamicVar(THRESHOLD_VAR, 3),
   ];
-
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    await CommonActions.Draw(this, ctx);
+    await LinkuraCardActions.BurstHearts(this, ctx);
   }
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
@@ -43,6 +43,7 @@ public class ChoreographyMemo() : InHandTriggerCard(1, CardType.Skill, CardRarit
   }
 
   protected override void OnUpgrade() {
+    DynamicVars.BurstHearts().UpgradeValueBy(3m);
     DynamicVars[THRESHOLD_VAR].UpgradeValueBy(-1m);
   }
 }

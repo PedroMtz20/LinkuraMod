@@ -25,5 +25,8 @@
   "RURIMEGU-MENTAL_GUARD_POWER.smartDescription": "This turn, [gold]Burst[/gold] grants Block instead of ❤️. Equal amount of Block.",
   "RURIMEGU-TRUE_FACE_PIXEL_POWER.title": "True Face Pixel",
   "RURIMEGU-TRUE_FACE_PIXEL_POWER.description": "This turn, your next [gold]Burst[/gold] card deals damage equal to [gold]Burst[/gold] count to ALL enemies.",
-  "RURIMEGU-TRUE_FACE_PIXEL_POWER.smartDescription": "This turn, your next [gold]Burst[/gold] card deals damage equal to [gold]Burst[/gold] count to ALL enemies."
+  "RURIMEGU-TRUE_FACE_PIXEL_POWER.smartDescription": "This turn, your next [gold]Burst[/gold] card deals damage equal to [gold]Burst[/gold] count to ALL enemies.",
+  "RURIMEGU-SECTION_CHANGE_POWER.title": "Section Change",
+  "RURIMEGU-SECTION_CHANGE_POWER.description": "At the end of your turn, [gold]Collect[/gold].",
+  "RURIMEGU-SECTION_CHANGE_POWER.smartDescription": "At the end of your turn, [gold]Collect[/gold]."
 }

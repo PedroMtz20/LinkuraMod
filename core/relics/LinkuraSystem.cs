@@ -26,16 +26,11 @@ public class LinkuraSystem : LinkuraRelic {
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
     HoverTipFactory.FromPower<AutoBurstPower>(),
-    BurstHeartsVar.LocKey.HoverTip(new BurstHeartsVar(1)),
-    HoverTipFactory.FromKeyword(LinkuraKeywords.Collect)
+    BurstHeartsVar.LocKey.HoverTip(new BurstHeartsVar(1))
   ];
 
   public override async Task BeforeCombatStart() {
     await HeartsState.Reset(Owner, new BlockingPlayerChoiceContext());
     await PowerCmd.Apply<AutoBurstPower>(Owner.Creature, 1, Owner.Creature, null);
-  }
-
-  public override async Task BeforeTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side) {
-    await LinkuraCmd.CollectHearts(Owner, choiceContext);
   }
 }

@@ -7,10 +7,10 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
-/// Final Act — Cost 1, Attack, Common.
+/// Final Act — Cost 0, Attack, Common.
 /// Deal damage equal to your current ♥. Lose all ♥. (Retain.)
 /// </summary>
-public class FinalAct() : LinkuraCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
+public class FinalAct() : LinkuraCard(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     int hearts = HeartsState.GetHearts(Owner);
     await DamageCmd.Attack(hearts)

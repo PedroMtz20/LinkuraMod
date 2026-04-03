@@ -12,22 +12,23 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
 /// Nεw Black — Cost 1, Skill, Common.
-/// Draw 1 card.
-/// Backstage: for every 6 Burst Hearts, gain 3 (4) block.
+/// On play: Gain 6 (9) Block.
+/// Backstage: for every 6 Burst Hearts, gain 3 (4) block. (Current: X)
 /// </summary>
 public class NewBlack() : InHandTriggerCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
   private const int BURST_PER_TRIGGER = 6;
   private Subscription _burstSubscription;
   private const string TRACKER_VAR = "NEW_BLACK_TRACKER";
+  private const string BACKSTAGE_BLOCK_VAR = "BACKSTAGE_BLOCK";
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new CardsVar(1),
-    new BlockVar(3, ValueProp.Move),
+    new BlockVar(6, ValueProp.Move),
+    new DynamicVar(BACKSTAGE_BLOCK_VAR, 3),
     new DynamicVar(TRACKER_VAR, 0),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    await CommonActions.Draw(this, ctx);
+    await CommonActions.CardBlock(this, play);
   }
 
   public override Task BeforeCombatStartLate() {
@@ -49,12 +50,13 @@ public class NewBlack() : InHandTriggerCard(1, CardType.Skill, CardRarity.Common
       var triggerEv = await TryTrigger(ev.Context);
       if (triggerEv.IsNullOrCancelled()) return;
       DynamicVars[TRACKER_VAR].BaseValue -= BURST_PER_TRIGGER;
-      await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue, ValueProp.Move, null);
+      await CreatureCmd.GainBlock(Owner.Creature, DynamicVars[BACKSTAGE_BLOCK_VAR].IntValue, ValueProp.Move, null);
       await AfterTrigger(triggerEv);
     }
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.Block.UpgradeValueBy(1m);
+    DynamicVars.Block.UpgradeValueBy(3m);
+    DynamicVars[BACKSTAGE_BLOCK_VAR].UpgradeValueBy(1m);
   }
 }

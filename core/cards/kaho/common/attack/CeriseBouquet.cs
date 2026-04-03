@@ -10,11 +10,11 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
 /// Cerise Bouquet — Cost 2, Attack, Common.
-/// Deal 5 (7) damage to ALL enemies 3 times.
+/// Deal 6 (9) damage to ALL enemies 3 times.
 /// </summary>
 public class CeriseBouquet() : LinkuraCard(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new DamageVar(5, ValueProp.Move),
+    new DamageVar(6, ValueProp.Move),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
@@ -22,6 +22,6 @@ public class CeriseBouquet() : LinkuraCard(2, CardType.Attack, CardRarity.Common
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.Damage.UpgradeValueBy(2m);
+    DynamicVars.Damage.UpgradeValueBy(3m);
   }
 }
