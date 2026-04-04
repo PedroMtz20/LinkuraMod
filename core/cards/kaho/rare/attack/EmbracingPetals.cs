@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -41,7 +40,7 @@ public class EmbracingPetals() : InHandTriggerCard(2, CardType.Attack, CardRarit
   private async Task OnCollectHearts(Events.CollectEvent ev) {
     if (ev.Player != Owner || ev.Amount <= 0) return;
 
-    await TriggerWithAction(ev.Context, () => PowerCmd.Apply<AutoBurstPower>(Owner.Creature, DynamicVars.AutoBurst().IntValue, Owner.Creature, this));
+    await TriggerWithAction(ev.Context, () => LinkuraCmd.GainAutoBurst(Owner.Creature, DynamicVars.AutoBurst().IntValue, Owner.Creature, this));
   }
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {

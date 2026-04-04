@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -21,7 +20,7 @@ public class SugarMelt() : LinkuraCard(2, CardType.Power, CardRarity.Uncommon, T
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    await PowerCmd.Apply<AutoBurstPower>(Owner.Creature, DynamicVars.AutoBurst().IntValue, Owner.Creature, this);
+    await LinkuraCmd.GainAutoBurst(Owner.Creature, DynamicVars.AutoBurst().IntValue, Owner.Creature, this);
   }
 
   protected override void OnUpgrade() {

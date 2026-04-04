@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -25,6 +24,6 @@ public class LinkuraSystem : LinkuraRelic {
 
   public override async Task BeforeCombatStart() {
     await HeartsState.Reset(Owner, new BlockingPlayerChoiceContext());
-    await PowerCmd.Apply<AutoBurstPower>(Owner.Creature, 1, Owner.Creature, null);
+    await LinkuraCmd.GainAutoBurst(Owner.Creature, 1, Owner.Creature, null);
   }
 }

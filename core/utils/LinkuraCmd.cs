@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using RuriMegu.Core.Powers;
 namespace RuriMegu.Core.Utils;
 
 public static class LinkuraCmd {
+  private const int MAX_AUTO_BURST = 9999;
+
   public static async Task<Events.IncreaseMaxHeartsEvent> IncreaseMaxHearts(Player player, PlayerChoiceContext ctx, int amount, CardModel source = null) {
     var ev = new Events.IncreaseMaxHeartsEvent(player, ctx, amount, source);
     if (!await Events.IncreaseMaxHearts.InvokeAllEarly(ev)) return ev;
@@ -21,6 +24,13 @@ public static class LinkuraCmd {
     ev.ActualAmount = childEv.NewMaxHearts - childEv.OldMaxHearts;
     await Events.IncreaseMaxHearts.InvokeAllLate(ev);
     return ev;
+  }
+
+  public static async Task GainAutoBurst(Creature creature, int amount, Creature applier, CardModel source) {
+    int current = creature.GetPowerAmount<AutoBurstPower>();
+    int capped = Math.Min(amount, MAX_AUTO_BURST - current);
+    if (capped <= 0) return;
+    await PowerCmd.Apply<AutoBurstPower>(creature, capped, applier, source);
   }
 
   public static async Task<Events.AutoBurstEvent> TriggerAutoBurst(Player player, PlayerChoiceContext ctx, CardModel source = null) {
