@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ww0r88twl0gr"
-path="res://.godot/imported/ball_of_trails.png-b611ee1b34ce7ed83c9cb07633f75644.ctex"
+uid="uid://byylblh8agl2o"
+path="res://.godot/imported/prologue.png-dc870b9bcc34021a335ad955d796cb47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/ball_of_trails.png"
-dest_files=["res://.godot/imported/ball_of_trails.png-b611ee1b34ce7ed83c9cb07633f75644.ctex"]
+source_file="res://linkuramod/images/card_portraits/big/prologue.png"
+dest_files=["res://.godot/imported/prologue.png-dc870b9bcc34021a335ad955d796cb47.ctex"]
 
 [params]
 

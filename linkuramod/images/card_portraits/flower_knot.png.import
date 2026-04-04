@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ww0r88twl0gr"
-path="res://.godot/imported/ball_of_trails.png-b611ee1b34ce7ed83c9cb07633f75644.ctex"
+uid="uid://d3kqjxs1mfsr3"
+path="res://.godot/imported/flower_knot.png-6a7cb06a81adbab2486e91bf8bc9d3eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/ball_of_trails.png"
-dest_files=["res://.godot/imported/ball_of_trails.png-b611ee1b34ce7ed83c9cb07633f75644.ctex"]
+source_file="res://linkuramod/images/card_portraits/flower_knot.png"
+dest_files=["res://.godot/imported/flower_knot.png-6a7cb06a81adbab2486e91bf8bc9d3eb.ctex"]
 
 [params]
 

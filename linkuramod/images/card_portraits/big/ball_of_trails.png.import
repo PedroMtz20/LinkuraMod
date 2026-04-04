@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diey1k7n2sihn"
-path="res://.godot/imported/kaho_defend.png-d50a504433fabe01d0569ae99751eb6c.ctex"
+uid="uid://c4i8etgty4s2y"
+path="res://.godot/imported/ball_of_trails.png-418156819e248d755bf1d2b3838b659c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/big/kaho_defend.png"
-dest_files=["res://.godot/imported/kaho_defend.png-d50a504433fabe01d0569ae99751eb6c.ctex"]
+source_file="res://linkuramod/images/card_portraits/big/ball_of_trails.png"
+dest_files=["res://.godot/imported/ball_of_trails.png-418156819e248d755bf1d2b3838b659c.ctex"]
 
 [params]
 

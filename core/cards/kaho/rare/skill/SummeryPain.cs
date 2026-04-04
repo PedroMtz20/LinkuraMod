@@ -30,7 +30,7 @@ public class SummeryPain() : InHandTriggerCard(1, CardType.Skill, CardRarity.Rar
 
   public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay play) {
     await base.AfterCardPlayed(ctx, play);
-    if (!this.IsInHand() || play.Card == this) return;
+    if (!CanTrigger() || play.Card == this) return;
 
     var pile = PileType.Hand.GetPile(Owner);
 

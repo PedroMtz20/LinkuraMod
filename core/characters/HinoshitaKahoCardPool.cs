@@ -7,6 +7,7 @@ using RuriMegu.Core.Cards.Kaho.Common.Attack;
 using RuriMegu.Core.Cards.Kaho.Common.Power;
 using RuriMegu.Core.Cards.Kaho.Common.Skill;
 using RuriMegu.Core.Cards.Kaho.Rare.Attack;
+using RuriMegu.Core.Cards.Kaho.Rare.Power;
 using RuriMegu.Core.Cards.Kaho.Rare.Skill;
 using RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 using RuriMegu.Core.Cards.Kaho.Uncommon.Power;
@@ -111,6 +112,13 @@ public class HinoshitaKahoCardPool : CustomCardPoolModel {
       ModelDb.Card<EnduringTradition>(),
       ModelDb.Card<TwoSecondsOfEternity>(),
       ModelDb.Card<BallOfTrails>(),
+      // Rare power cards
+      ModelDb.Card<AutoClickerOn>(),
+      ModelDb.Card<FlowerKnot>(),
+      ModelDb.Card<ReflectionInTheMirror>(),
+      ModelDb.Card<Prologue>(),
+      ModelDb.Card<MayDreamsBloom>(),
+      ModelDb.Card<BloomGardenParty>(),
     ];
   }
 }

@@ -134,5 +134,17 @@
   "RURIMEGU-TRAINING_CAMP.title": "Training Camp",
   "RURIMEGU-TRAINING_CAMP.description": "The first {Repeat:diff()} [gold]Backstage[/gold] cards you play each turn cost {Energy:energyIcons()} less.",
   "RURIMEGU-CAREER_SURVEY.title": "Career Survey",
-  "RURIMEGU-CAREER_SURVEY.description": "Whenever you [gold]Burst[/gold] at least {RURIMEGU-BURST:diff()} ❤️ in a single instance without reaching your limit, draw {Cards:diff()} card(s)."
+  "RURIMEGU-CAREER_SURVEY.description": "Whenever you [gold]Burst[/gold] at least {RURIMEGU-BURST:diff()} ❤️ in a single instance without reaching your limit, draw {Cards:diff()} card(s).",
+  "RURIMEGU-AUTO_CLICKER_ON.title": "Auto Clicker: On",
+  "RURIMEGU-AUTO_CLICKER_ON.description": "Whenever you [gold]Burst[/gold], [gold]Collect[/gold]. All enemies gain 99 [gold]Intangible[/gold].",
+  "RURIMEGU-FLOWER_KNOT.title": "Flower Knot",
+  "RURIMEGU-FLOWER_KNOT.description": "Whenever you trigger a [gold]Backstage[/gold] effect, trigger [gold]Auto Burst[/gold] once.",
+  "RURIMEGU-REFLECTION_IN_THE_MIRROR.title": "Reflection in the Mirror",
+  "RURIMEGU-REFLECTION_IN_THE_MIRROR.description": "Effects that increase your Max ❤️ trigger twice.",
+  "RURIMEGU-PROLOGUE.title": "Prologue",
+  "RURIMEGU-PROLOGUE.description": "The first time your Max ❤️ changes each turn, your next card costs {Energy:energyIcons()} less.",
+  "RURIMEGU-MAY_DREAMS_BLOOM.title": "May Dreams Bloom",
+  "RURIMEGU-MAY_DREAMS_BLOOM.description": "For every {RURIMEGU-MAX_HEARTS_THRESHOLD:diff()} ❤️ overflowed, gain 1 stack of [gold]Auto Burst[/gold].",
+  "RURIMEGU-BLOOM_GARDEN_PARTY.title": "Bloom Garden Party",
+  "RURIMEGU-BLOOM_GARDEN_PARTY.description": "Your [gold]Backstage[/gold] effects can also trigger from the discard pile."
 }

@@ -46,7 +46,7 @@ public class PresentPastFuture() : InHandTriggerCard(1, CardType.Skill, CardRari
   }
 
   private async Task OnCollectLate(Events.CollectEvent ev) {
-    if (ev.Player != Owner || ev.Amount <= 0 || !this.IsInHand()) return;
+    if (ev.Player != Owner || ev.Amount <= 0 || !CanTrigger()) return;
 
     DynamicVars[TRACKER_VAR].BaseValue += ev.Amount;
     int threshold = DynamicVars[THRESHOLD_VAR].IntValue;

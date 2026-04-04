@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Rooms;
+using RuriMegu.Core.Powers;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards;
@@ -52,8 +55,16 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
 
   protected virtual bool CanTrigger() {
     if (_triggerCount >= MaxTriggersPerPlay) return false;
-    if (!this.IsInHand()) return false;
-    return true;
+    if (this.IsInHand()) return true;
+    if (this.IsInDiscardPile() && (Owner?.Creature?.GetPower<BloomGardenPartyPower>() != null)) return true;
+    return false;
+  }
+
+  public override Task BeforeSideTurnStart(PlayerChoiceContext ctx, CombatSide side, CombatState combatState) {
+    if (side == Owner?.Creature?.Side && this.IsInDiscardPile()) {
+      _triggerCount = 0;
+    }
+    return base.BeforeSideTurnStart(ctx, side, combatState);
   }
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ww0r88twl0gr"
-path="res://.godot/imported/ball_of_trails.png-b611ee1b34ce7ed83c9cb07633f75644.ctex"
+uid="uid://biemhkvfi7666"
+path="res://.godot/imported/reflection_in_the_mirror.png-634a6814b3cd580e5dae8fb68d9161e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/ball_of_trails.png"
-dest_files=["res://.godot/imported/ball_of_trails.png-b611ee1b34ce7ed83c9cb07633f75644.ctex"]
+source_file="res://linkuramod/images/card_portraits/big/reflection_in_the_mirror.png"
+dest_files=["res://.godot/imported/reflection_in_the_mirror.png-634a6814b3cd580e5dae8fb68d9161e1.ctex"]
 
 [params]
 

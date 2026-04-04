@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ww0r88twl0gr"
-path="res://.godot/imported/ball_of_trails.png-b611ee1b34ce7ed83c9cb07633f75644.ctex"
+uid="uid://po2o6hqpwwu1"
+path="res://.godot/imported/may_dreams_bloom.png-363cbec39d45217b89090d6ffa6ab371.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/ball_of_trails.png"
-dest_files=["res://.godot/imported/ball_of_trails.png-b611ee1b34ce7ed83c9cb07633f75644.ctex"]
+source_file="res://linkuramod/images/card_portraits/may_dreams_bloom.png"
+dest_files=["res://.godot/imported/may_dreams_bloom.png-363cbec39d45217b89090d6ffa6ab371.ctex"]
 
 [params]
 

@@ -54,7 +54,7 @@ public class BuildUp() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncomm
   }
 
   private async Task OnBurstHearts(Events.BurstEvent ev) {
-    if (ev.Player != Owner || !this.IsInHand()) return;
+    if (ev.Player != Owner || !CanTrigger()) return;
 
     await TriggerWithAction(ev.Context, () => {
       _burstCount++;

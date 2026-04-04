@@ -27,7 +27,7 @@ public class BallOfTrails() : LinkuraCard(1, CardType.Skill, CardRarity.Rare, Ta
 
   public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw) {
     if (card != this || !fromHandDraw) return;
-    await Cmd.Wait(0.25f);
+    await Cmd.Wait(0.5f);
     await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     await LinkuraCardActions.DiscardAndDraw(this, ctx);
   }
