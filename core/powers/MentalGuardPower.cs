@@ -19,24 +19,10 @@ public class MentalGuardPower : LinkuraPower {
   public override PowerType Type => PowerType.Buff;
   public override PowerStackType StackType => PowerStackType.Single;
 
-  private Subscription _sub;
-
   public override Task AfterApplied(Creature applier, CardModel cardSource) {
-    _sub?.Dispose();
-    _sub = Events.Burst.SubscribeEarly(OnBurst);
+    DisposeTrackedSubscriptions();
+    TrackSubscription(Events.Burst.SubscribeEarly(OnBurst));
     return base.AfterApplied(applier, cardSource);
-  }
-
-  public override Task AfterRemoved(Creature oldOwner) {
-    _sub?.Dispose();
-    _sub = null;
-    return base.AfterRemoved(oldOwner);
-  }
-
-  public override Task AfterCombatEnd(CombatRoom room) {
-    _sub?.Dispose();
-    _sub = null;
-    return base.AfterCombatEnd(room);
   }
 
   private async Task OnBurst(Events.BurstEvent ev) {

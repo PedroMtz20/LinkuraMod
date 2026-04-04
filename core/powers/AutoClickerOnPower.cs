@@ -17,11 +17,9 @@ public class AutoClickerOnPower : LinkuraPower {
   public override PowerType Type => PowerType.Buff;
   public override PowerStackType StackType => PowerStackType.Single;
 
-  private Subscription _sub;
-
   public override async Task AfterApplied(Creature applier, CardModel cardSource) {
-    _sub?.Dispose();
-    _sub = Events.Burst.SubscribeLate(OnBurstLate);
+    DisposeTrackedSubscriptions();
+    TrackSubscription(Events.Burst.SubscribeLate(OnBurstLate));
 
     if (Owner.CombatState != null) {
       foreach (var enemy in Owner.CombatState.GetOpponentsOf(Owner).Where(e => e.IsAlive).ToList()) {
@@ -30,18 +28,6 @@ public class AutoClickerOnPower : LinkuraPower {
     }
 
     await base.AfterApplied(applier, cardSource);
-  }
-
-  public override Task AfterRemoved(Creature oldOwner) {
-    _sub?.Dispose();
-    _sub = null;
-    return base.AfterRemoved(oldOwner);
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _sub?.Dispose();
-    _sub = null;
-    return base.AfterCombatEnd(room);
   }
 
   public override async Task AfterCreatureAddedToCombat(Creature creature) {

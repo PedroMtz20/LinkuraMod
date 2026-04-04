@@ -18,24 +18,10 @@ public class EnduringTraditionPower() : LinkuraPower {
   public override PowerType Type => PowerType.Buff;
   public override PowerStackType StackType => PowerStackType.Single;
 
-  private Subscription _sub;
-
   public override Task AfterApplied(Creature applier, CardModel cardSource) {
-    _sub?.Dispose();
-    _sub = Events.IncreaseMaxHearts.SubscribeVeryEarly(OnIncreaseMaxHeartsEarly);
+    DisposeTrackedSubscriptions();
+    TrackSubscription(Events.IncreaseMaxHearts.SubscribeVeryEarly(OnIncreaseMaxHeartsEarly));
     return base.AfterApplied(applier, cardSource);
-  }
-
-  public override Task AfterRemoved(Creature oldOwner) {
-    _sub?.Dispose();
-    _sub = null;
-    return base.AfterRemoved(oldOwner);
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _sub?.Dispose();
-    _sub = null;
-    return base.AfterCombatEnd(room);
   }
 
   private async Task OnIncreaseMaxHeartsEarly(Events.IncreaseMaxHeartsEvent ev) {

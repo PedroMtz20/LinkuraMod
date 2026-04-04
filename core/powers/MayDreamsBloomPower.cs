@@ -16,26 +16,13 @@ public abstract class MayDreamsBloomPowerBase : LinkuraPower {
 
   protected abstract int Threshold { get; }
 
-  private Subscription _sub;
   private int _accumulatedOverflow;
 
   public override Task AfterApplied(Creature applier, CardModel cardSource) {
-    _sub?.Dispose();
-    _sub = Events.Burst.SubscribeLate(OnBurstLate);
+    DisposeTrackedSubscriptions();
+    TrackSubscription(Events.Burst.SubscribeLate(OnBurstLate));
     _accumulatedOverflow = 0;
     return base.AfterApplied(applier, cardSource);
-  }
-
-  public override Task AfterRemoved(Creature oldOwner) {
-    _sub?.Dispose();
-    _sub = null;
-    return base.AfterRemoved(oldOwner);
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _sub?.Dispose();
-    _sub = null;
-    return base.AfterCombatEnd(room);
   }
 
   private async Task OnBurstLate(Events.BurstEvent ev) {

@@ -17,24 +17,10 @@ public abstract class CareerSurveyPowerBase : LinkuraPower {
 
   protected abstract int Threshold { get; }
 
-  private Subscription _burstSub;
-
   public override Task AfterApplied(Creature applier, CardModel cardSource) {
-    _burstSub?.Dispose();
-    _burstSub = Events.Burst.SubscribeLate(OnBurstLate);
+    DisposeTrackedSubscriptions();
+    TrackSubscription(Events.Burst.SubscribeLate(OnBurstLate));
     return base.AfterApplied(applier, cardSource);
-  }
-
-  public override Task AfterRemoved(Creature oldOwner) {
-    _burstSub?.Dispose();
-    _burstSub = null;
-    return base.AfterRemoved(oldOwner);
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _burstSub?.Dispose();
-    _burstSub = null;
-    return base.AfterCombatEnd(room);
   }
 
   private async Task OnBurstLate(Events.BurstEvent ev) {
