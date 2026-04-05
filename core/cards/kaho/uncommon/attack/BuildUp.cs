@@ -26,15 +26,17 @@ public class BuildUp() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncomm
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(6, ValueProp.Move),
-    new CardsVar(1),
+    new CalculationBaseVar(1),
+    new CalculationExtraVar(1),
     new DynamicVar(TRACKER_VAR, 0),
-    new DynamicVar(DRAW_PREVIEW_VAR, 1),
+    new CalculatedVar(DRAW_PREVIEW_VAR).WithMultiplier(
+      static (card, _) => ((card as BuildUp)?._burstCount ?? 0) / BURSTS_PER_EXTRA_DRAW),
   ];
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [BurstHeartsVar.HoverTip()];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    int totalDraw = DynamicVars[DRAW_PREVIEW_VAR].IntValue;
+    int totalDraw = (int)((CalculatedVar)DynamicVars[DRAW_PREVIEW_VAR]).Calculate(null);
     _burstCount %= BURSTS_PER_EXTRA_DRAW;
 
     await CommonActions.CardAttack(this, play.Target).Execute(ctx);
@@ -68,21 +70,11 @@ public class BuildUp() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncomm
 
   private void UpdateDisplayVars() {
     if (!IsMutable) return;
-
-    int progress = _burstCount % BURSTS_PER_EXTRA_DRAW;
-    int extraDraw = _burstCount / BURSTS_PER_EXTRA_DRAW;
-
-    DynamicVars[TRACKER_VAR].BaseValue = progress;
-    DynamicVars[DRAW_PREVIEW_VAR].BaseValue = DynamicVars.Cards.IntValue + extraDraw;
+    DynamicVars[TRACKER_VAR].BaseValue = _burstCount % BURSTS_PER_EXTRA_DRAW;
   }
 
   protected override void OnUpgrade() {
     DynamicVars.Damage.UpgradeValueBy(3m);
-    DynamicVars.Cards.UpgradeValueBy(1m);
-    UpdateDisplayVars();
-  }
-
-  protected override void AfterDowngraded() {
-    UpdateDisplayVars();
+    DynamicVars.CalculationBase.UpgradeValueBy(1m);
   }
 }

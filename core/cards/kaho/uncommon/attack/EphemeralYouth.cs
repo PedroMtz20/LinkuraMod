@@ -32,7 +32,7 @@ public class EphemeralYouth() : InHandTriggerCard(1, CardType.Attack, CardRarity
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    await CommonActions.CardAttack(this, play.Target).Execute(ctx);
+    await CommonActions.CardAttack(this, play.Target, DynamicVars.CalculatedDamage.Calculate(play.Target)).Execute(ctx);
   }
 
   public override Task BeforeCombatStartLate() {

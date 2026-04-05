@@ -20,6 +20,8 @@ public class MixShake() : LinkuraCard(1, CardType.Skill, CardRarity.Common, Targ
     new BlockVar(7, ValueProp.Move),
   ];
 
+  protected override bool ShouldGlowGoldInternal => HeartsState.GetHearts(Owner) >= HEARTS_PER_EXTRA_TRIGGER;
+
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     int hearts = HeartsState.GetHearts(Owner);
     int triggers = 1 + hearts / HEARTS_PER_EXTRA_TRIGGER;

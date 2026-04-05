@@ -27,6 +27,9 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
 
   private int _triggerCount;
 
+  /// <summary>Raised after the backstage effect fires (SFX + shake).</summary>
+  public event Action Triggered;
+
   private async Task<Events.TriggerBackstageEvent> TryTrigger(PlayerChoiceContext ctx) {
     if (!CanTrigger()) return null;
     var ev = new Events.TriggerBackstageEvent(Owner, ctx, this);
@@ -50,6 +53,7 @@ public abstract class InHandTriggerCard(int cost, CardType type, CardRarity rari
 
   private async Task AfterTrigger(Events.TriggerBackstageEvent ev) {
     _triggerCount++;
+    Triggered?.Invoke();
     await Events.TriggerBackstage.InvokeAllLate(ev);
   }
 

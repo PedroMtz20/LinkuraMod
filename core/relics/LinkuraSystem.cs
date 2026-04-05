@@ -25,5 +25,6 @@ public class LinkuraSystem : LinkuraRelic {
   public override async Task BeforeCombatStart() {
     await HeartsState.Reset(Owner, new BlockingPlayerChoiceContext());
     await LinkuraCmd.GainAutoBurst(Owner.Creature, 1, Owner.Creature, null);
+    Flash();
   }
 }

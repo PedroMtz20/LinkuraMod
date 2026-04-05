@@ -24,10 +24,10 @@ public class FullBloom() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, T
     HoverTipFactory.FromKeyword(LinkuraKeywords.Collect),
   ];
 
+  protected override bool ShouldGlowGoldInternal => HeartsState.GetHearts(Owner) >= HeartsState.GetMaxHearts(Owner);
+
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    int currentHearts = HeartsState.GetHearts(Owner);
-    int maxHearts = HeartsState.GetMaxHearts(Owner);
-    if (currentHearts >= maxHearts) {
+    if (ShouldGlowGoldInternal) {
       await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
       await CommonActions.Draw(this, ctx);
     }

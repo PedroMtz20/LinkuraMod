@@ -24,8 +24,10 @@ public class GenyouYakou() : LinkuraCard(0, CardType.Skill, CardRarity.Common, T
     new CardsVar(2),
   ];
 
+  protected override bool ShouldGlowGoldInternal => HeartsState.GetHearts(Owner) >= HEARTS_THRESHOLD;
+
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    if (HeartsState.GetHearts(Owner) >= HEARTS_THRESHOLD) {
+    if (ShouldGlowGoldInternal) {
       await CommonActions.Draw(this, ctx);
     }
     await LinkuraCardActions.CollectHearts(this, ctx);

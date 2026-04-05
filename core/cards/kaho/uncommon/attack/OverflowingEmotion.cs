@@ -47,7 +47,7 @@ public class OverflowingEmotion() : InHandTriggerCard(2, CardType.Attack, CardRa
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    await CommonActions.CardAttack(this, play).Execute(ctx);
+    await CommonActions.CardAttack(this, play.Target, DynamicVars.CalculatedDamage.Calculate(play.Target)).Execute(ctx);
   }
 
   public override Task BeforeCombatStartLate() {

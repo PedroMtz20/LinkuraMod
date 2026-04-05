@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using RuriMegu.Core.Powers;
 using RuriMegu.Core.Utils;
@@ -23,7 +22,7 @@ public class EmbracingPetals() : InHandTriggerCard(2, CardType.Attack, CardRarit
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new CalculationBaseVar(0),
     new ExtraDamageVar(1),
-    new CalculatedDamageVar(ValueProp.Move).WithMultiplier((_, creature) => creature.GetPowerAmount<AutoBurstPower>()),
+    new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) => card.Owner.Creature.GetPowerAmount<AutoBurstPower>()),
     new AutoBurstVar(1),
     new RepeatVar(6),
   ];
@@ -52,7 +51,7 @@ public class EmbracingPetals() : InHandTriggerCard(2, CardType.Attack, CardRarit
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     int hitCount = DynamicVars.Repeat.IntValue;
-    await CommonActions.CardAttack(this, play, hitCount: hitCount).Execute(ctx);
+    await CommonActions.CardAttack(this, null, DynamicVars.CalculatedDamage.Calculate(null), hitCount: hitCount).Execute(ctx);
   }
 
   protected override void OnUpgrade() {

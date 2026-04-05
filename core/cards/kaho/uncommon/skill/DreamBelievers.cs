@@ -26,6 +26,8 @@ public class DreamBelievers() : LinkuraCard(0, CardType.Skill, CardRarity.Uncomm
     new EnergyVar(1),
   ];
 
+  protected override bool ShouldGlowGoldInternal => HeartsState.GetHearts(Owner) >= HEARTS_PER_ENERGY;
+
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     int hearts = HeartsState.GetHearts(Owner);
     int energyGain = hearts / HEARTS_PER_ENERGY;
