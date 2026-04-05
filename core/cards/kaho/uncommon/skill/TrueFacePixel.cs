@@ -1,29 +1,36 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using RuriMegu.Core.Powers;
-using RuriMegu.Core.Utils;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
 /// True Face Pixel (素颜像素) — Cost 1, Skill, Uncommon.
-/// This turn, your next Burst Heart card deals damage equal to Burst count to ALL enemies.
+/// Choose up to 2 (3) cards from the discard pile and add them to your hand.
 /// </summary>
 public class TrueFacePixel() : LinkuraCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
 
-  protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-    BurstHeartsVar.HoverTip(),
+  protected override IEnumerable<DynamicVar> CanonicalVars => [
+    new CardsVar(2),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    await PowerCmd.Apply<TrueFacePixelPower>(Owner.Creature, 1, Owner.Creature, this);
+    int count = Math.Min(DynamicVars.Cards.IntValue, 10 - PileType.Hand.GetPile(Owner).Cards.Count);
+    if (count <= 0) return;
+    var discardPile = PileType.Discard.GetPile(Owner).Cards;
+    if (discardPile.Count == 0) return;
+    var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, count);
+    await CardPileCmd.Add(
+      await CardSelectCmd.FromSimpleGrid(ctx, discardPile, Owner, prefs),
+      PileType.Hand);
   }
 
   protected override void OnUpgrade() {
-    EnergyCost.UpgradeBy(-1);
+    DynamicVars.Cards.UpgradeValueBy(1m);
   }
 }
