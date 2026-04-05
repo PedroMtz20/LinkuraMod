@@ -23,8 +23,6 @@ public class FlowerKnotPower : LinkuraPower {
 
   private async Task OnTriggerBackstageLate(Events.TriggerBackstageEvent ev) {
     if (ev.Player.Creature != Owner) return;
-    for (int i = 0; i < Amount; i++) {
-      await LinkuraCmd.TriggerAutoBurst(ev.Player, ev.Context, ev.Source);
-    }
+    await LinkuraCmd.BurstHearts(ev.Player, ev.Context, Amount);
   }
 }

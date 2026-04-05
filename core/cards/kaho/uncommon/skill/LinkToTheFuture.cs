@@ -11,11 +11,11 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
 /// Link to the FUTURE — Cost 1, Skill, Uncommon.
-/// Retain your hand this turn. Next turn gain 2 (3) energy.
+/// Retain your hand this turn. Next turn gain 1 (2) energy.
 /// </summary>
 public class LinkToTheFuture() : LinkuraCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new EnergyVar(2),
+    new EnergyVar(1),
   ];
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
     HoverTipFactory.FromKeyword(CardKeyword.Retain),

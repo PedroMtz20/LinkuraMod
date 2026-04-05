@@ -4,15 +4,11 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Cards;
-using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Powers;
 
@@ -24,12 +20,9 @@ public class WelcomeIshikawaPower : LinkuraPower {
   public override PowerType Type => PowerType.Buff;
   public override PowerStackType StackType => PowerStackType.Counter;
 
-  public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState) {
-    await base.BeforeSideTurnStart(choiceContext, side, combatState);
-    if (side != Owner.Side) return;
-
-    var player = Owner.Player;
-    if (player == null) return;
+  public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState) {
+    await base.BeforeHandDraw(player, choiceContext, combatState);
+    if (player != Owner.Player) return;
 
     var drawPile = PileType.Draw.GetPile(player);
     if (drawPile == null) return;

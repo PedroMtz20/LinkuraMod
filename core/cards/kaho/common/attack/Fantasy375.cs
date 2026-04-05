@@ -12,28 +12,25 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
 /// 37.5°C's Fantasy — Cost 3, Attack, Common.
-/// Deal 37 damage. All Skill cards cost 2 (3) less this turn, reset after any Skill card is played.
-/// Uses <see cref="SkillCostReductionPower"/> so the discount applies to cards drawn or generated
-/// after this card is played.
+/// Deal 37 damage. This turn, your next Power card costs 2 less (upgraded: 3 less).
+/// Uses <see cref="PowerCostReductionPower"/> which expires after the first Power card is played
+/// or at end of turn.
 /// </summary>
 public class Fantasy375() : LinkuraCard(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
-  private const int BASE_DAMAGE = 37;
-  private const int BASE_REDUCTION = 2;
-
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new DamageVar(BASE_DAMAGE, ValueProp.Move),
-    new EnergyVar(BASE_REDUCTION)
+    new DamageVar(37, ValueProp.Move),
+    new EnergyVar(2)
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     await CommonActions.CardAttack(this, play.Target).Execute(ctx);
-    // Apply a power that globally reduces all Skill card costs by the reduction amount.
-    // The power also handles drawn/generated cards and removes itself on first Skill card play.
+    // Apply a power that reduces the next Power card's cost this turn.
+    // The power expires after the first Power card is played, or at end of turn.
     int reduction = DynamicVars.Energy.IntValue;
-    await PowerCmd.Apply<SkillCostReductionPower>(Owner.Creature, reduction, Owner.Creature, this);
+    await PowerCmd.Apply<PowerCostReductionPower>(Owner.Creature, reduction, Owner.Creature, this);
   }
 
   protected override void OnUpgrade() {
-    EnergyCost.UpgradeBy(-1);
+    DynamicVars.Energy.UpgradeValueBy(1m);
   }
 }

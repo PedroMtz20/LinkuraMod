@@ -20,7 +20,7 @@ public class FinalAct() : LinkuraCard(1, CardType.Attack, CardRarity.Common, Tar
       .FromCard(this)
       .Targeting(play.Target)
       .Execute(ctx);
-    await HeartsState.SetHearts(Owner, ctx, 0, this);
+    await LinkuraCardActions.CollectHearts(this, ctx);
   }
 
   protected override void OnUpgrade() {

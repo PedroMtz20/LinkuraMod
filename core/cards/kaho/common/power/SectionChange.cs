@@ -24,5 +24,6 @@ public class SectionChange() : LinkuraCard(1, CardType.Power, CardRarity.Common,
 
   protected override void OnUpgrade() {
     AddKeyword(CardKeyword.Innate);
+    EnergyCost.UpgradeBy(-1);
   }
 }

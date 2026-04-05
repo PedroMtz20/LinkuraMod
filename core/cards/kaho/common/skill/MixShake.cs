@@ -11,13 +11,13 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
 /// Mix shake!! — Cost 1, Skill, Common.
-/// Gain 7 (10) block. Triggers once more for every 10 ♥ you have.
+/// Gain 5 (8) block. Triggers once more for every 6 ♥ you have.
 /// </summary>
 public class MixShake() : LinkuraCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
-  private const int HEARTS_PER_EXTRA_TRIGGER = 10;
+  private const int HEARTS_PER_EXTRA_TRIGGER = 6;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new BlockVar(7, ValueProp.Move),
+    new BlockVar(5, ValueProp.Move),
   ];
 
   protected override bool ShouldGlowGoldInternal => HeartsState.GetHearts(Owner) >= HEARTS_PER_EXTRA_TRIGGER;

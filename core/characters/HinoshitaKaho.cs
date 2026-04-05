@@ -5,11 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Cards.Kaho.Basic.Attack;
 using RuriMegu.Core.Cards.Kaho.Basic.Skill;
-using RuriMegu.Core.Cards.Kaho.Common.Attack;
-using RuriMegu.Core.Cards.Kaho.Common.Power;
-using RuriMegu.Core.Cards.Kaho.Common.Skill;
-using RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
-using RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 using RuriMegu.Core.Relics;
 using RuriMegu.Core.Utils;
 
@@ -25,6 +20,7 @@ public class HinoshitaKaho : PlaceholderCharacterModel {
   public static readonly Color Color = new("f8b400");
 
   public override Color NameColor => Color;
+  public override Color MapDrawingColor => Color;
   public override CharacterGender Gender => CharacterGender.Feminine;
 
   /// <summary>

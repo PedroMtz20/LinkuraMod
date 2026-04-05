@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Powers;
 
 /// <summary>
-/// The first time Max ❤️ changes each turn, the next card costs {Amount:energyIcons()} less.
+/// The first time Max ❤️ changes each turn, gain {Amount:energyIcons()}.
 /// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Rare.Power.Prologue"/>.
 /// </summary>
 public class ProloguePower : LinkuraPower {

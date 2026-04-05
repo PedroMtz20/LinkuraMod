@@ -14,7 +14,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
 /// Ephemeral Youth — Cost 1, Attack, Uncommon, Ethereal.
-/// Deal 14 (20) damage.
+/// Deal 16 (24) damage.
 /// Backstage: whenever you play a card, this card's damage this turn is reduced by 4.
 /// </summary>
 public class EphemeralYouth() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
@@ -25,7 +25,7 @@ public class EphemeralYouth() : InHandTriggerCard(1, CardType.Attack, CardRarity
   public override IEnumerable<CardKeyword> CanonicalKeywords => base.CanonicalKeywords.Append(CardKeyword.Ethereal);
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new CalculationBaseVar(14),
+    new CalculationBaseVar(16),
     new ExtraDamageVar(-4),
     new CalculatedDamageVar(ValueProp.Move).WithMultiplier(
       (card, _) => (card as EphemeralYouth)?._reductionCountThisTurn ?? 0),
@@ -57,6 +57,6 @@ public class EphemeralYouth() : InHandTriggerCard(1, CardType.Attack, CardRarity
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.CalculationBase.UpgradeValueBy(6m);
+    DynamicVars.CalculationBase.UpgradeValueBy(8m);
   }
 }

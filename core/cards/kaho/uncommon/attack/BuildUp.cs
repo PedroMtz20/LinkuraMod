@@ -17,8 +17,6 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 /// Backstage: every 3 Burst triggers grants +1 extra draw when this card is played. (Current: X)
 /// </summary>
 public class BuildUp() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
-  private const int BURSTS_PER_EXTRA_DRAW = 3;
-  private const string TRACKER_VAR = "BUILD_UP_TRACKER";
   private const string DRAW_PREVIEW_VAR = "BUILD_UP_DRAW";
 
   private int _burstCount;
@@ -28,25 +26,21 @@ public class BuildUp() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncomm
     new DamageVar(6, ValueProp.Move),
     new CalculationBaseVar(1),
     new CalculationExtraVar(1),
-    new DynamicVar(TRACKER_VAR, 0),
     new CalculatedVar(DRAW_PREVIEW_VAR).WithMultiplier(
-      static (card, _) => ((card as BuildUp)?._burstCount ?? 0) / BURSTS_PER_EXTRA_DRAW),
+      static (card, _) => ((card as BuildUp)?._burstCount ?? 0)),
   ];
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [BurstHeartsVar.HoverTip()];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     int totalDraw = (int)((CalculatedVar)DynamicVars[DRAW_PREVIEW_VAR]).Calculate(null);
-    _burstCount %= BURSTS_PER_EXTRA_DRAW;
 
     await CommonActions.CardAttack(this, play.Target).Execute(ctx);
     await CardPileCmd.Draw(ctx, totalDraw, Owner);
-    UpdateDisplayVars();
   }
 
   public override Task BeforeCombatStartLate() {
     _burstSubscription = Events.Burst.SubscribeVeryEarly(OnBurstHearts);
-    UpdateDisplayVars();
     return Task.CompletedTask;
   }
 
@@ -54,7 +48,6 @@ public class BuildUp() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncomm
     _burstSubscription?.Dispose();
     _burstSubscription = null;
     _burstCount = 0;
-    UpdateDisplayVars();
     return Task.CompletedTask;
   }
 
@@ -63,14 +56,8 @@ public class BuildUp() : InHandTriggerCard(1, CardType.Attack, CardRarity.Uncomm
 
     await TriggerWithAction(ev.Context, () => {
       _burstCount++;
-      UpdateDisplayVars();
       return Task.CompletedTask;
     });
-  }
-
-  private void UpdateDisplayVars() {
-    if (!IsMutable) return;
-    DynamicVars[TRACKER_VAR].BaseValue = _burstCount % BURSTS_PER_EXTRA_DRAW;
   }
 
   protected override void OnUpgrade() {

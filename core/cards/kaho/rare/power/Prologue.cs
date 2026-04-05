@@ -10,7 +10,7 @@ namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
 /// <summary>
 /// Prologue (序章) — Cost 2, Power, Rare, (Innate.)
-/// The first time Max ❤️ changes each turn, your next card costs {Energy:energyIcons()} less.
+/// The first time Max ❤️ changes each turn, gain 1 (2) Energy.
 /// </summary>
 public class Prologue() : LinkuraCard(2, CardType.Power, CardRarity.Rare, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -18,10 +18,11 @@ public class Prologue() : LinkuraCard(2, CardType.Power, CardRarity.Rare, Target
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    await PowerCmd.Apply<ProloguePower>(Owner.Creature, 1, Owner.Creature, this);
+    await PowerCmd.Apply<ProloguePower>(Owner.Creature, DynamicVars.Energy.IntValue, Owner.Creature, this);
   }
 
   protected override void OnUpgrade() {
     AddKeyword(CardKeyword.Innate);
+    DynamicVars.Energy.UpgradeValueBy(1m);
   }
 }

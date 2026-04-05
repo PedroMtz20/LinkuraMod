@@ -14,17 +14,14 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
 /// On Your Mark — X Cost, Skill, Uncommon.
-/// Increase max ❤️ by 4 (6) X. When drawn, gain Block equal to 3x your {Energy:energyIcons()}.
+/// Increase max ❤️ by 4 (6) X. When drawn, gain Block equal to 2(3)x your {Energy:energyIcons()}.
 /// </summary>
 public class OnYourMark() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override bool HasEnergyCostX => true;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new ExpandHeartsVar(4),
-  ];
-
-  protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-    HoverTipFactory.Static(StaticHoverTip.Block),
+    new BlockVar(2, 0),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
@@ -38,7 +35,7 @@ public class OnYourMark() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, 
     if (card == this) {
       await Cmd.Wait(0.25f);
       int energy = Owner.PlayerCombatState?.Energy ?? 0;
-      int block = energy * 3;
+      int block = energy * DynamicVars.Block.IntValue;
       if (block > 0) {
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, null);
       }
@@ -47,5 +44,6 @@ public class OnYourMark() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, 
 
   protected override void OnUpgrade() {
     DynamicVars.ExpandHearts().UpgradeValueBy(2m);
+    DynamicVars.Block.UpgradeValueBy(1m);
   }
 }
