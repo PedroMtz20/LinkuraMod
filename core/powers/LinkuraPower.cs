@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Rooms;
@@ -11,6 +12,9 @@ namespace RuriMegu.Core.Powers;
 public abstract class LinkuraPower : CustomPowerModel {
   public override PowerType Type => PowerType.None;
   public override PowerStackType StackType => PowerStackType.None;
+
+  public override string CustomPackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant().RemoveSuffix("_power")}.png".PowerImagePath();
+  public override string CustomBigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant().RemoveSuffix("_power")}.png".PowerImagePath();
 
   private readonly List<Subscription> _subs = new();
 

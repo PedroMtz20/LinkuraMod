@@ -15,8 +15,6 @@ public class AutoBurstPower : LinkuraPower {
   public override PowerType Type => PowerType.Buff;
   public override PowerStackType StackType => PowerStackType.Counter;
 
-  public override string CustomPackedIconPath => "auto_burst.png".PowerImagePath();
-  public override string CustomBigIconPath => "auto_burst.png".PowerImagePath();
   protected override IEnumerable<IHoverTip> ExtraHoverTips => base.ExtraHoverTips.Append(
     BurstHeartsVar.HoverTip());
 

@@ -42,6 +42,13 @@ public static class StringExtensions {
     return Path.Join(LinkuraMod.ModId, "scenes", characterId, path);
   }
 
+  public static string RemoveSuffix(this string str, string suffix) {
+    if (str.EndsWith(suffix)) {
+      return str.Substring(0, str.Length - suffix.Length);
+    }
+    return str;
+  }
+
   private static LocString L10NStatic(string entry) {
     return new LocString("static_hover_tips", entry);
   }
