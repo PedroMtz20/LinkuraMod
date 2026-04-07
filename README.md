@@ -25,7 +25,7 @@ Kaho is a new playable character whose gameplay revolves around a unique resourc
 
 ### Prerequisites
 
-- [Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/) (Early Access)
+- [Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/) (Latest stable)
 - [BaseLib](https://github.com/Alchyr/Sts2BaseLib) mod framework (v0.2.0+)
 
 ### Steps
