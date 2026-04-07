@@ -11,10 +11,10 @@ using RuriMegu.Core.Powers;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
 /// <summary>
-/// Auto Clicker: On (连点器：On) — Cost 2 (1), Power, Rare.
+/// Auto Clicker: On (连点器：On) — Cost 1 (0), Power, Rare.
 /// Whenever you Burst, Collect. All enemies gain 99 Intangible.
 /// </summary>
-public class AutoClickerOn() : LinkuraCard(2, CardType.Power, CardRarity.Rare, TargetType.None) {
+public class AutoClickerOn() : LinkuraCard(1, CardType.Power, CardRarity.Rare, TargetType.None) {
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
     BurstHeartsVar.HoverTip(),
