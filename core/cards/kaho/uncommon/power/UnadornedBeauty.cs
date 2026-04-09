@@ -4,16 +4,13 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 using RuriMegu.Core.Powers;
-using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Unadorned Beauty (无饰的美丽) — Cost 2 (1), Power, Uncommon.
-/// Start of turn gain 1 Energy. Cannot increase max ❤️.
+/// Unadorned Beauty (无饰的美丽) — Cost 2, Power, Uncommon.
+/// Start of turn gain 1 (2) Energy. Cannot increase max ❤️. Retain.
 /// </summary>
 public class UnadornedBeauty() : LinkuraCard(2, CardType.Power, CardRarity.Uncommon, TargetType.None) {
   public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
@@ -27,6 +24,6 @@ public class UnadornedBeauty() : LinkuraCard(2, CardType.Power, CardRarity.Uncom
   }
 
   protected override void OnUpgrade() {
-    EnergyCost.UpgradeBy(-1);
+    DynamicVars.Energy.UpgradeValueBy(1);
   }
 }

@@ -83,13 +83,26 @@ Example: `"在你的回合开始时，获得{Amount:energyIcons()}。"`
 
 ### In Power plain `description` (NO `{Amount}`)
 
-Use `[blue]N[/blue]点[gold]能量[/gold]` — hardcode the base value:
+Prefer official-style fixed energy icons when the value is constant (no `{Amount}` / no `Energy` DynamicVar):
+
+```
+{energyPrefix:energyIcons(1)}
+```
+
+Example:
+
+```
+"在你的回合开始时，获得{energyPrefix:energyIcons(1)}。"
+"每当你的❤️上限变化，你在本回合打出的下一张牌耗能减少{energyPrefix:energyIcons(1)}。"
+```
+
+Fallback (also acceptable if icon-prefix form is not used) is to hardcode `[blue]N[/blue]点[gold]能量[/gold]`:
 
 ```
 "在你的回合开始时，获得[blue]1[/blue]点[gold]能量[/gold]。"
 ```
 
-This matches `PYRE_POWER.description` in official STS2 ZHS.
+Official precedent for the icon-prefix pattern: `FreePowerPower` uses `{energyPrefix:energyIcons(1)}` style formatting.
 
 **Never use `{Energy:energyIcons()}` in a power description** if the power class has no `Energy` DynamicVar. Check the power's C# class to confirm which DynamicVars are available.
 
