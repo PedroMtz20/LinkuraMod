@@ -1,0 +1,73 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - release
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get version
+        id: version
+        run: echo "version=$(jq -r .version LinkuraMod.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Setup Godot
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.5.1
+          use-dotnet: true
+          include-templates: true
+
+      - name: Import Godot assets
+        # Run headless import so the .godot/ cache is populated before export
+        run: godot --headless --import || true
+
+      - name: Build .NET (ExportRelease)
+        run: dotnet build LinkuraMod.sln --configuration ExportRelease
+
+      - name: Export PCK
+        run: godot --headless --export-pack "Windows Desktop" LinkuraMod.pck
+
+      - name: Package release zip
+        run: |
+          VERSION="v${{ steps.version.outputs.version }}"
+          mkdir dist
+
+          # Godot.NET.Sdk outputs the DLL to .godot/mono/temp/bin/<config>/
+          # Fall back to the standard dotnet output directory if not found there.
+          DLL=$(find . \( -path "./.git" -o -path "./dist" \) -prune -o \
+                  -name "LinkuraMod.dll" -path "*ExportRelease*" -print | head -1)
+          if [ -z "$DLL" ]; then
+            echo "ERROR: LinkuraMod.dll not found" >&2
+            exit 1
+          fi
+          echo "Using DLL: $DLL"
+
+          cp "$DLL" dist/LinkuraMod.dll
+          cp LinkuraMod.json dist/
+          cp LinkuraMod.pck dist/
+
+          zip -j "LinkuraMod-${VERSION}.zip" dist/*
+          echo "ZIP=LinkuraMod-${VERSION}.zip" >> "$GITHUB_ENV"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: LinkuraMod v${{ steps.version.outputs.version }}
+          files: ${{ env.ZIP }}
+          generate_release_notes: true
