@@ -23,6 +23,6 @@ public class LinkuraEnergy() : LinkuraCard(1, CardType.Skill, CardRarity.Basic, 
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.BurstHearts().UpgradeValueBy(5m);
+    DynamicVars.BurstHearts().UpgradeValueBy(4m);
   }
 }
