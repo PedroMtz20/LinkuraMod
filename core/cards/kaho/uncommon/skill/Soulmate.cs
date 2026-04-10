@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,12 +7,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Soulmate (命定之人) — Cost 0, Skill, Uncommon.
+/// Soulmate (鍛藉畾涔嬩汉) 鈥?Cost 0, Skill, Uncommon.
 /// Collect. When drawn, trigger 2 (3) [gold]Auto Burst[/gold].
 /// </summary>
 public class Soulmate() : LinkuraCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -6,13 +6,14 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
 /// <summary>
-/// May Dreams Bloom (愿梦想绽放一生) — Cost 2(1), Power, Rare.
-/// For every 20 (15) ❤️ overflowed, gain 1 stack of Auto Burst.
+/// May Dreams Bloom (鎰挎ⅵ鎯崇唤鏀句竴鐢? 鈥?Cost 2(1), Power, Rare.
+/// For every 20 (15) 鉂わ笍 overflowed, gain 1 stack of Auto Burst.
 /// </summary>
 public class MayDreamsBloom() : LinkuraCard(2, CardType.Power, CardRarity.Rare, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [

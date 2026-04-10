@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -6,12 +6,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Holiday Holiday (无限假日) — Cost 1, Power, Uncommon.
+/// Holiday Holiday (鏃犻檺鍋囨棩) 鈥?Cost 1, Power, Uncommon.
 /// Whenever you trigger a Backstage effect, it triggers an additional time.
 /// Ethereal. Upgrade: remove Ethereal.
 /// </summary>

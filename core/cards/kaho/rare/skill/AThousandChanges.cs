@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -7,13 +7,14 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
 
 /// <summary>
-/// A Thousand Changes — Cost 0, Skill, Rare.
-/// Overflow ❤️ -> Max ❤️ for this turn.
+/// A Thousand Changes 鈥?Cost 0, Skill, Rare.
+/// Overflow 鉂わ笍 -> Max 鉂わ笍 for this turn.
 /// Exhaust. (Upgraded: Remove)
 /// </summary>
 public class AThousandChanges() : LinkuraCard(0, CardType.Skill, CardRarity.Rare, TargetType.None) {

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -8,11 +8,12 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
-/// Backstage Preparation — Cost 1, Attack, Uncommon.
+/// Backstage Preparation 鈥?Cost 1, Attack, Uncommon.
 /// Deal 8 (11) damage. Your next Backstage card costs {Energy:energyIcons()} less.
 /// </summary>
 public class BackstagePreparation() : LinkuraCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {

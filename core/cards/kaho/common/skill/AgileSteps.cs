@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -6,12 +6,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Agile Steps (灵动舞步) — Cost 1, Skill, Common.
+/// Agile Steps (鐏靛姩鑸炴) 鈥?Cost 1, Skill, Common.
 /// Burst 5 (8). Your next Attack card costs 1 less energy.
 /// </summary>
 public class AgileSteps() : LinkuraCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {

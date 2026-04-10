@@ -1,17 +1,18 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Auto Collect: On (自动收心：On) — Cost 1 (0), Power, Uncommon.
-/// Whenever your ❤️ hits maximum, Collect.
+/// Auto Collect: On (鑷姩鏀跺績锛歄n) 鈥?Cost 1 (0), Power, Uncommon.
+/// Whenever your 鉂わ笍 hits maximum, Collect.
 /// </summary>
 public class AutoCollectOn() : LinkuraCard(1, CardType.Power, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [

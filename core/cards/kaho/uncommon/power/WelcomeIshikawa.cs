@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,12 +7,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Welcome! Ishikawa (石川大观光) — Cost 1, Power, Uncommon.
+/// Welcome! Ishikawa (鐭冲窛澶ц鍏? 鈥?Cost 1, Power, Uncommon.
 /// Start of turn, choose 1 (2) Backstage cards from draw pile to hand.
 /// Innate.
 /// </summary>

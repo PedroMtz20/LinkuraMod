@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Utils;
@@ -9,12 +9,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Rare.Attack;
 
 /// <summary>
-/// Embracing Petals — Cost 2, Attack, Rare.
+/// Embracing Petals 鈥?Cost 2, Attack, Rare.
 /// Deal damage equal to your Auto Burst amount to ALL enemies 6 (9) times. Backstage: whenever you Collect, gain 1 Auto Burst.
 /// </summary>
 public class EmbracingPetals() : InHandTriggerCard(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies) {

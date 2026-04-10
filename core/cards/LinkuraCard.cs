@@ -2,7 +2,7 @@ using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using RuriMegu.Core.Characters;
+using RuriMegu.Core.Characters.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards;

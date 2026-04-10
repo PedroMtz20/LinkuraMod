@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -7,11 +7,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 
 namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
-/// 37.5°C's Fantasy — Cost 3, Attack, Common.
+/// 37.5掳C's Fantasy 鈥?Cost 3, Attack, Common.
 /// Deal 37 damage. This turn, your next Power card costs 2 less (upgraded: 3 less).
 /// Uses <see cref="PowerCostReductionPower"/> which expires after the first Power card is played
 /// or at end of turn.

@@ -1,15 +1,16 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using RuriMegu.Core.Powers;
+using RuriMegu.Core.Powers.Kaho;
 
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
 
 /// <summary>
-/// Enduring Tradition — Cost 0, Skill, Rare.
+/// Enduring Tradition 鈥?Cost 0, Skill, Rare.
 /// Apply Enduring Tradition Power. (Retain.)
 /// </summary>
 public class EnduringTradition() : LinkuraCard(0, CardType.Skill, CardRarity.Rare, TargetType.None) {
