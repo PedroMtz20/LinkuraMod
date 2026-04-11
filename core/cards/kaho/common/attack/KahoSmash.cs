@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,10 +21,10 @@ public class KahoSmash() : KahoCard(1, CardType.Attack, CardRarity.Common, Targe
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     await CommonActions.CardAttack(this, play.Target).Execute(ctx);
-    await LinkuraCardActions.CollectHearts(this, ctx);
+    await LinkuraCardActions.CollectHearts(this, ctx, target: play.Target);
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.Damage.UpgradeValueBy(3m);
+    DynamicVars.Damage.UpgradeValueBy(4m);
   }
 }

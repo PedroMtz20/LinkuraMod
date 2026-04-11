@@ -32,7 +32,7 @@
   "RURIMEGU-TRAINING_OUTCOMES.title": "Training Outcomes",
   "RURIMEGU-TRAINING_OUTCOMES.description": "Deal {Damage:diff()} damage. [gold]Backstage[/gold]: whenever you [gold]Collect[/gold], this card costs {Energy:energyIcons()} less in this combat.",
   "RURIMEGU-KAHO_SMASH.title": "Kaho Smash",
-  "RURIMEGU-KAHO_SMASH.description": "Deal {Damage:diff()} damage. [gold]Collect[/gold].",
+  "RURIMEGU-KAHO_SMASH.description": "Deal {Damage:diff()} damage. [gold]Collect[/gold] against that target.",
   "RURIMEGU-FANTASY375.title": "37.5°C's Fantasy",
   "RURIMEGU-FANTASY375.description": "Deal {Damage:diff()} damage. Your next Power card costs {Energy:energyIcons()} less.",
   "RURIMEGU-STEP_UP.title": "Step Up!",
