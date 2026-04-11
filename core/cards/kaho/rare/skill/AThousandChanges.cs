@@ -13,8 +13,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
 
 /// <summary>
-/// A Thousand Changes 鈥?Cost 0, Skill, Rare.
-/// Overflow 鉂わ笍 -> Max 鉂わ笍 for this turn.
+/// A Thousand Changes — Cost 0, Skill, Rare.
+/// Overflow ❤️ -> Max ❤️ for this turn.
 /// Exhaust. (Upgraded: Remove)
 /// </summary>
 public class AThousandChanges() : KahoCard(0, CardType.Skill, CardRarity.Rare, TargetType.None) {

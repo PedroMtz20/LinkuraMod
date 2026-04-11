@@ -10,7 +10,7 @@ using RuriMegu.Core.Powers.Kaho;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
 
 /// <summary>
-/// Enduring Tradition 鈥?Cost 0, Skill, Rare.
+/// Enduring Tradition — Cost 0, Skill, Rare.
 /// Apply Enduring Tradition Power. (Retain.)
 /// </summary>
 public class EnduringTradition() : KahoCard(0, CardType.Skill, CardRarity.Rare, TargetType.None) {

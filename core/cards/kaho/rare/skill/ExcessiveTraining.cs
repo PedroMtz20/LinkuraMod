@@ -9,8 +9,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
 
 /// <summary>
-/// Excessive Training 鈥?Cost 0, Skill, Rare.
-/// Reduce 4 (3) Max 鉂わ笍 up to 3 (4) times. Gain [E] for each reduction.
+/// Excessive Training — Cost 0, Skill, Rare.
+/// Reduce 4 (3) Max ❤️ up to 3 (4) times. Gain [E] for each reduction.
 /// </summary>
 public class ExcessiveTraining() : KahoCard(0, CardType.Skill, CardRarity.Rare, TargetType.None) {
   private const string MAX_TIMES_KEY = "RURIMEGU-MAX_TIMES";

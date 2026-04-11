@@ -8,7 +8,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Powers.Kaho;
 
 /// <summary>
-/// Effects that increase Max 鉂わ笍 are doubled.
+/// Effects that increase Max ❤️ are doubled.
 /// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Rare.Power.ReflectionInTheMirror"/>.
 /// </summary>
 public class ReflectionInTheMirrorPower : KahoPower {

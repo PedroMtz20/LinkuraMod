@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
-/// Cerise Bouquet 鈥?Cost 2, Attack, Common.
+/// Cerise Bouquet — Cost 2, Attack, Common.
 /// Deal 6 (9) damage to ALL enemies 3 times.
 /// </summary>
 public class CeriseBouquet() : KahoCard(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies) {

@@ -13,7 +13,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Sugar Melt (鐢滆湝铻嶅寲) 鈥?Cost 2, Power, Uncommon.
+/// Sugar Melt (甜蜜融化) — Cost 2, Power, Uncommon.
 /// Gain 2 (3) stacks of Auto Burst. Whenever you Auto Burst, gain 1 Block.
 /// </summary>
 public class SugarMelt() : KahoCard(2, CardType.Power, CardRarity.Uncommon, TargetType.None) {

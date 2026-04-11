@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Curtain Call (婕斿嚭钀藉箷) 鈥?Cost 1, Skill, Common.
+/// Curtain Call (演出落幕) — Cost 1, Skill, Common.
 /// Gain 8 (11) block. Collect.
 /// </summary>
 public class CurtainCall() : KahoCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {

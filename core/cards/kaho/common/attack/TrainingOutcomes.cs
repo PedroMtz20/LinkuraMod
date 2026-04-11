@@ -13,7 +13,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
-/// Training Outcomes 鈥?Cost 4 (3), Attack, Common.
+/// Training Outcomes — Cost 4 (3), Attack, Common.
 /// Deal 12 (16) damage.
 /// Backstage: whenever you Collect, this card costs 1 less in this combat.
 /// </summary>

@@ -10,8 +10,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Half-Conveyed Feelings (浼犺揪涓€鍗婄殑蹇冩剰) 鈥?Cost 1, Skill, Uncommon.
-/// Burst Hearts equal to half your max 鉂わ笍.
+/// Half-Conveyed Feelings (传达一半的心意) — Cost 1, Skill, Uncommon.
+/// Burst Hearts equal to half your max ❤️.
 /// </summary>
 public class HalfConveyedFeelings() : KahoCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];

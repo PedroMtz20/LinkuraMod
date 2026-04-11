@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Agile Steps (鐏靛姩鑸炴) 鈥?Cost 1, Skill, Common.
+/// Agile Steps (灵动舞步) — Cost 1, Skill, Common.
 /// Burst 5 (8). Your next Attack card costs 1 less energy.
 /// </summary>
 public class AgileSteps() : KahoCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {

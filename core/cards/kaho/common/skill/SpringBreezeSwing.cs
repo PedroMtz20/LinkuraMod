@@ -11,9 +11,9 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Spring Breeze Swing (鏄ラ绉嬪崈) 鈥?Cost 1, Skill, Common.
+/// Spring Breeze Swing (春风秋千) — Cost 1, Skill, Common.
 /// Draw 1 (2) card.
-/// Backstage: whenever Burst Hearts reaches the 鈾?limit, gain 1 energy.
+/// Backstage: whenever Burst Hearts reaches the ♥ limit, gain 1 energy.
 /// </summary>
 public class SpringBreezeSwing() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
   private Subscription _burstSubscription;

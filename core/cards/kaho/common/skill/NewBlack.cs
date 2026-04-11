@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -12,8 +12,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// N蔚w Black 鈥?Cost 1, Skill, Common.
-/// On play: Gain 5 (8) Block.
+/// Nεw Black — Cost 1, Skill, Common.
+/// On play: Gain 6 (9) Block.
 /// Backstage: for every 6 Burst Hearts, gain 4 (6) block. (Current: X)
 /// </summary>
 public class NewBlack() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
@@ -23,7 +23,7 @@ public class NewBlack() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Co
   private const string BACKSTAGE_BLOCK_VAR = "BACKSTAGE_BLOCK";
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new BlockVar(5, ValueProp.Move),
+    new BlockVar(6, ValueProp.Move),
     new DynamicVar(BACKSTAGE_BLOCK_VAR, 4),
     new DynamicVar(TRACKER_VAR, 0),
   ];

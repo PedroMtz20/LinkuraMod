@@ -11,8 +11,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Auto Collect: On (鑷姩鏀跺績锛歄n) 鈥?Cost 1 (0), Power, Uncommon.
-/// Whenever your 鉂わ笍 hits maximum, Collect.
+/// Auto Collect: On (自动收心：On) — Cost 1 (0), Power, Uncommon.
+/// Whenever your ❤️ hits maximum, Collect.
 /// </summary>
 public class AutoCollectOn() : KahoCard(1, CardType.Power, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [

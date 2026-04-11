@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Choreography Memo (鑸炴缂栨帓) 鈥?Cost 1, Skill, Uncommon.
+/// Choreography Memo (舞步编排) — Cost 1, Skill, Uncommon.
 /// On play: Burst 9 (12).
 /// Backstage: for every 3 (2) cards you play, Collect. (Current: X)
 /// </summary>

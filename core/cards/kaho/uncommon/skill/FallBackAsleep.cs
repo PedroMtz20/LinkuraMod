@@ -12,8 +12,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Fall Back Asleep (鍥炵瑙? 鈥?Cost 2 (1), Skill, Uncommon.
-/// Gain Block equal to current 鉂わ笍. Block persists this turn. Exhaust.
+/// Fall Back Asleep (回笼觉) — Cost 2 (1), Skill, Uncommon.
+/// Gain Block equal to current ❤️. Block persists this turn. Exhaust.
 /// </summary>
 public class FallBackAsleep() : KahoCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];

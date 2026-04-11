@@ -9,8 +9,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Zanyou (娈嬮槼) 鈥?Cost 1, Skill, Common.
-/// Increase max 鈾?by 5 (8). Ethereal (upgrade removes Ethereal). Exhaust.
+/// Zanyou (残阳) — Cost 1, Skill, Common.
+/// Increase max ♥ by 5 (8). Ethereal (upgrade removes Ethereal). Exhaust.
 /// </summary>
 public class Zanyou() : KahoCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
   public override IEnumerable<CardKeyword> CanonicalKeywords => [

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Utils;
@@ -13,7 +13,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Love it! 鈥?Cost 1, Skill, Common.
+/// Love it! — Cost 1, Skill, Common.
 /// Burst 6 (9). Draw 1 (2) cards.
 /// Backstage: whenever you Collect, gain 4 (6) block.
 /// </summary>

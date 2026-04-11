@@ -10,8 +10,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
-/// Step Up! 鈥?Cost 1, Attack, Common.
-/// Deal 4 (6) damage twice. Increase max 鈾?by 2 (3).
+/// Step Up! — Cost 1, Attack, Common.
+/// Deal 4 (6) damage twice. Increase max ♥ by 2 (3).
 /// </summary>
 public class StepUp() : KahoCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [

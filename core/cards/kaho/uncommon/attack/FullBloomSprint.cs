@@ -11,8 +11,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
-/// Full Bloom Sprint 鈥?Cost 2 (1), Attack, Uncommon.
-/// Deal 12 damage. If current 鉂わ笍 is at max, Collect and gain 2 energy.
+/// Full Bloom Sprint — Cost 2 (1), Attack, Uncommon.
+/// Deal 12 damage. If current ❤️ is at max, Collect and gain 2 energy.
 /// </summary>
 public class FullBloomSprint() : KahoCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
 

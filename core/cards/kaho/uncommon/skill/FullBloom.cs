@@ -11,8 +11,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Full Bloom! (鐩涘紑锛? 鈥?Cost 0, Skill, Uncommon.
-/// If your 鉂わ笍 is at max, gain 1 (2) Energy and draw 2 (3) card(s). Collect.
+/// Full Bloom! (盛开！) — Cost 0, Skill, Uncommon.
+/// If your ❤️ is at max, gain 1 (2) Energy and draw 2 (3) card(s). Collect.
 /// </summary>
 public class FullBloom() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [

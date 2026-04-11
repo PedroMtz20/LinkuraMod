@@ -13,7 +13,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Encore (瀹夊彲) 鈥?Cost 0, Skill, Uncommon.
+/// Encore (安可) — Cost 0, Skill, Uncommon.
 /// Gain 2 (3) Block for every Burst triggered this turn. (Current: X) (Innate. Retain.)
 /// </summary>
 public class Encore() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {

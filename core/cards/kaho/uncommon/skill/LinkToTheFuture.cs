@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Link to the FUTURE 鈥?Cost 1, Skill, Uncommon.
+/// Link to the FUTURE — Cost 1, Skill, Uncommon.
 /// Retain your hand this turn. Next turn gain 1 (2) energy.
 /// </summary>
 public class LinkToTheFuture() : KahoCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {

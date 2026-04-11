@@ -13,7 +13,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
-/// Bunny Pyon Pyon 鈥?Cost 1, Attack, Common.
+/// Bunny Pyon Pyon — Cost 1, Attack, Common.
 /// Deal 7 (10) damage. Burst equal to the damage dealt.
 /// </summary>
 public class BunnyPyonPyon() : KahoCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {

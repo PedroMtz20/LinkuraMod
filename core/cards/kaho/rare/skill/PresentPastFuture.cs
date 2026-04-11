@@ -14,7 +14,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
 
 /// <summary>
-/// Present, Past, Future 鈥?Cost 1, Skill, Rare.
+/// Present, Past, Future — Cost 1, Skill, Rare.
 /// Discard hand, draw same amount.
 /// Backstage: every 15 (10) Burst, trigger this effect.
 /// </summary>

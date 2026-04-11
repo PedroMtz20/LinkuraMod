@@ -11,7 +11,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Powers.Kaho;
 
 /// <summary>
-/// Start of turn, gain 1 Energy. Cannot increase max 鉂わ笍.
+/// Start of turn, gain 1 Energy. Cannot increase max ❤️.
 /// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Uncommon.Power.UnadornedBeauty"/>.
 /// </summary>
 public class UnadornedBeautyPower : KahoPower {

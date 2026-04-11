@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Rooms;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
 
 /// <summary>
-/// Two Seconds Of Eternity 鈥?Cost 0 (dynamic), Skill, Rare.
+/// Two Seconds Of Eternity — Cost 0 (dynamic), Skill, Rare.
 /// Play all other cards in hand. This card's cost equals their total cost.
 /// Exhaust. (Upgraded: Remove Exhaust.)
 ///

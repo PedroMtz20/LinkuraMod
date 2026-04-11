@@ -13,7 +13,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
 
 /// <summary>
-/// Summery Pain 鈥?Cost 1, Skill, Rare.
+/// Summery Pain — Cost 1, Skill, Rare.
 /// Discard your hand and draw that many cards.
 /// Backstage: Whenever you have fewer than 6 (8) cards in hand, draw 1 card.
 /// </summary>

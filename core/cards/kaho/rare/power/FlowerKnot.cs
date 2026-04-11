@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
 /// <summary>
-/// Flower Knot (鑺辩粨) 鈥?Cost 1, Power, Rare.
+/// Flower Knot (花结) — Cost 1, Power, Rare.
 /// Whenever you trigger a Backstage effect, discard that backstage card and draw 1 card. (Innate.)
 /// </summary>
 public class FlowerKnot() : KahoCard(1, CardType.Power, CardRarity.Rare, TargetType.None) {

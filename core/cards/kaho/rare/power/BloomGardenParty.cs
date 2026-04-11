@@ -11,7 +11,7 @@ using RuriMegu.Core.Powers.Kaho;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
 /// <summary>
-/// Bloom Garden Party 鈥?Cost 3, Power, Rare, Ethereal (upgraded: remove Ethereal).
+/// Bloom Garden Party — Cost 3, Power, Rare, Ethereal (upgraded: remove Ethereal).
 /// Your Backstage effects can also trigger from the discard pile.
 /// </summary>
 public class BloomGardenParty() : KahoCard(3, CardType.Power, CardRarity.Rare, TargetType.None) {

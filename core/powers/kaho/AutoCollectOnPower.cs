@@ -9,7 +9,7 @@ using static RuriMegu.Core.Utils.Events;
 namespace RuriMegu.Core.Powers.Kaho;
 
 /// <summary>
-/// Whenever your 鉂わ笍 hits maximum, Collect.
+/// Whenever your ❤️ hits maximum, Collect.
 /// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Uncommon.Power.AutoCollectOn"/>.
 /// </summary>
 public class AutoCollectOnPower : KahoPower {

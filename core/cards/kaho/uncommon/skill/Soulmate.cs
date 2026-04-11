@@ -13,7 +13,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Soulmate (鍛藉畾涔嬩汉) 鈥?Cost 0, Skill, Uncommon.
+/// Soulmate (命定之人) — Cost 0, Skill, Uncommon.
 /// Collect. When drawn, trigger 2 (3) [gold]Auto Burst[/gold].
 /// </summary>
 public class Soulmate() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {

@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Special Thanks 鈥?Cost 1, Skill, Uncommon.
+/// Special Thanks — Cost 1, Skill, Uncommon.
 /// On play: Gain 8 (11) Block.
 /// Backstage: whenever you play an Attack, Burst Hearts 2 (3).
 /// </summary>

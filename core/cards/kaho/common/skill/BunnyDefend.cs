@@ -10,8 +10,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Bunny Defend 鈥?Cost 2, Skill, Common.
-/// Gain block equal to current max 鈾? (Retain.)
+/// Bunny Defend — Cost 2, Skill, Common.
+/// Gain block equal to current max ♥. (Retain.)
 /// </summary>
 public class BunnyDefend() : KahoCard(2, CardType.Skill, CardRarity.Common, TargetType.None) {
   protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];

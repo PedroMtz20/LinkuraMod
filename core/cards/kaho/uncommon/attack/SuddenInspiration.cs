@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
-/// Sudden Inspiration 鈥?Cost 1, Attack, Uncommon.
+/// Sudden Inspiration — Cost 1, Attack, Uncommon.
 /// Deal 6 (9) damage. Collect when drawn.
 /// </summary>
 public class SuddenInspiration() : KahoCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {

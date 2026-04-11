@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Powers.Kaho;
 
 /// <summary>
-/// This turn, your over-capped 鉂わ笍 is converted to equal amount of 鉂わ笍 max HP.
+/// This turn, your over-capped ❤️ is converted to equal amount of ❤️ max HP.
 /// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Rare.Skill.AThousandChanges"/>.
 /// </summary>
 public class AThousandChangesPower() : KahoPower {

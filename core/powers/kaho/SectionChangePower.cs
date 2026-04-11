@@ -7,7 +7,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Powers.Kaho;
 
 /// <summary>
-/// Section Change 鈥?At the end of your turn, Collect.
+/// Section Change — At the end of your turn, Collect.
 /// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Common.Power.SectionChange"/>.
 /// </summary>
 public class SectionChangePower : KahoPower {

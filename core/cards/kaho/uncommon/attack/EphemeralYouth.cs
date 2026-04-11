@@ -13,7 +13,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
-/// Ephemeral Youth 鈥?Cost 1, Attack, Uncommon, Ethereal.
+/// Ephemeral Youth — Cost 1, Attack, Uncommon, Ethereal.
 /// Deal 16 (24) damage.
 /// Backstage: whenever you play a card, this card's damage this turn is reduced by 4.
 /// </summary>

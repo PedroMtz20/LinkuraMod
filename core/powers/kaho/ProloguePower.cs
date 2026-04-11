@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Powers.Kaho;
 
 /// <summary>
-/// Whenever Max 鉂わ笍 changes, the next card played this turn costs {Amount:energyIcons()} less.
+/// Whenever Max ❤️ changes, the next card played this turn costs {Amount:energyIcons()} less.
 /// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Rare.Power.Prologue"/>.
 /// </summary>
 public class ProloguePower : KahoPower {

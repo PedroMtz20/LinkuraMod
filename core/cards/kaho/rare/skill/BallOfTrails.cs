@@ -11,7 +11,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
 
 /// <summary>
-/// Ball of Trails 鈥?Cost 1, Skill, Rare.
+/// Ball of Trails — Cost 1, Skill, Rare.
 /// Burst 10 (15).
 /// If drawn at the start of your turn, gain 2 (3) energy, discard your hand and draw that many cards.
 /// </summary>

@@ -9,8 +9,8 @@ using RuriMegu.Core.Powers.Kaho;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
 /// <summary>
-/// Reflection in the Mirror (闀滀腑鍊掑奖) 鈥?Cost 1 (0), Power, Rare.
-/// Effects that increase Max 鉂わ笍 are doubled.
+/// Reflection in the Mirror (镜中倒影) — Cost 1 (0), Power, Rare.
+/// Effects that increase Max ❤️ are doubled.
 /// </summary>
 public class ReflectionInTheMirror() : KahoCard(1, CardType.Power, CardRarity.Rare, TargetType.None) {
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {

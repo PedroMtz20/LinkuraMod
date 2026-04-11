@@ -11,8 +11,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
-/// Unfulfilled Wishes 鈥?Cost 2, Attack, Uncommon.
-/// Deal damage equal to (max 鉂わ笍 - current 鉂わ笍). Gain Block equal to current 鉂わ笍.
+/// Unfulfilled Wishes — Cost 2, Attack, Uncommon.
+/// Deal damage equal to (max ❤️ - current ❤️). Gain Block equal to current ❤️.
 /// Upgraded: gains Retain.
 /// </summary>
 public class UnfulfilledWishes() : KahoCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {

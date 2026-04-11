@@ -11,9 +11,9 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
-/// Variations 鈥?Cost 1, Attack, Uncommon.
+/// Variations — Cost 1, Attack, Uncommon.
 /// Deal 4 (6) damage. Draw 1 card.
-/// Backstage: whenever max 鉂わ笍 changes, this card costs 1 less next time it is played.
+/// Backstage: whenever max ❤️ changes, this card costs 1 less next time it is played.
 /// </summary>
 public class Variations() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
   private Subscription _maxHeartsSubscription;

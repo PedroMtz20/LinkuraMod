@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
-/// Afterglow 鈥?Cost 0, Attack, Uncommon.
+/// Afterglow — Cost 0, Attack, Uncommon.
 /// Deal 4 (6) damage.
 /// Whenever you Collect, return this card from discard pile to hand.
 /// </summary>

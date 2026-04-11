@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Aurora Flower (鏋佸厜鑺? 鈥?Cost 1, Skill, Uncommon.
+/// Aurora Flower (极光花) — Cost 1, Skill, Uncommon.
 /// Trigger 6 (9) [gold]Auto Burst[/gold]. Collect after each trigger.
 /// </summary>
 public class AuroraFlower() : KahoCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {

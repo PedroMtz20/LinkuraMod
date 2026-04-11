@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Special Appeal (鐗瑰埆婕斿嚭) 鈥?Cost 1, Power, Uncommon.
+/// Special Appeal (特别演出) — Cost 1, Power, Uncommon.
 /// Whenever you Collect Hearts, deal damage to all enemies.
 /// Upgrade: Innate.
 /// </summary>

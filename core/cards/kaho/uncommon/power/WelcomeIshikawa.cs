@@ -13,7 +13,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Welcome! Ishikawa (鐭冲窛澶ц鍏? 鈥?Cost 1, Power, Uncommon.
+/// Welcome! Ishikawa (石川大观光) — Cost 1, Power, Uncommon.
 /// Start of turn, choose 1 (2) Backstage cards from draw pile to hand.
 /// Innate.
 /// </summary>

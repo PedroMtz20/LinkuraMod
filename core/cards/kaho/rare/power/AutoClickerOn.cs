@@ -12,7 +12,7 @@ using RuriMegu.Core.Powers.Kaho;
 namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
 /// <summary>
-/// Auto Clicker: On (杩炵偣鍣細On) 鈥?Cost 1 (0), Power, Rare.
+/// Auto Clicker: On (连点器：On) — Cost 1 (0), Power, Rare.
 /// Whenever you Burst, Collect. All enemies gain 99 Intangible.
 /// </summary>
 public class AutoClickerOn() : KahoCard(1, CardType.Power, CardRarity.Rare, TargetType.None) {

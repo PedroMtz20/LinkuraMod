@@ -13,8 +13,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
-/// Heart Strike 鈥?Cost 2, Attack, Uncommon.
-/// Deal 11 (15) damage. Increase max 鉂わ笍 by unblocked damage dealt.
+/// Heart Strike — Cost 2, Attack, Uncommon.
+/// Deal 11 (15) damage. Increase max ❤️ by unblocked damage dealt.
 /// </summary>
 public class HeartStrike() : KahoCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
   public override IEnumerable<CardKeyword> CanonicalKeywords => base.CanonicalKeywords.Append(CardKeyword.Exhaust);

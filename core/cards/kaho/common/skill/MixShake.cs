@@ -10,8 +10,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Mix shake!! 鈥?Cost 1, Skill, Common.
-/// Gain 5 (8) block. Triggers once more for every 6 鈾?you have.
+/// Mix shake!! — Cost 1, Skill, Common.
+/// Gain 5 (8) block. Triggers once more for every 6 ♥ you have.
 /// </summary>
 public class MixShake() : KahoCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
   private const int HEARTS_PER_EXTRA_TRIGGER = 6;

@@ -13,8 +13,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// On Your Mark 鈥?X Cost, Skill, Uncommon.
-/// Increase max 鉂わ笍 by 4 (6) X. When drawn, gain Block equal to 2(3)x your {Energy:energyIcons()}.
+/// On Your Mark — X Cost, Skill, Uncommon.
+/// Increase max ❤️ by 4 (6) X. When drawn, gain Block equal to 2(3)x your {Energy:energyIcons()}.
 /// </summary>
 public class OnYourMark() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override bool HasEnergyCostX => true;

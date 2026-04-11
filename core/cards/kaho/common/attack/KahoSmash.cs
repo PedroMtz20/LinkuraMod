@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 
 /// <summary>
-/// Kaho Smash 鈥?Cost 1, Attack, Common.
+/// Kaho Smash — Cost 1, Attack, Common.
 /// Deal 8 (11) damage. Collect.
 /// </summary>
 public class KahoSmash() : KahoCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {

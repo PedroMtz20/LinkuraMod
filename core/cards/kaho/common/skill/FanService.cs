@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Fan Service (楗拻) 鈥?Cost 1, Skill, Common.
+/// Fan Service (饭撒) — Cost 1, Skill, Common.
 /// Collect. The damage from Collect also triggers on 1(2) additional random enemy.
 /// </summary>
 public class FanService() : KahoCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {

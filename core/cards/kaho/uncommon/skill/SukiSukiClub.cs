@@ -10,8 +10,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Suki Suki Club (鍠滄鍠滄淇变箰閮? 鈥?Cost 1, Skill, Uncommon.
-/// Draw 2 (3) cards. When drawn, increase max 鉂わ笍 by 2 (3).
+/// Suki Suki Club (喜欢喜欢俱乐部) — Cost 1, Skill, Uncommon.
+/// Draw 2 (3) cards. When drawn, increase max ❤️ by 2 (3).
 /// </summary>
 public class SukiSukiClub() : KahoCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [

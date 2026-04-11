@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Power;
 
 /// <summary>
-/// Glowing Routine (闂€€鐨勬棩甯? 鈥?Cost 1, Power, Common.
+/// Glowing Routine (闪耀的日常) — Cost 1, Power, Common.
 /// At the start of your turn, Burst 6 (9).
 /// </summary>
 public class GlowingRoutine() : KahoCard(1, CardType.Power, CardRarity.Common, TargetType.None) {

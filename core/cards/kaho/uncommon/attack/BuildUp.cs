@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
-/// Build-up 鈥?Cost 1, Attack, Uncommon.
+/// Build-up — Cost 1, Attack, Uncommon.
 /// Deal 6 (9) damage. Draw 1 (2) card(s).
 /// Backstage: every 3 Burst triggers grants +1 extra draw when this card is played. (Current: X)
 /// </summary>

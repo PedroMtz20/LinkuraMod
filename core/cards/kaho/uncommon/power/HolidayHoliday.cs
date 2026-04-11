@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Holiday Holiday (鏃犻檺鍋囨棩) 鈥?Cost 1, Power, Uncommon.
+/// Holiday Holiday (无限假日) — Cost 1, Power, Uncommon.
 /// Whenever you trigger a Backstage effect, it triggers an additional time.
 /// Ethereal. Upgrade: remove Ethereal.
 /// </summary>

@@ -10,7 +10,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Powers.Kaho;
 
 /// <summary>
-/// At the start of your turn, convert 鉂わ笍 to equal Block.
+/// At the start of your turn, convert ❤️ to equal Block.
 /// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Uncommon.Power.CareerSurvey"/>.
 /// </summary>
 public class CareerSurveyPower : KahoPower {

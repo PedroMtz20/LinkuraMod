@@ -11,7 +11,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Celebration! 鈥?Cost 1, Skill, Uncommon.
+/// Celebration! — Cost 1, Skill, Uncommon.
 /// Draw 1(2) cards. Backstage: every 5 (4) times you Burst, draw 1 card. (Current: X)
 /// </summary>
 public class Celebration() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {

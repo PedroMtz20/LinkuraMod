@@ -12,7 +12,7 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
 /// <summary>
-/// Training Camp (鍚堝) 鈥?Cost 2, Power, Uncommon.
+/// Training Camp (合宿) — Cost 2, Power, Uncommon.
 /// The first 2 (3) Backstage cards you play each turn cost 1 less.
 /// Ethereal.
 /// </summary>
