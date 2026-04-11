@@ -58,48 +58,43 @@ public static class LinkuraCmd {
 
   public static async Task<Events.CollectEvent> CollectHearts(Player player, PlayerChoiceContext context, CardModel source = null, Creature target = null, int triggers = 1, bool damageAllEnemies = false) {
     int hearts = Math.Min(HeartsState.GetHearts(player), HeartsState.GetMaxHearts(player));
-    var ev = new Events.CollectEvent(player, context, source);
-    ev.DamageAllEnemies = damageAllEnemies;
+    var ev = new Events.CollectEvent(player, context, source) {
+      DamageAllEnemies = damageAllEnemies
+    };
+    // Pre-resolve targets before Early so visual effects (e.g. flying hearts) can start
+    // animating toward the correct destination before damage numbers appear.
+    if (hearts > 0) {
+      ev.Targets = ev.DamageAllEnemies
+        ? PickTargetsAll(player)
+        : PickTargets(target, player, triggers);
+    }
     if (!await Events.Collect.InvokeAllEarly(ev)) return ev;
     if (hearts <= 0) return ev;
-    var targets = ev.DamageAllEnemies
-      ? await ApplyHeartDamageAll(hearts, player, context)
-      : await ApplyHeartDamage(hearts, target, player, context, triggers);
+    // Apply damage to the pre-resolved (and possibly Early-modified) target list.
+    if (ev.Targets?.Count > 0) {
+      await CreatureCmd.Damage(context, ev.Targets, hearts, ValueProp.Unpowered, player.Creature);
+    }
     var childEv = await HeartsState.SetHearts(player, context, 0, source);
     if (childEv.IsNullOrCancelled()) return ev;
     ev.Amount = hearts;
-    ev.Targets = targets;
     await Events.Collect.InvokeAllLate(ev);
     return ev;
   }
 
-  private static async Task<IReadOnlyList<Creature>> ApplyHeartDamage(int value, Creature target, Player player, PlayerChoiceContext choiceContext, int triggers) {
-    List<Creature> list = [.. from e in player.Creature.CombatState.GetOpponentsOf(player.Creature)
-                           where e.IsHittable
-                           select e];
-    if (list.Count == 0) {
-      return [];
-    }
-    List<Creature> targets = [];
-    if (target != null) {
-      targets.Add(target);
-      triggers--;
-    }
+  private static IReadOnlyList<Creature> PickTargets(Creature target, Player player, int triggers) {
+    var hittable = (from e in player.Creature.CombatState.GetOpponentsOf(player.Creature)
+                    where e.IsHittable select e).ToList();
+    if (hittable.Count == 0) return [];
+    var targets = new List<Creature>();
+    if (target != null) { targets.Add(target); triggers--; }
     for (int i = 0; i < triggers; i++) {
-      targets.Add(player.RunState.Rng.CombatTargets.NextItem(list));
+      targets.Add(player.RunState.Rng.CombatTargets.NextItem(hittable));
     }
-    await CreatureCmd.Damage(choiceContext, targets, value, ValueProp.Unpowered, player.Creature);
     return targets;
   }
 
-  private static async Task<IReadOnlyList<Creature>> ApplyHeartDamageAll(int value, Player player, PlayerChoiceContext choiceContext) {
-    List<Creature> list = [.. from e in player.Creature.CombatState.GetOpponentsOf(player.Creature)
-                           where e.IsHittable
-                           select e];
-    if (list.Count == 0) {
-      return [];
-    }
-    await CreatureCmd.Damage(choiceContext, list, value, ValueProp.Unpowered, player.Creature);
-    return list;
+  private static IReadOnlyList<Creature> PickTargetsAll(Player player) {
+    return [.. from e in player.Creature.CombatState.GetOpponentsOf(player.Creature)
+               where e.IsHittable select e];
   }
 }
