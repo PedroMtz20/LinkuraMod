@@ -15,6 +15,9 @@ namespace RuriMegu.Nodes.Combat;
 public partial class NHeartCounter : Control {
   private Player _player;
   private RichTextLabel _label = null!;
+  private TextureRect _layer1 = null!;
+  private Control _fillClip = null!;
+  private TextureRect _layer2 = null!;
   private IDisposable _heartsChangedSubscription;
   private IDisposable _maxHeartsChangedSubscription;
 
@@ -32,6 +35,9 @@ public partial class NHeartCounter : Control {
 
   public override void _Ready() {
     _label = GetNode<RichTextLabel>("%HeartLabel");
+    _layer1 = GetNode<TextureRect>("Icon/Layer1");
+    _fillClip = GetNode<Control>("Icon/Layer1/FillClip");
+    _layer2 = GetNode<TextureRect>("Icon/Layer1/FillClip/Layer2");
     Visible = false;
   }
 
@@ -50,6 +56,7 @@ public partial class NHeartCounter : Control {
       _lerpedHearts, _targetHearts, ref _heartsVelocity, 0.1f, (float)delta);
     _lerpedMaxHearts = MathHelper.SmoothDamp(
       _lerpedMaxHearts, _targetMaxHearts, ref _maxHeartsVelocity, 0.1f, (float)delta);
+    UpdateFill(_lerpedHearts, _lerpedMaxHearts);
     OnHeartsChanged(Mathf.RoundToInt(_lerpedHearts), Mathf.RoundToInt(_lerpedMaxHearts));
   }
 
@@ -72,6 +79,7 @@ public partial class NHeartCounter : Control {
     _heartsChangedSubscription = Events.HeartsChanged.SubscribeLate(OnHeartsStateChanged);
     _maxHeartsChangedSubscription = Events.MaxHeartsChanged.SubscribeLate(OnMaxHeartsStateChanged);
 
+    UpdateFill(_lerpedHearts, _lerpedMaxHearts);
     OnHeartsChanged(_targetHearts, _targetMaxHearts);
     RefreshVisibility();
   }
@@ -103,6 +111,18 @@ public partial class NHeartCounter : Control {
   private void OnHeartsChanged(int newHearts, int newMaxHearts) {
     SetLabelText($"{newHearts}/{newMaxHearts}");
     RefreshVisibility();
+  }
+
+  private void UpdateFill(float hearts, float maxHearts) {
+    var size = _layer1.Size;
+    if (size.Y <= 0f) return;
+    float fraction = maxHearts > 0f ? Mathf.Clamp(hearts / maxHearts, 0f, 1f) : 0f;
+    float fillHeight = size.Y * fraction;
+    float emptyHeight = size.Y - fillHeight;
+    _fillClip.Position = new Vector2(0f, emptyHeight);
+    _fillClip.Size = new Vector2(size.X, fillHeight);
+    _layer2.Position = new Vector2(0f, -emptyHeight);
+    _layer2.Size = size;
   }
 
   private void SetLabelText(string text) {
