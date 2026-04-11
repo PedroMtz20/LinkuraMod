@@ -36,7 +36,7 @@
   "RURIMEGU-FANTASY375.title": "37.5°C的幻想",
   "RURIMEGU-FANTASY375.description": "造成{Damage:diff()}点伤害。本回合中，你的下一张能力牌耗能减少{Energy:energyIcons()}。",
   "RURIMEGU-STEP_UP.title": "Step up!",
-  "RURIMEGU-STEP_UP.description": "造成{Damage:diff()}点伤害{Repeat.diff()}次。增加{RURIMEGU-EXPAND_HEARTS:diff()}点❤️上限。",
+  "RURIMEGU-STEP_UP.description": "造成{Damage:diff()}点伤害{Repeat:diff()}次。增加{RURIMEGU-EXPAND_HEARTS:diff()}点❤️上限。",
   "RURIMEGU-BUNNY_PYON_PYON.title": "兔子蹦蹦",
   "RURIMEGU-BUNNY_PYON_PYON.description": "造成{Damage:diff()}点伤害。[gold]爆心[/gold]，数量等同于所造成的伤害量。",
   "RURIMEGU-CERISE_BOUQUET.title": "Cerise Bouquet",
