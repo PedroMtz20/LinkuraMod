@@ -19,7 +19,7 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 /// </summary>
 public class LoveIt() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
   private const string BACKSTAGE_BLOCK_VAR = "BACKSTAGE_BLOCK";
-  private Subscription _collectHeartsSubscription;
+
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new BurstHeartsVar(6),
@@ -37,14 +37,8 @@ public class LoveIt() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Comm
     await CommonActions.Draw(this, ctx);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _collectHeartsSubscription = Events.Collect.SubscribeLate(OnCollectHearts);
-    return Task.CompletedTask;
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _collectHeartsSubscription?.Dispose();
-    _collectHeartsSubscription = null;
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Collect.SubscribeLate(OnCollectHearts));
     return Task.CompletedTask;
   }
 

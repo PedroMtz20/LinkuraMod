@@ -18,7 +18,7 @@ public class SayoShigure() : KahoInHandTriggerCard(1, CardType.Attack, CardRarit
   private const int BURSTS_PER_TRIGGER = 8;
   private const string TRACKER_VAR = "SAYO_SHIGURE_TRACKER";
 
-  private Subscription _burstSubscription;
+
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(9, ValueProp.Move),
@@ -30,16 +30,14 @@ public class SayoShigure() : KahoInHandTriggerCard(1, CardType.Attack, CardRarit
     await CommonActions.CardAttack(this, play).Execute(ctx);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Burst.SubscribeLate(OnBurstHearts));
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _burstSubscription?.Dispose();
-    _burstSubscription = null;
     DynamicVars[TRACKER_VAR].BaseValue = 0;
-    return Task.CompletedTask;
+    return base.AfterCombatEnd(room);
   }
 
   private async Task OnBurstHearts(Events.BurstEvent ev) {

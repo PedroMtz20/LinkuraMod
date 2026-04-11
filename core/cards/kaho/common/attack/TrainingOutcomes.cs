@@ -18,7 +18,7 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Attack;
 /// Backstage: whenever you Collect, this card costs 1 less in this combat.
 /// </summary>
 public class TrainingOutcomes() : KahoInHandTriggerCard(4, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
-  private Subscription _collectHeartsSubscription;
+
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(12, ValueProp.Move),
@@ -28,15 +28,8 @@ public class TrainingOutcomes() : KahoInHandTriggerCard(4, CardType.Attack, Card
   protected override IEnumerable<IHoverTip> ExtraHoverTips => base.ExtraHoverTips.Append(
     HoverTipFactory.FromKeyword(LinkuraKeywords.Collect));
 
-  // Override BeforeCombatStartLate to subscribe to CollectHearts events.
-  public override Task BeforeCombatStartLate() {
-    _collectHeartsSubscription = Events.Collect.SubscribeLate(OnCollectHearts);
-    return Task.CompletedTask;
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _collectHeartsSubscription?.Dispose();
-    _collectHeartsSubscription = null;
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Collect.SubscribeLate(OnCollectHearts));
     return Task.CompletedTask;
   }
 

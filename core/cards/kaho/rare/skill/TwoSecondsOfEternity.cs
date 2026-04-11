@@ -26,7 +26,7 @@ public class TwoSecondsOfEternity() : KahoCard(0, CardType.Skill, CardRarity.Rar
 
   public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-  // 鈹€鈹€ Dynamic cost tracking 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // ══════ Dynamic cost tracking ══════════════════════════════════════════════════════════════════════════════════
 
   /// <summary>
   /// Recalculate this card's cost whenever any card enters or leaves a pile,
@@ -39,7 +39,7 @@ public class TwoSecondsOfEternity() : KahoCard(0, CardType.Skill, CardRarity.Rar
     if (movedFromHand || movedToHand) {
       RecalculateCost();
     }
-    return Task.CompletedTask;
+    return base.AfterCardChangedPiles(card, oldPileType, source);
   }
 
   private void RecalculateCost() {
@@ -54,7 +54,7 @@ public class TwoSecondsOfEternity() : KahoCard(0, CardType.Skill, CardRarity.Rar
     EnergyCost.SetCustomBaseCost(totalCost);
   }
 
-  // 鈹€鈹€ Play effect 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // ══════ Play effect ══════════════════════════════════════════════════════════════════════════════════════════════
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     // Snapshot hand at this moment, excluding this card (already in Play pile).
@@ -71,7 +71,7 @@ public class TwoSecondsOfEternity() : KahoCard(0, CardType.Skill, CardRarity.Rar
     }
   }
 
-  // 鈹€鈹€ Guard reset 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // ══════ Guard reset ══════════════════════════════════════════════════════════════════════════════════════════════
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
     await base.AfterCardPlayed(context, cardPlay);
@@ -87,7 +87,7 @@ public class TwoSecondsOfEternity() : KahoCard(0, CardType.Skill, CardRarity.Rar
     return base.AfterCombatEnd(room);
   }
 
-  // 鈹€鈹€ Upgrade 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // ══════ Upgrade ══════════════════════════════════════════════════════════════════════════════════════════════════
 
   protected override void OnUpgrade() {
     RemoveKeyword(CardKeyword.Exhaust);

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,7 +20,6 @@ public class BuildUp() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity.Un
   private const string DRAW_PREVIEW_VAR = "BUILD_UP_DRAW";
   private const string TRACKER_VAR = "BUILD_UP_TRACKER";
 
-  private Subscription _burstSubscription;
   private int _bonusDraws;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -43,17 +42,15 @@ public class BuildUp() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity.Un
     _bonusDraws = 0;
   }
 
-  public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.Burst.SubscribeVeryEarly(OnBurstHearts);
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Burst.SubscribeVeryEarly(OnBurstHearts));
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _burstSubscription?.Dispose();
-    _burstSubscription = null;
     DynamicVars[TRACKER_VAR].BaseValue = 0;
     _bonusDraws = 0;
-    return Task.CompletedTask;
+    return base.AfterCombatEnd(room);
   }
 
   private async Task OnBurstHearts(Events.BurstEvent ev) {

@@ -20,8 +20,6 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 public class OverflowingEmotion() : KahoInHandTriggerCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
   private const string GROWTH_VAR = "OVERFLOWING_EMOTION_GROWTH";
 
-  private Subscription _collectSubscription;
-
   private int _increasedDamage;
   [SavedProperty]
   public int IncreasedDamage {
@@ -50,15 +48,13 @@ public class OverflowingEmotion() : KahoInHandTriggerCard(2, CardType.Attack, Ca
     await CommonActions.CardAttack(this, play.Target, DynamicVars.CalculatedDamage.Calculate(play.Target)).Execute(ctx);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _collectSubscription = Events.Collect.SubscribeLate(OnCollectHearts);
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Collect.SubscribeLate(OnCollectHearts));
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _collectSubscription?.Dispose();
-    _collectSubscription = null;
-    return Task.CompletedTask;
+    return base.AfterCombatEnd(room);
   }
 
   private async Task OnCollectHearts(Events.CollectEvent ev) {

@@ -16,7 +16,7 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 /// Backstage: whenever Burst Hearts reaches the ♥ limit, gain 1 energy.
 /// </summary>
 public class SpringBreezeSwing() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
-  private Subscription _burstSubscription;
+
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new CardsVar(1),
@@ -29,14 +29,8 @@ public class SpringBreezeSwing() : KahoInHandTriggerCard(1, CardType.Skill, Card
     await CommonActions.Draw(this, ctx);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
-    return Task.CompletedTask;
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _burstSubscription?.Dispose();
-    _burstSubscription = null;
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Burst.SubscribeLate(OnBurstHearts));
     return Task.CompletedTask;
   }
 

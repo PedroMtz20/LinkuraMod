@@ -16,7 +16,6 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 /// Backstage: whenever max ❤️ changes, this card costs 1 less next time it is played.
 /// </summary>
 public class Variations() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
-  private Subscription _maxHeartsSubscription;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(4, ValueProp.Move),
@@ -33,14 +32,8 @@ public class Variations() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity
     await CommonActions.Draw(this, ctx);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _maxHeartsSubscription = Events.MaxHeartsChanged.SubscribeLate(OnMaxHeartsChanged);
-    return Task.CompletedTask;
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _maxHeartsSubscription?.Dispose();
-    _maxHeartsSubscription = null;
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.MaxHeartsChanged.SubscribeLate(OnMaxHeartsChanged));
     return Task.CompletedTask;
   }
 
