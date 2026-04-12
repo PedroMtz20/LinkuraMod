@@ -23,6 +23,7 @@ public class AuroraFlower() : KahoCard(1, CardType.Skill, CardRarity.Uncommon, T
   ];
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
     HoverTipFactory.FromPower<AutoBurstPower>(),
+    BurstHeartsVar.HoverTip(),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {

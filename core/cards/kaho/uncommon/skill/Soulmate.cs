@@ -27,6 +27,7 @@ public class Soulmate() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, Targe
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
     HoverTipFactory.FromPower<AutoBurstPower>(),
+    BurstHeartsVar.HoverTip(),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {

@@ -23,6 +23,7 @@ public class MayDreamsBloom() : KahoCard(2, CardType.Power, CardRarity.Rare, Tar
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
     HoverTipFactory.FromPower<AutoBurstPower>(),
+    BurstHeartsVar.HoverTip(),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
