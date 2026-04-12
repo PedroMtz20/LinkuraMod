@@ -4,8 +4,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using RuriMegu.Core.Powers;
 using RuriMegu.Core.Powers.Kaho;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Common.Power;
 
@@ -20,6 +20,7 @@ public class SectionChange() : KahoCard(1, CardType.Power, CardRarity.Common, Ta
 
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    await Owner.PlayCastAnim();
     await PowerCmd.Apply<SectionChangePower>(Owner.Creature, 1, Owner.Creature, this);
   }
 

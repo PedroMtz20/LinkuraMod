@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using RuriMegu.Core.Characters;
 using RuriMegu.Core.Powers;
 
 namespace RuriMegu.Core.Utils;
@@ -37,17 +38,20 @@ public static class LinkuraCmd {
     int baseAmount = player.Creature.GetPowerAmount<AutoBurstPower>();
     var ev = new Events.AutoBurstEvent(player, ctx, baseAmount, source);
     if (!await Events.AutoBurst.InvokeAllEarly(ev)) return ev;
-    var burstEv = await BurstHearts(player, ctx, baseAmount, source);
+    var burstEv = await BurstHearts(player, ctx, baseAmount, source, isAutoBurst: true);
     ev.BurstEvent = burstEv;
     if (burstEv.IsNullOrCancelled()) return ev;
     await Events.AutoBurst.InvokeAllLate(ev);
     return ev;
   }
 
-  public static async Task<Events.BurstEvent> BurstHearts(Player player, PlayerChoiceContext ctx, int amount, CardModel source = null) {
+  public static async Task<Events.BurstEvent> BurstHearts(Player player, PlayerChoiceContext ctx, int amount, CardModel source = null, bool isAutoBurst = false) {
     var ev = new Events.BurstEvent(player, ctx, amount, source);
     if (!await Events.Burst.InvokeAllEarly(ev)) return ev;
     if (amount <= 0) return ev;
+    if (!isAutoBurst) {
+      await player.PlayBurstAnim();
+    }
     var childEv = await HeartsState.AddHearts(player, ctx, amount, source);
     ev.HeartsChangedEvent = childEv;
     if (childEv.IsNullOrCancelled()) return ev;
@@ -68,6 +72,7 @@ public static class LinkuraCmd {
         ? PickTargetsAll(player)
         : PickTargets(target, player, triggers);
     }
+    await player.PlayCollectAnim();
     if (!await Events.Collect.InvokeAllEarly(ev)) return ev;
     if (hearts <= 0) return ev;
     // Apply damage to the pre-resolved (and possibly Early-modified) target list.

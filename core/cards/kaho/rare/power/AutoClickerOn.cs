@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using RuriMegu.Core.Powers;
 using RuriMegu.Core.Powers.Kaho;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
@@ -24,6 +25,7 @@ public class AutoClickerOn() : KahoCard(1, CardType.Power, CardRarity.Rare, Targ
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    await Owner.PlayCastAnim();
     await PowerCmd.Apply<AutoClickerOnPower>(Owner.Creature, 1, Owner.Creature, this);
   }
 

@@ -4,9 +4,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
-using RuriMegu.Core.Powers;
 using RuriMegu.Core.Powers.Kaho;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
@@ -21,6 +20,7 @@ public class BloomGardenParty() : KahoCard(3, CardType.Power, CardRarity.Rare, T
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    await Owner.PlayCastAnim();
     await PowerCmd.Apply<BloomGardenPartyPower>(Owner.Creature, 1, Owner.Creature, this);
   }
 

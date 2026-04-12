@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Powers;
 using RuriMegu.Core.Powers.Kaho;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 
@@ -14,6 +15,7 @@ namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 /// </summary>
 public class ReflectionInTheMirror() : KahoCard(1, CardType.Power, CardRarity.Rare, TargetType.None) {
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    await Owner.PlayCastAnim();
     await PowerCmd.Apply<ReflectionInTheMirrorPower>(Owner.Creature, 1, Owner.Creature, this);
   }
 
