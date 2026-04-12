@@ -32,6 +32,7 @@ public class EmbracingPetals() : KahoInHandTriggerCard(2, CardType.Attack, CardR
   protected override IEnumerable<IHoverTip> ExtraHoverTips => base.ExtraHoverTips.Concat([
     HoverTipFactory.FromKeyword(LinkuraKeywords.Collect),
     HoverTipFactory.FromPower<AutoBurstPower>(),
+    BurstHeartsVar.HoverTip(),
   ]);
 
   protected override Task InitializeSubscriptions() {
