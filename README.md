@@ -12,12 +12,12 @@ Kaho is a new playable character whose gameplay revolves around a unique resourc
 
 ### Core Mechanics
 
-| Mechanic | Description |
-|---|---|
+| Mechanic        | Description                                                                                                                   |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | **❤️ (Hearts)** | Kaho's personal resource, capped at a Max ❤️ limit (default: 9). Cards and powers fill your hearts over the course of a turn. |
-| **Burst** | Add ❤️. When hearts overflow past the limit, the overflow is dealt as damage to a random enemy. |
-| **Collect** | Deal damage to a random enemy equal to current ❤️, then lose all ❤️. |
-| **Backstage** | A keyword for cards that trigger a passive effect while held in hand, whenever a stated condition is met. |
+| **Burst**       | Add ❤️. When hearts overflow past the limit, the overflow is dealt as damage to a random enemy.                               |
+| **Collect**     | Deal damage to a random enemy equal to current ❤️, then lose all ❤️.                                                          |
+| **Backstage**   | A keyword for cards that trigger a passive effect while held in hand, whenever a stated condition is met.                     |
 
 ---
 
@@ -26,7 +26,7 @@ Kaho is a new playable character whose gameplay revolves around a unique resourc
 ### Prerequisites
 
 - [Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/) (Latest stable)
-- [BaseLib](https://github.com/Alchyr/Sts2BaseLib) mod framework (v0.2.0+)
+- [BaseLib](https://github.com/Alchyr/Sts2BaseLib) mod framework (v3.0.1)
 
 ### Steps
 
@@ -37,7 +37,7 @@ Kaho is a new playable character whose gameplay revolves around a unique resourc
    ```
 3. Launch Slay the Spire 2 and enable **LinkuraMod** in the mod list.
 
-You also need to install [BaseLib](https://github.com/Alchyr/BaseLib-StS2/releases) v0.2.0 as a dependency.
+You also need to install [BaseLib](https://github.com/Alchyr/BaseLib-StS2/releases) v3.0.1 as a dependency.
 
 ---
 
