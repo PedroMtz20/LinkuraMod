@@ -21,6 +21,7 @@ public class GlowingRoutine() : KahoCard(1, CardType.Power, CardRarity.Common, T
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    await Owner.PlayCastAnim();
     await PowerCmd.Apply<GlowingRoutinePower>(Owner.Creature, DynamicVars.BurstHearts().IntValue, Owner.Creature, this);
   }
 

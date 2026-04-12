@@ -22,8 +22,6 @@ public class PresentPastFuture() : KahoInHandTriggerCard(1, CardType.Skill, Card
   private const string TRACKER_VAR = "RURIMEGU-PPF_TRACKER";
   private const string THRESHOLD_VAR = "RURIMEGU-PPF_THRESHOLD";
 
-  private Subscription _sub;
-
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DynamicVar(THRESHOLD_VAR, 15m),
     new DynamicVar(TRACKER_VAR, 0m),
@@ -37,17 +35,14 @@ public class PresentPastFuture() : KahoInHandTriggerCard(1, CardType.Skill, Card
     await LinkuraCardActions.DiscardAndDraw(this, ctx);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _sub?.Dispose();
-    _sub = Events.Collect.SubscribeLate(OnCollectLate);
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Collect.SubscribeLate(OnCollectLate));
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _sub?.Dispose();
-    _sub = null;
     DynamicVars[TRACKER_VAR].BaseValue = 0;
-    return Task.CompletedTask;
+    return base.AfterCombatEnd(room);
   }
 
   private async Task OnCollectLate(Events.CollectEvent ev) {

@@ -19,7 +19,7 @@ namespace RuriMegu.Core.Cards.Kaho.Rare.Attack;
 /// Deal damage equal to your Auto Burst amount to ALL enemies 6 (9) times. Backstage: whenever you Collect, gain 1 Auto Burst.
 /// </summary>
 public class EmbracingPetals() : KahoInHandTriggerCard(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies) {
-  private Subscription _collectHeartsSubscription;
+
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new CalculationBaseVar(0),
@@ -34,14 +34,8 @@ public class EmbracingPetals() : KahoInHandTriggerCard(2, CardType.Attack, CardR
     HoverTipFactory.FromPower<AutoBurstPower>(),
   ]);
 
-  public override Task BeforeCombatStartLate() {
-    _collectHeartsSubscription = Events.Collect.SubscribeLate(OnCollectHearts);
-    return Task.CompletedTask;
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _collectHeartsSubscription?.Dispose();
-    _collectHeartsSubscription = null;
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Collect.SubscribeLate(OnCollectHearts));
     return Task.CompletedTask;
   }
 

@@ -18,7 +18,6 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 /// </summary>
 public class NewBlack() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
   private const int BURST_PER_TRIGGER = 6;
-  private Subscription _burstSubscription;
   private const string TRACKER_VAR = "NEW_BLACK_TRACKER";
   private const string BACKSTAGE_BLOCK_VAR = "BACKSTAGE_BLOCK";
 
@@ -34,16 +33,14 @@ public class NewBlack() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Co
     await CommonActions.CardBlock(this, play);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.Burst.SubscribeLate(OnBurstHearts);
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Burst.SubscribeLate(OnBurstHearts));
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _burstSubscription?.Dispose();
-    _burstSubscription = null;
     DynamicVars[TRACKER_VAR].BaseValue = 0;
-    return Task.CompletedTask;
+    return base.AfterCombatEnd(room);
   }
 
   private async Task OnBurstHearts(Events.BurstEvent ev) {

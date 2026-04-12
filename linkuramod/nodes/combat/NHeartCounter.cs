@@ -1,8 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using BaseLib.Utils;
 using Godot;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Nodes.Pooling;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Nodes.Combat;
@@ -15,8 +22,31 @@ namespace RuriMegu.Nodes.Combat;
 public partial class NHeartCounter : Control {
   private Player _player;
   private RichTextLabel _label = null!;
-  private IDisposable _heartsChangedSubscription;
-  private IDisposable _maxHeartsChangedSubscription;
+  private TextureRect _layer1 = null!;
+  private Control _fillClip = null!;
+  private TextureRect _layer2 = null!;
+  private Subscription _heartsChangedSubscription;
+  private Subscription _maxHeartsChangedSubscription;
+
+  // ──────────────────────────────────────────────────────────────
+  // Heart particle config (adjust freely)
+  // ──────────────────────────────────────────────────────────────
+  [Export] public float HeartMinScale { get; set; } = 1.0f;
+  [Export] public float HeartMaxScale { get; set; } = 2.0f;
+  [Export] public float HeartMinX { get; set; } = 0.2f;
+  [Export] public float HeartMaxX { get; set; } = 0.8f;
+  [Export] public float HeartMinY { get; set; } = 0.1f;
+  [Export] public float HeartMaxY { get; set; } = 0.6f;
+  [Export] public int MaxFloatingHearts { get; set; } = 99;
+  [Export] public float CollectDuration { get; set; } = 0.4f;
+  [Export] public float GlowIntensity { get; set; } = 1.9f;
+  [Export] public float GlowBaseAlpha { get; set; } = 0.4f;
+
+  private Control _heartParticleLayer = null!;
+  private Texture2D _glowingHeartTexture = null!;
+  private Shader _glowShader = null!;
+  private readonly List<FloatingHeart> _floatingHearts = new();
+  private Subscription _collectSubscription;
 
   // Smooth-damp state for the animated label
   private int _targetHearts;
@@ -32,7 +62,27 @@ public partial class NHeartCounter : Control {
 
   public override void _Ready() {
     _label = GetNode<RichTextLabel>("%HeartLabel");
+    _layer1 = GetNode<TextureRect>("Icon/Layer1");
+    _fillClip = GetNode<Control>("Icon/Layer1/FillClip");
+    _layer2 = GetNode<TextureRect>("Icon/Layer1/FillClip/Layer2");
+    _glowingHeartTexture = GD.Load<Texture2D>("res://linkuramod/images/charui/kaho/heart_glowing.png");
+    _glowShader = GD.Load<Shader>("res://linkuramod/shaders/heart_glow.gdshader");
     Visible = false;
+
+    // Detach HeartParticles from the energy counter's scaled hierarchy
+    // (KahoEnergyCounter * HeartCounter both carry scale factors) and
+    // re-attach it as a child of NCombatUi — a full-viewport, unscaled
+    // Control that sits above scene content but below root-level modals.
+    // Hearts then use plain viewport-space coordinates with no conversion.
+    _heartParticleLayer = GetNode<Control>("HeartParticles");
+    RemoveChild(_heartParticleLayer);
+    // Walk up: NHeartCounter → KahoEnergyCounter → EnergyCounterContainer → NCombatUi
+    var combatUi = GetParent()?.GetParent()?.GetParent();
+    combatUi?.AddChild(_heartParticleLayer);
+
+    // Register FloatingHeart with the node pool if not already done.
+    // GeneratedNodePool adds to the shared NodePool, so Get<FloatingHeart>() works globally.
+    GeneratedNodePool.Init<FloatingHeart>(() => new FloatingHeart(), prewarmCount: 0);
   }
 
   public override void _ExitTree() {
@@ -41,6 +91,13 @@ public partial class NHeartCounter : Control {
 
     _maxHeartsChangedSubscription?.Dispose();
     _maxHeartsChangedSubscription = null;
+    _collectSubscription?.Dispose();
+    _collectSubscription = null;
+
+    if (CombatManager.Instance != null)
+      CombatManager.Instance.CombatEnded -= OnCombatEnded;
+
+    FreeAllHearts();
   }
 
   public override void _Process(double delta) {
@@ -50,6 +107,7 @@ public partial class NHeartCounter : Control {
       _lerpedHearts, _targetHearts, ref _heartsVelocity, 0.1f, (float)delta);
     _lerpedMaxHearts = MathHelper.SmoothDamp(
       _lerpedMaxHearts, _targetMaxHearts, ref _maxHeartsVelocity, 0.1f, (float)delta);
+    UpdateFill(_lerpedHearts, _lerpedMaxHearts);
     OnHeartsChanged(Mathf.RoundToInt(_lerpedHearts), Mathf.RoundToInt(_lerpedMaxHearts));
   }
 
@@ -62,6 +120,8 @@ public partial class NHeartCounter : Control {
     _maxHeartsChangedSubscription?.Dispose();
 
     _player = player;
+    foreach (var h in _floatingHearts.ToArray()) h.Dismiss();
+    _floatingHearts.Clear();
     _targetHearts = HeartsState.GetHearts(player);
     _targetMaxHearts = HeartsState.GetMaxHearts(player);
     _lerpedHearts = _targetHearts;
@@ -71,7 +131,12 @@ public partial class NHeartCounter : Control {
 
     _heartsChangedSubscription = Events.HeartsChanged.SubscribeLate(OnHeartsStateChanged);
     _maxHeartsChangedSubscription = Events.MaxHeartsChanged.SubscribeLate(OnMaxHeartsStateChanged);
+    _collectSubscription = Events.Collect.SubscribeEarly(OnCollectEvent);
 
+    if (CombatManager.Instance != null)
+      CombatManager.Instance.CombatEnded += OnCombatEnded;
+
+    UpdateFill(_lerpedHearts, _lerpedMaxHearts);
     OnHeartsChanged(_targetHearts, _targetMaxHearts);
     RefreshVisibility();
   }
@@ -85,8 +150,10 @@ public partial class NHeartCounter : Control {
       return Task.CompletedTask;
     }
 
+    int delta = evt.NewHearts - _targetHearts;
     _targetHearts = evt.NewHearts;
     _targetMaxHearts = evt.MaxHearts;
+    if (delta > 0) SpawnFloatingHearts(delta);
     return Task.CompletedTask;
   }
 
@@ -105,6 +172,18 @@ public partial class NHeartCounter : Control {
     RefreshVisibility();
   }
 
+  private void UpdateFill(float hearts, float maxHearts) {
+    var size = _layer1.Size;
+    if (size.Y <= 0f) return;
+    float fraction = maxHearts > 0f ? Mathf.Clamp(hearts / maxHearts, 0f, 1f) : 0f;
+    float fillHeight = size.Y * fraction;
+    float emptyHeight = size.Y - fillHeight;
+    _fillClip.Position = new Vector2(0f, emptyHeight);
+    _fillClip.Size = new Vector2(size.X, fillHeight);
+    _layer2.Position = new Vector2(0f, -emptyHeight);
+    _layer2.Size = size;
+  }
+
   private void SetLabelText(string text) {
     if (_label.Text == text) return;
     _label.Text = text;
@@ -113,5 +192,70 @@ public partial class NHeartCounter : Control {
   private void RefreshVisibility() {
     if (_player is null) { Visible = false; return; }
     Visible = true;
+  }
+
+  private void SpawnFloatingHearts(int count) {
+    var viewportSize = GetViewportRect().Size;
+    int toSpawn = Math.Min(count, MaxFloatingHearts - _floatingHearts.Count);
+    for (int i = 0; i < toSpawn; i++) SpawnOneHeart(viewportSize);
+  }
+
+  private void SpawnOneHeart(Vector2 viewportSize) {
+    float scale = (float)GD.RandRange(HeartMinScale, HeartMaxScale);
+    var size = _glowingHeartTexture.GetSize() * scale;
+    float x = (float)GD.RandRange(HeartMinX, HeartMaxX) * viewportSize.X - size.X / 2f;
+    float y = (float)GD.RandRange(HeartMinY, HeartMaxY) * viewportSize.Y - size.Y / 2f;
+
+    var heart = NodePool.Get<FloatingHeart>();
+    heart.Configure(
+      heartTexture: _glowingHeartTexture,
+      glowShader: _glowShader,
+      heartScale: scale,
+      glowIntensity: GlowIntensity,
+      glowBaseAlpha: GlowBaseAlpha,
+      collectDuration: CollectDuration,
+      position: new Vector2(x, y));
+    _floatingHearts.Add(heart);
+    heart.TreeExited += () => _floatingHearts.Remove(heart);
+    _heartParticleLayer.AddChild(heart);
+    heart.StartSpawnAnimation();
+  }
+
+  private async Task OnCollectEvent(Events.CollectEvent evt) {
+    if (_player is null || evt.Player != _player) return;
+    await CollectAllHearts(GetTargetPositions(evt.Targets));
+  }
+
+  private async Task CollectAllHearts(Vector2[] targetPositions) {
+    var snapshot = _floatingHearts.ToArray();
+    _floatingHearts.Clear();
+    if (targetPositions.Length == 0) {
+      foreach (var h in snapshot) h.Dismiss();
+      return;
+    }
+    var tasks = new Task[snapshot.Length];
+    for (int i = 0; i < snapshot.Length; i++) {
+      tasks[i] = snapshot[i].Collect(targetPositions[i % targetPositions.Length]);
+    }
+    await Task.WhenAll(tasks);
+  }
+
+  private Vector2[] GetTargetPositions(IReadOnlyList<Creature> targets) {
+    if (targets is null || targets.Count == 0) return [];
+    var positions = new List<Vector2>(targets.Count);
+    foreach (var target in targets) {
+      var node = NCombatRoom.Instance?.GetCreatureNode(target);
+      if (node != null) positions.Add(node.VfxSpawnPosition);
+    }
+    return [.. positions];
+  }
+
+  private void OnCombatEnded(CombatRoom _) => FreeAllHearts();
+
+  private void FreeAllHearts() {
+    foreach (var h in _floatingHearts.ToArray()) {
+      if (GodotObject.IsInstanceValid(h)) h.QueueFreeSafely();
+    }
+    _floatingHearts.Clear();
   }
 }

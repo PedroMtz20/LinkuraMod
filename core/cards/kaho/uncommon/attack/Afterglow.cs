@@ -17,7 +17,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 /// Whenever you Collect, return this card from discard pile to hand.
 /// </summary>
 public class Afterglow() : KahoCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
-  private Subscription _collectHeartsSubscription;
+
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(4, ValueProp.Move),
@@ -30,14 +30,8 @@ public class Afterglow() : KahoCard(0, CardType.Attack, CardRarity.Uncommon, Tar
     await CommonActions.CardAttack(this, play.Target).Execute(ctx);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _collectHeartsSubscription = Events.Collect.SubscribeLate(OnCollectHearts);
-    return Task.CompletedTask;
-  }
-
-  public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _collectHeartsSubscription?.Dispose();
-    _collectHeartsSubscription = null;
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Collect.SubscribeLate(OnCollectHearts));
     return Task.CompletedTask;
   }
 

@@ -1,6 +1,6 @@
 # LinkuraMod — Agent Instructions
 
-STS2 mod built with the **BaseLib** framework (`Alchyr.Sts2.BaseLib` v0.2.0) on Godot 4 / .NET 9.
+STS2 mod built with the **BaseLib** framework (`Alchyr.Sts2.BaseLib` v3.0.1) on Godot 4 / .NET 9.
 
 ---
 

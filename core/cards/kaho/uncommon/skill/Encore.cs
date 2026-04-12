@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
@@ -18,11 +18,10 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 /// </summary>
 public class Encore() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   private const string TRACKER_VAR = "ENCORE_TRACKER";
-  private Subscription _burstSubscription;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DynamicVar(TRACKER_VAR, 0),
-    new BlockVar(2, ValueProp.Move),
+    new BlockVar(2, ValueProp.Move | ValueProp.Unpowered),
   ];
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -43,16 +42,14 @@ public class Encore() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetT
     return base.BeforeSideTurnStart(ctx, side, combatState);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.Burst.SubscribeVeryEarly(OnBurstHearts);
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Burst.SubscribeVeryEarly(OnBurstHearts));
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _burstSubscription?.Dispose();
-    _burstSubscription = null;
     DynamicVars[TRACKER_VAR].BaseValue = 0;
-    return Task.CompletedTask;
+    return base.AfterCombatEnd(room);
   }
 
   private async Task OnBurstHearts(Events.BurstEvent ev) {

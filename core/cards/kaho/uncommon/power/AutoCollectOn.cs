@@ -23,6 +23,7 @@ public class AutoCollectOn() : KahoCard(1, CardType.Power, CardRarity.Uncommon, 
     if (HeartsState.ReachedMaxHearts(Owner)) {
       await LinkuraCmd.CollectHearts(Owner, ctx);
     }
+    await Owner.PlayCastAnim();
     await PowerCmd.Apply<AutoCollectOnPower>(Owner.Creature, 1, Owner.Creature, this);
   }
 

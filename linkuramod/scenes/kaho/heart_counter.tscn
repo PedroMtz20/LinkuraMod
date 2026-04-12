@@ -11,8 +11,6 @@ offset_right = 128.0
 offset_bottom = 128.00009
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_script")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="Icon" type="Control" parent="."]
 layout_mode = 1
@@ -35,15 +33,16 @@ grow_vertical = 2
 texture = ExtResource("2_jwbuw")
 expand_mode = 3
 
-[node name="Layer2" type="TextureRect" parent="Icon/Layer1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="FillClip" type="Control" parent="Icon/Layer1"]
+clip_contents = true
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="Layer2" type="TextureRect" parent="Icon/Layer1/FillClip"]
+layout_mode = 0
+mouse_filter = 2
 texture = ExtResource("3_704fs")
-expand_mode = 3
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -79,3 +78,12 @@ scroll_active = false
 autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HeartParticles" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

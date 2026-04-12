@@ -17,7 +17,6 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 public class Celebration() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   private const string TRACKER_VAR = "CELEBRATION_TRACKER";
   private const string THRESHOLD_VAR = "CELEBRATION_THRESHOLD";
-  private Subscription _burstSubscription;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new CardsVar(1),
@@ -33,16 +32,14 @@ public class Celebration() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity
     await CommonActions.Draw(this, ctx);
   }
 
-  public override Task BeforeCombatStartLate() {
-    _burstSubscription = Events.Burst.SubscribeVeryEarly(OnBurstHearts);
-
+  protected override Task InitializeSubscriptions() {
+    TrackSubscription(Events.Burst.SubscribeVeryEarly(OnBurstHearts));
     return Task.CompletedTask;
   }
 
   public override Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room) {
-    _burstSubscription?.Dispose();
-    _burstSubscription = null;
-    return Task.CompletedTask;
+    DynamicVars[TRACKER_VAR].BaseValue = 0;
+    return base.AfterCombatEnd(room);
   }
 
   private async Task OnBurstHearts(Events.BurstEvent ev) {

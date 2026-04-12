@@ -20,7 +20,7 @@ namespace RuriMegu.Core.Characters.Kaho;
 /// Card pool for Hinoshita Kaho-colored cards.
 /// </summary>
 public class HinoshitaKahoCardPool : CustomCardPoolModel {
-  public override string Title => HinoshitaKaho.CharacterName;
+  public override string Title => HinoshitaKaho.CHARACTER_NAME;
 
   public override string BigEnergyIconPath => "big_energy.png".CharacterUiPath("kaho");
   public override string TextEnergyIconPath => "text_energy.png".CharacterUiPath("kaho");

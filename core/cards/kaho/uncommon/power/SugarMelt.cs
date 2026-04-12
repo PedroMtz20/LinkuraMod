@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,7 +19,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 public class SugarMelt() : KahoCard(2, CardType.Power, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new AutoBurstVar(2),
-    new BlockVar(1, ValueProp.Move),
+    new BlockVar(1, ValueProp.Unpowered),
   ];
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -28,6 +28,7 @@ public class SugarMelt() : KahoCard(2, CardType.Power, CardRarity.Uncommon, Targ
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     await LinkuraCmd.GainAutoBurst(Owner.Creature, DynamicVars.AutoBurst().IntValue, Owner.Creature, this);
+    await Owner.PlayCastAnim();
     await PowerCmd.Apply<SugarMeltPower>(Owner.Creature, DynamicVars.Block.IntValue, Owner.Creature, this);
   }
 

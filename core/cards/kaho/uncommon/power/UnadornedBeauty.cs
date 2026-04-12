@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using RuriMegu.Core.Powers;
 using RuriMegu.Core.Powers.Kaho;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Power;
 
@@ -21,6 +22,7 @@ public class UnadornedBeauty() : KahoCard(2, CardType.Power, CardRarity.Uncommon
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
+    await Owner.PlayCastAnim();
     await PowerCmd.Apply<UnadornedBeautyPower>(Owner.Creature, DynamicVars.Energy.IntValue, Owner.Creature, this);
   }
 
