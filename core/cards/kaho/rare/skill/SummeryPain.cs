@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Entities.Players;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Rare.Skill;
@@ -47,11 +48,18 @@ public class SummeryPain() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity
   }
 
   public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw) {
-    if (card == this) {
+    if (card == this && !fromHandDraw) {
       await Cmd.Wait(0.5f);
       await TriggerEffect(choiceContext);
     }
     await base.AfterCardDrawn(choiceContext, card, fromHandDraw);
+  }
+
+  public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player) {
+    await base.AfterPlayerTurnStart(choiceContext, player);
+    if (this.IsInHand()) {
+      await TriggerEffect(choiceContext);
+    }
   }
 
   public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay play) {

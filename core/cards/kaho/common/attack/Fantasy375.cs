@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using RuriMegu.Core.Powers;
 using RuriMegu.Core.Powers.Kaho;
 
 namespace RuriMegu.Core.Cards.Kaho.Common.Attack;

@@ -10,7 +10,6 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using RuriMegu.Core.Characters;
 using RuriMegu.Core.Powers;
 using RuriMegu.Core.Powers.Kaho;
 

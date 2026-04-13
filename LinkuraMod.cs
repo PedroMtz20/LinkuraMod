@@ -1,9 +1,7 @@
 using System.Reflection;
-using BaseLib.Patches.Content;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
-using MegaCrit.Sts2.GameInfo.Objects;
 
 namespace RuriMegu;
 

@@ -1,5 +1,4 @@
 using BaseLib.Abstracts;
-using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using RuriMegu.Core.Utils;
 
