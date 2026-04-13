@@ -19,7 +19,7 @@ public class TragicNightFireworksPower : KahoPower {
 
   public override async Task AfterApplied(MegaCrit.Sts2.Core.Entities.Creatures.Creature applier, CardModel cardSource) {
     DisposeTrackedSubscriptions();
-    await HeartsState.SetMaxHearts(Owner.Player, new BlockingPlayerChoiceContext(), FIXED_MAX_HEARTS, cardSource);
+    await HeartsState.SetMaxHearts(Owner.Player, Events.BLOCKING_CONTEXT, FIXED_MAX_HEARTS, cardSource);
     TrackSubscription(Events.MaxHeartsChanged.SubscribeEarly(OnMaxHeartsChangedEarly));
     await base.AfterApplied(applier, cardSource);
   }

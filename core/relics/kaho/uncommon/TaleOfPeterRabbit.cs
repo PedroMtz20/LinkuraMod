@@ -13,7 +13,7 @@ namespace RuriMegu.Core.Relics.Kaho.Uncommon;
 
 /// <summary>
 /// The Tale of Peter Rabbit — Uncommon relic for Hinoshita Kaho.
-/// If your ❤️ have not reached the cap at the end of your turn, gain 6 block.
+/// If your ❤️ have not reached half the cap at the end of your turn, gain 6 block.
 /// </summary>
 public class TaleOfPeterRabbit : KahoRelic {
   public override RelicRarity Rarity => RelicRarity.Uncommon;
@@ -28,7 +28,7 @@ public class TaleOfPeterRabbit : KahoRelic {
 
   public override async Task BeforeTurnEnd(PlayerChoiceContext ctx, CombatSide side) {
     if (side != CombatSide.Player) return;
-    if (HeartsState.ReachedMaxHearts(Owner)) return;
+    if (HeartsState.ReachedHalfHearts(Owner)) return;
     Flash();
     await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
   }

@@ -27,7 +27,7 @@ public abstract class LinkuraSystemBase : LinkuraStarterRelic {
   ];
 
   public override async Task BeforeCombatStartLate() {
-    await HeartsState.Reset(Owner, new BlockingPlayerChoiceContext());
+    await HeartsState.Reset(Owner, Events.BLOCKING_CONTEXT);
     await LinkuraCmd.GainAutoBurst(Owner.Creature, AutoBurstAmount, Owner.Creature, null);
     Flash();
     await base.BeforeCombatStartLate();

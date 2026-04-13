@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using BaseLib.Extensions;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -98,5 +99,25 @@ public static class LinkuraCmd {
       targets.Add(player.RunState.Rng.CombatTargets.NextItem(hittable));
     }
     return targets;
+  }
+
+  /// <summary>
+  /// Waits for <paramref name="seconds"/> of real wall-clock time, unaffected by
+  /// <see cref="Engine.TimeScale"/>, fast mode, or instant mode.
+  /// Fires the continuation on the main thread via Godot's SceneTree.
+  /// </summary>
+  public static Task WaitRealSeconds(float seconds, CancellationToken ct = default) {
+    SceneTree sceneTree = (SceneTree)Engine.GetMainLoop();
+    SceneTreeTimer timer = sceneTree.CreateTimer(seconds, ignoreTimeScale: true);
+    TaskCompletionSource tcs = new();
+    timer.Timeout += Receive;
+    if (ct.CanBeCanceled)
+      ct.Register(() => tcs.TrySetCanceled(ct));
+    return tcs.Task;
+
+    void Receive() {
+      tcs.TrySetResult();
+      timer.Timeout -= Receive;
+    }
   }
 }

@@ -21,7 +21,7 @@ public class EntranceExam : KahoRelic {
 
   public override async Task BeforeCombatStartLate() {
     Flash();
-    await LinkuraCmd.BurstHearts(Owner, new BlockingPlayerChoiceContext(), 9);
+    await LinkuraCmd.BurstHearts(Owner, Events.BLOCKING_CONTEXT, 9);
     await base.BeforeCombatStartLate();
   }
 }

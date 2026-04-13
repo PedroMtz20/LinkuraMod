@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using RuriMegu.Core.Cards;
 using RuriMegu.Core.Powers;
 using RuriMegu.Core.Utils;
@@ -23,52 +23,49 @@ namespace RuriMegu.Core.Relics.Kaho.Uncommon;
 public class LiveSyncChronometer : KahoRelic {
   public override RelicRarity Rarity => RelicRarity.Uncommon;
 
-  private CancellationTokenSource _cts;
-  private int _secondCount;
-
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
     HoverTipFactory.FromPower<AutoBurstPower>(),
     BurstHeartsVar.HoverTip(),
   ];
 
-  public override bool ShowCounter => true;
-  public override int DisplayAmount => _secondCount;
+  private CancellationTokenSource _cts;
+  private int _secondCount = 0;
 
-  public override Task BeforeCombatStart() {
-    _secondCount = 0;
-    return Task.CompletedTask;
-  }
-
-  public override Task AfterPlayerTurnStart(PlayerChoiceContext ctx, Player player) {
-    if (player != Owner) return Task.CompletedTask;
-    CancelLoop();
-    _cts = new CancellationTokenSource();
-    _ = RunMinuteLoop(ctx, _cts.Token);
-    return Task.CompletedTask;
-  }
-
-  private async Task RunMinuteLoop(PlayerChoiceContext ctx, CancellationToken ct) {
-    try {
-      while (!ct.IsCancellationRequested) {
-        await Cmd.Wait(1f, ct);
-        if (ct.IsCancellationRequested) break;
-        _secondCount++;
-        if (_secondCount >= 60) {
-          _secondCount = 0;
-          if (Owner.Creature.CombatState?.CurrentSide == CombatSide.Player) {
-            Flash();
-            await LinkuraCmd.TriggerAutoBurst(Owner, ctx);
-          }
-        }
-      }
-    } catch (OperationCanceledException) {
-      // Expected when turn ends or combat ends.
+  [SavedProperty]
+  public int SecondCount {
+    get => _secondCount;
+    set {
+      AssertMutable();
+      _secondCount = value;
+      InvokeDisplayAmountChanged();
     }
   }
 
-  public override Task BeforeTurnEnd(PlayerChoiceContext ctx, CombatSide side) {
-    if (side == CombatSide.Player) CancelLoop();
-    return Task.CompletedTask;
+  public override bool ShowCounter => true;
+  public override int DisplayAmount => _secondCount;
+
+  private void StartLoop() {
+    CancelLoop();
+    _cts = new CancellationTokenSource();
+    _ = RunMinuteLoop(_cts.Token);
+  }
+
+  private void CancelLoop() {
+    _cts?.Cancel();
+    _cts?.Dispose();
+    _cts = null;
+  }
+
+  public override Task BeforeCombatStart() {
+    StartLoop();
+    return base.BeforeCombatStart();
+  }
+
+  public override Task AfterObtained() {
+    if (CombatManager.Instance.IsInProgress) {
+      StartLoop();
+    }
+    return base.AfterObtained();
   }
 
   public override Task AfterCombatEnd(CombatRoom room) {
@@ -81,9 +78,21 @@ public class LiveSyncChronometer : KahoRelic {
     return base.AfterRemoved();
   }
 
-  private void CancelLoop() {
-    _cts?.Cancel();
-    _cts?.Dispose();
-    _cts = null;
+  private async Task RunMinuteLoop(CancellationToken ct) {
+    try {
+      while (!ct.IsCancellationRequested) {
+        await LinkuraCmd.WaitRealSeconds(1f, ct);
+        if (ct.IsCancellationRequested) break;
+        if (Owner.Creature.CombatState?.CurrentSide != CombatSide.Player) continue;
+        if (++SecondCount >= 60) {
+          SecondCount = 0;
+          Flash();
+          await LinkuraCmd.TriggerAutoBurst(Owner, Events.BLOCKING_CONTEXT);
+        }
+      }
+    } catch (OperationCanceledException) {
+      // Expected when turn ends or combat ends.
+    }
   }
+
 }

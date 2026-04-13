@@ -20,24 +20,19 @@ public class CapLiberator : KahoRelic {
   public override bool HasUponPickupEffect => true;
 
   public override async Task AfterObtained() {
-    var deckCards = PileType.Deck.GetPile(Owner).Cards
+    var toRemove = PileType.Deck.GetPile(Owner).Cards
       .Where(c => !c.IsUpgraded && c.IsUpgradable)
-      .ToList();
-
-    var groups = deckCards
       .GroupBy(c => c.Id)
-      .Where(g => g.Count() >= 2)
+      .SelectMany(g => g.Take(g.Count() / 2 * 2)) // Take pairs
       .ToList();
-
-    foreach (var group in groups) {
-      int pairs = group.Count() / 2;
-      var toRemove = group.Take(pairs * 2).ToList();
-      await CardPileCmd.RemoveFromDeck(toRemove);
-      for (int i = 0; i < pairs; i++) {
-        CardModel upgraded = ModelDb.GetById<CardModel>(group.Key).ToMutable();
-        CardCmd.Upgrade(upgraded, CardPreviewStyle.None);
-        await CardPileCmd.Add(upgraded, PileType.Deck, CardPilePosition.Bottom, this);
-      }
-    }
+    await CardPileCmd.RemoveFromDeck(toRemove);
+    var toAdd = toRemove
+      .GroupBy(c => c.Id)
+      .SelectMany(g => Enumerable.Repeat(g.Key, g.Count() / 2)) // Add one upgraded copy for each pair
+      .Select(id => Owner.RunState.CreateCard(ModelDb.GetById<CardModel>(id), Owner))
+      .ToList();
+    toAdd.ForEach(c => CardCmd.Upgrade(c, CardPreviewStyle.None));
+    var addResults = await CardPileCmd.Add(toAdd, PileType.Deck, CardPilePosition.Bottom, this);
+    CardCmd.PreviewCardPileAdd(addResults);
   }
 }

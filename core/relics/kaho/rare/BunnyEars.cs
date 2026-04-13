@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using RuriMegu.Core.Utils;
 
@@ -11,6 +12,7 @@ namespace RuriMegu.Core.Relics.Kaho.Rare;
 /// <summary>
 /// Bunny Ears — Rare relic for Hinoshita Kaho.
 /// For every 10 ❤️ overflowed, deal 1 damage to all enemies.
+/// Overflow accumulates across combats.
 /// </summary>
 public class BunnyEars : KahoRelic {
   public override RelicRarity Rarity => RelicRarity.Rare;
@@ -19,15 +21,24 @@ public class BunnyEars : KahoRelic {
 
   private int _accumulatedOverflow;
 
+  [SavedProperty]
+  public int AccumulatedOverflow {
+    get => _accumulatedOverflow;
+    set {
+      AssertMutable();
+      _accumulatedOverflow = value;
+      InvokeDisplayAmountChanged();
+    }
+  }
+
   public override bool ShowCounter => true;
-  public override int DisplayAmount => _accumulatedOverflow;
+  public override int DisplayAmount => AccumulatedOverflow;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DamageVar(1m, ValueProp.Unpowered),
   ];
 
-  public override Task BeforeCombatStart() {
-    _accumulatedOverflow = 0;
+  protected override Task InitializeSubscriptions() {
     TrackSubscription(Events.Burst.SubscribeLate(OnBurstLate));
     return Task.CompletedTask;
   }
@@ -36,9 +47,9 @@ public class BunnyEars : KahoRelic {
     if (ev.Player != Owner) return;
     int overflow = ev.RequestedAmount - ev.ActualAmount;
     if (overflow <= 0) return;
-    _accumulatedOverflow += overflow;
-    while (_accumulatedOverflow >= OVERFLOW_THRESHOLD) {
-      _accumulatedOverflow -= OVERFLOW_THRESHOLD;
+    AccumulatedOverflow += overflow;
+    while (AccumulatedOverflow >= OVERFLOW_THRESHOLD) {
+      AccumulatedOverflow -= OVERFLOW_THRESHOLD;
       Flash();
       await CreatureCmd.Damage(
         ev.Context,
