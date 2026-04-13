@@ -72,7 +72,7 @@ public static class LinkuraCmd {
     // animating toward the correct destination before damage numbers appear.
     if (hearts > 0) {
       ev.Targets = ev.DamageAllEnemies
-        ? PickTargetsAll(player)
+        ? player.Creature.CombatState.HittableEnemies
         : PickTargets(target, player, triggers);
     }
     await player.PlayCollectAnim();
@@ -90,8 +90,7 @@ public static class LinkuraCmd {
   }
 
   private static IReadOnlyList<Creature> PickTargets(Creature target, Player player, int triggers) {
-    var hittable = (from e in player.Creature.CombatState.GetOpponentsOf(player.Creature)
-                    where e.IsHittable select e).ToList();
+    var hittable = player.Creature.CombatState.HittableEnemies;
     if (hittable.Count == 0) return [];
     var targets = new List<Creature>();
     if (target != null) { targets.Add(target); triggers--; }
@@ -99,10 +98,5 @@ public static class LinkuraCmd {
       targets.Add(player.RunState.Rng.CombatTargets.NextItem(hittable));
     }
     return targets;
-  }
-
-  private static IReadOnlyList<Creature> PickTargetsAll(Player player) {
-    return [.. from e in player.Creature.CombatState.GetOpponentsOf(player.Creature)
-               where e.IsHittable select e];
   }
 }
