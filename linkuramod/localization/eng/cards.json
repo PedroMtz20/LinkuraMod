@@ -52,7 +52,7 @@
   "RURIMEGU-GENYOU_YAKOU.title": "Genyou Yakou",
   "RURIMEGU-GENYOU_YAKOU.description": "If you have 8 or more ❤️, draw {Cards:diff()} {Cards:plural:card|cards}. [gold]Collect[/gold].",
   "RURIMEGU-ZANYOU.title": "Zanyou",
-  "RURIMEGU-ZANYOU.description": "Increase max ❤️ by {RURIMEGU-EXPAND_HEARTS:diff()}.",
+  "RURIMEGU-ZANYOU.description": "Increase max ❤️ by {RURIMEGU-EXPAND_HEARTS:diff()}. Burst {RURIMEGU-BURST:diff()}.",
   "RURIMEGU-NEW_BLACK.title": "Nεw Black",
   "RURIMEGU-NEW_BLACK.description": "Gain {Block:diff()} [gold]Block[/gold]. [gold]Backstage[/gold]: for every 6 [gold]Burst[/gold], gain {BACKSTAGE_BLOCK:diff()} [gold]Block[/gold]. (Current: {NEW_BLACK_TRACKER})",
   "RURIMEGU-CURTAIN_CALL.title": "Curtain Call",

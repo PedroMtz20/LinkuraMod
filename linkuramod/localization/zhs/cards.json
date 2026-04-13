@@ -52,7 +52,7 @@
   "RURIMEGU-GENYOU_YAKOU.title": "眩曜夜行",
   "RURIMEGU-GENYOU_YAKOU.description": "如果你拥有8颗或更多❤️，抽{Cards:diff()}张牌。[gold]收心[/gold]。",
   "RURIMEGU-ZANYOU.title": "残阳",
-  "RURIMEGU-ZANYOU.description": "增加{RURIMEGU-EXPAND_HEARTS:diff()}点❤️上限。",
+  "RURIMEGU-ZANYOU.description": "增加{RURIMEGU-EXPAND_HEARTS:diff()}点❤️上限。爆心{RURIMEGU-BURST:diff()}。",
   "RURIMEGU-NEW_BLACK.title": "Nεw Black",
   "RURIMEGU-NEW_BLACK.description": "获得{Block:diff()}点[gold]格挡[/gold]。[gold]幕后[/gold]：你每[gold]爆心[/gold]6颗，获得{BACKSTAGE_BLOCK:diff()}点[gold]格挡[/gold]。（当前：{NEW_BLACK_TRACKER}）",
   "RURIMEGU-CURTAIN_CALL.title": "演出落幕",

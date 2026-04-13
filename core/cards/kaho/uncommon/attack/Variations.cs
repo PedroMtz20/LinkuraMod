@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,13 +11,13 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
 /// Variations — Cost 1, Attack, Uncommon.
-/// Deal 4 (6) damage. Draw 1 card.
+/// Deal 6 (9) damage. Draw 1 card.
 /// Backstage: whenever max ❤️ changes, this card costs 1 less next time it is played.
 /// </summary>
 public class Variations() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new DamageVar(4, ValueProp.Move),
+    new DamageVar(6, ValueProp.Move),
     new CardsVar(1),
     new EnergyVar(1),
   ];
@@ -48,6 +47,6 @@ public class Variations() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.Damage.UpgradeValueBy(2m);
+    DynamicVars.Damage.UpgradeValueBy(3m);
   }
 }

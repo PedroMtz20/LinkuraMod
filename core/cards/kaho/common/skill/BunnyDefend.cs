@@ -15,6 +15,9 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 /// </summary>
 public class BunnyDefend() : KahoCard(2, CardType.Skill, CardRarity.Common, TargetType.None) {
   protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
+  public override IEnumerable<CardKeyword> CanonicalKeywords => [
+    CardKeyword.Retain,
+  ];
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.Block)];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
@@ -23,6 +26,6 @@ public class BunnyDefend() : KahoCard(2, CardType.Skill, CardRarity.Common, Targ
   }
 
   protected override void OnUpgrade() {
-    AddKeyword(CardKeyword.Retain);
+    EnergyCost.UpgradeBy(-1);
   }
 }

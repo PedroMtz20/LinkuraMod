@@ -1,20 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
 /// <summary>
-/// Half-Conveyed Feelings (传达一半的心意) — Cost 1, Skill, Uncommon.
+/// Half-Conveyed Feelings (传达一半的心意) — Cost 1 (0), Skill, Uncommon.
 /// Burst Hearts equal to half your max ❤️.
 /// </summary>
 public class HalfConveyedFeelings() : KahoCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
-  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
     BurstHeartsVar.HoverTip(),
@@ -27,6 +24,6 @@ public class HalfConveyedFeelings() : KahoCard(1, CardType.Skill, CardRarity.Unc
   }
 
   protected override void OnUpgrade() {
-    RemoveKeyword(CardKeyword.Exhaust);
+    EnergyCost.UpgradeBy(-1);
   }
 }
