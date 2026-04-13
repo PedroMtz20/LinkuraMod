@@ -14,6 +14,10 @@ namespace RuriMegu.Core.Cards.Kaho.Rare.Power;
 /// Your Backstage effects can also trigger from the discard pile.
 /// </summary>
 public class BloomGardenParty() : KahoCard(3, CardType.Power, CardRarity.Rare, TargetType.None) {
+  public override IEnumerable<CardKeyword> CanonicalKeywords => [
+    CardKeyword.Ethereal,
+  ];
+
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
     HoverTipFactory.FromKeyword(LinkuraKeywords.Backstage),
   ];
