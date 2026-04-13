@@ -6,7 +6,7 @@
   "RURIMEGU-LIVE_SYNC_CHRONOMETER.description": "在你的回合中，每分钟触发一次[gold]自然爆心[/gold]。",
   "RURIMEGU-LIVE_SYNC_CHRONOMETER.flavor": "超越有限的时间，拼尽全力地绽放。",
   "RURIMEGU-TALE_OF_PETER_RABBIT.title": "彼得兔的故事",
-  "RURIMEGU-TALE_OF_PETER_RABBIT.description": "如果你的[gold]❤️[/gold]在回合结束时未达到一半，获得{Block:diff()}点[gold]格挡[/gold]。",
+  "RURIMEGU-TALE_OF_PETER_RABBIT.description": "如果你的[gold]❤️[/gold]在回合结束时未达到❤️上限的一半，获得{Block:diff()}点[gold]格挡[/gold]。",
   "RURIMEGU-TALE_OF_PETER_RABBIT.flavor": "很久很久以前，有四只小兔子……",
   "RURIMEGU-BUNNY_EARS.title": "兔耳头饰",
   "RURIMEGU-BUNNY_EARS.description": "你每溢出[blue]10[/blue]颗[gold]❤️[/gold]，对所有敌人造成[blue]1[/blue]点伤害。",
