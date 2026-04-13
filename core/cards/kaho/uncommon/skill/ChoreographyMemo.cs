@@ -28,7 +28,7 @@ public class ChoreographyMemo() : KahoInHandTriggerCard(1, CardType.Skill, CardR
   ];
 
   protected override Task InitializeSubscriptions() {
-    TrackSubscription(Events.Burst.SubscribeLate(OnBurstLate));
+    TrackSubscription(Events.Burst.SubscribeVeryEarly(OnBurstVeryEarly));
     return Task.CompletedTask;
   }
 
@@ -39,8 +39,8 @@ public class ChoreographyMemo() : KahoInHandTriggerCard(1, CardType.Skill, CardR
     }
   }
 
-  private async Task OnBurstLate(Events.BurstEvent ev) {
-    if (ev.Player != Owner || ev.ActualAmount <= 0 || !CanTrigger()) return;
+  private async Task OnBurstVeryEarly(Events.BurstEvent ev) {
+    if (ev.Player != Owner || !CanTrigger()) return;
 
     DynamicVars[TRACKER_VAR].BaseValue++;
 

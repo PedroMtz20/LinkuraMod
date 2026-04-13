@@ -33,14 +33,15 @@ public static class BackstageCardSubscribePatch {
     Events.TriggerBackstage.SubscribeLate(OnTriggerBackstage);
   }
 
-  private static async Task OnTriggerBackstage(Events.TriggerBackstageEvent ev) {
-    if (ev.Source is not InHandTriggerCard card) return;
-    if (!Holders.TryGetValue(card, out var holder)) return;
-    if (!GodotObject.IsInstanceValid(holder)) return;
+  private static Task OnTriggerBackstage(Events.TriggerBackstageEvent ev) {
+    if (ev.Source is not InHandTriggerCard card) return Task.CompletedTask;
+    if (!Holders.TryGetValue(card, out var holder)) return Task.CompletedTask;
+    if (!GodotObject.IsInstanceValid(holder)) return Task.CompletedTask;
 
     SfxCmd.Play(FmodSfx.relicFlashGeneral);
     holder.Flash();
     _ = DoGlintAsync(holder);
+    return Task.CompletedTask;
   }
 
   [HarmonyPostfix]

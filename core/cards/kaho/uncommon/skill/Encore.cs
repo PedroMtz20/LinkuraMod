@@ -52,9 +52,10 @@ public class Encore() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetT
     return base.AfterCombatEnd(room);
   }
 
-  private async Task OnBurstHearts(Events.BurstEvent ev) {
-    if (ev.Player != Owner) return;
+  private Task OnBurstHearts(Events.BurstEvent ev) {
+    if (ev.Player != Owner) return Task.CompletedTask;
     DynamicVars[TRACKER_VAR].BaseValue++;
+    return Task.CompletedTask;
   }
 
   protected override void OnUpgrade() {

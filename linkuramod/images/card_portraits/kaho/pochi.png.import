@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dreq828c6dob8"
-path="res://.godot/imported/final_act.png-90d062e6b18c0da62580a5794c1f4ec4.ctex"
+uid="uid://bi41l14s4b4wy"
+path="res://.godot/imported/pochi.png-70e14bdc533ca9a55759c49a4d4d6274.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/kaho/big/final_act.png"
-dest_files=["res://.godot/imported/final_act.png-90d062e6b18c0da62580a5794c1f4ec4.ctex"]
+source_file="res://linkuramod/images/card_portraits/kaho/pochi.png"
+dest_files=["res://.godot/imported/pochi.png-70e14bdc533ca9a55759c49a4d4d6274.ctex"]
 
 [params]
 
