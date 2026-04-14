@@ -80,7 +80,7 @@
   "RURIMEGU-SUDDEN_INSPIRATION.title": "灵感骤现",
   "RURIMEGU-SUDDEN_INSPIRATION.description": "造成{Damage:diff()}点伤害。抽到此牌时[gold]收心[/gold]。",
   "RURIMEGU-FULL_BLOOM_SPRINT.title": "满开冲刺",
-  "RURIMEGU-FULL_BLOOM_SPRINT.description": "造成{Damage:diff()}点伤害。如果你的❤️数达到上限，[gold]收心[/gold]并获得{Energy:energyIcons()}。",
+  "RURIMEGU-FULL_BLOOM_SPRINT.description": "造成{Damage:diff()}点伤害。如果你的❤️数未达到❤️上限的一半，获得{Energy:energyIcons()}。",
   "RURIMEGU-EPHEMERAL_YOUTH.title": "有限的青春",
   "RURIMEGU-EPHEMERAL_YOUTH.description": "造成{CalculatedDamage:diff()}点伤害。[gold]幕后[/gold]：你每打出1张牌，此牌在本回合的伤害减少4。",
   "RURIMEGU-HEART_STRIKE.title": "锻心打击",

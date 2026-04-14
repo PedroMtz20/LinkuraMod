@@ -13,7 +13,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Attack;
 
 /// <summary>
 /// Build-up — Cost 1, Attack, Uncommon.
-/// Deal 6 (9) damage. Draw 1 (2) card(s).
+/// Deal 8 (12) damage. Draw 1 (2) card(s).
 /// Backstage: every 3 Burst triggers grants +1 extra draw when this card is played. (Current: X)
 /// </summary>
 public class BuildUp() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
@@ -23,7 +23,7 @@ public class BuildUp() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity.Un
   private int _bonusDraws;
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
-    new DamageVar(6, ValueProp.Move),
+    new DamageVar(8, ValueProp.Move),
     new CalculationBaseVar(1),
     new CalculationExtraVar(1),
     new CalculatedVar(DRAW_PREVIEW_VAR).WithMultiplier(
@@ -67,7 +67,7 @@ public class BuildUp() : KahoInHandTriggerCard(1, CardType.Attack, CardRarity.Un
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.Damage.UpgradeValueBy(3m);
+    DynamicVars.Damage.UpgradeValueBy(4m);
     DynamicVars.CalculationBase.UpgradeValueBy(1m);
   }
 }

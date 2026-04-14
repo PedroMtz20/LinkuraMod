@@ -80,7 +80,7 @@
   "RURIMEGU-SUDDEN_INSPIRATION.title": "Sudden Inspiration",
   "RURIMEGU-SUDDEN_INSPIRATION.description": "Deal {Damage:diff()} damage. [gold]Collect[/gold] when drawn.",
   "RURIMEGU-FULL_BLOOM_SPRINT.title": "Full Bloom Sprint",
-  "RURIMEGU-FULL_BLOOM_SPRINT.description": "Deal {Damage:diff()} damage. If your ❤️ is at max, [gold]Collect[/gold] and gain {Energy:energyIcons()}.",
+  "RURIMEGU-FULL_BLOOM_SPRINT.description": "Deal {Damage:diff()} damage. If your ❤️ count is less than half your max ❤️, gain {Energy:energyIcons()}.",
   "RURIMEGU-EPHEMERAL_YOUTH.title": "Ephemeral Youth",
   "RURIMEGU-EPHEMERAL_YOUTH.description": "Deal {CalculatedDamage:diff()} damage. [gold]Backstage[/gold]: whenever you play a card, this card's damage is reduced by 4 this turn.",
   "RURIMEGU-HEART_STRIKE.title": "Heart Strike",
