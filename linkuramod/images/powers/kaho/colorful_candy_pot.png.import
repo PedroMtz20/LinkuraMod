@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi41l14s4b4wy"
-path="res://.godot/imported/pochi.png-c3aab697f52a6f217478bfe81d1ca97a.ctex"
+uid="uid://cclf6ig5xbkou"
+path="res://.godot/imported/colorful_candy_pot.png-35594f51aee2d28fdef0b52608dc5cc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/kaho/pochi.png"
-dest_files=["res://.godot/imported/pochi.png-c3aab697f52a6f217478bfe81d1ca97a.ctex"]
+source_file="res://linkuramod/images/powers/kaho/colorful_candy_pot.png"
+dest_files=["res://.godot/imported/colorful_candy_pot.png-35594f51aee2d28fdef0b52608dc5cc3.ctex"]
 
 [params]
 

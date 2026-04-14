@@ -86,5 +86,8 @@
   "RURIMEGU-BLOOM_GARDEN_PARTY_POWER.smartDescription": "Your [gold]Backstage[/gold] effects can also trigger from your [gold]Discard Pile[/gold].",
   "RURIMEGU-SUGAR_MELT_POWER.title": "Sugar Melt",
   "RURIMEGU-SUGAR_MELT_POWER.description": "Whenever you [gold]Auto Burst[/gold], gain 1 [gold]Block[/gold].",
-  "RURIMEGU-SUGAR_MELT_POWER.smartDescription": "Whenever you [gold]Auto Burst[/gold], gain {Amount} [gold]Block[/gold]."
+  "RURIMEGU-SUGAR_MELT_POWER.smartDescription": "Whenever you [gold]Auto Burst[/gold], gain {Amount} [gold]Block[/gold].",
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.title": "Colorful Candy Pot",
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.description": "This turn, whenever you [gold]Burst[/gold], [gold]Collect[/gold].",
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.smartDescription": "This turn, whenever you [gold]Burst[/gold], [gold]Collect[/gold]."
 }

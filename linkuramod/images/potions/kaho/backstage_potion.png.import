@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi41l14s4b4wy"
-path="res://.godot/imported/pochi.png-c3aab697f52a6f217478bfe81d1ca97a.ctex"
+uid="uid://d1tbscf46q6vb"
+path="res://.godot/imported/backstage_potion.png-66e95f948f792a9ec132a68c9016795e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://linkuramod/images/card_portraits/kaho/pochi.png"
-dest_files=["res://.godot/imported/pochi.png-c3aab697f52a6f217478bfe81d1ca97a.ctex"]
+source_file="res://linkuramod/images/potions/kaho/backstage_potion.png"
+dest_files=["res://.godot/imported/backstage_potion.png-66e95f948f792a9ec132a68c9016795e.ctex"]
 
 [params]
 
