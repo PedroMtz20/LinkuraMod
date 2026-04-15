@@ -13,9 +13,9 @@ public class HinoshitaKahoCardPool : CustomCardPoolModel {
   public override string BigEnergyIconPath => "big_energy.png".CharacterUiPath(HinoshitaKaho.CHARACTER_ID);
   public override string TextEnergyIconPath => "text_energy.png".CharacterUiPath(HinoshitaKaho.CHARACTER_ID);
 
-  public override float H => 0.017f;
+  public override float H => 0.121f;
   public override float S => 1.0f;
-  public override float V => 0.745f;
+  public override float V => 0.9725f;
 
   public override Color DeckEntryCardColor => HinoshitaKaho.Color;
 
