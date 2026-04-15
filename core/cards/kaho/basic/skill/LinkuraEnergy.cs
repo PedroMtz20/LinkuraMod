@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Basic.Skill;
 
@@ -20,6 +19,6 @@ public class LinkuraEnergy() : KahoCard(1, CardType.Skill, CardRarity.Basic, Tar
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.BurstHearts().UpgradeValueBy(4m);
+    EnergyCost.UpgradeBy(-1);
   }
 }
