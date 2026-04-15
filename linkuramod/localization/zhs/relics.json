@@ -12,7 +12,7 @@
   "RURIMEGU-BUNNY_EARS.description": "你每溢出[blue]10[/blue]颗[gold]❤️[/gold]，对所有敌人造成[blue]1[/blue]点伤害。",
   "RURIMEGU-BUNNY_EARS.flavor": "兔子蹦蹦跳跳，真可爱！",
   "RURIMEGU-SHOPPING_MALL.title": "百货商场",
-  "RURIMEGU-SHOPPING_MALL.description": "所有敌人额外掉落一组卡牌奖励。每场战斗结束时，失去{Gold:diff()}金币。",
+  "RURIMEGU-SHOPPING_MALL.description": "所有敌人额外掉落一组卡牌奖励。每场战斗结束时，失去{Gold:inverseDiff()}金币。",
   "RURIMEGU-SHOPPING_MALL.flavor": "居然真的建起了这么大的百货商场！",
   "RURIMEGU-CAP_LIBERATOR.title": "上限解放装置",
   "RURIMEGU-CAP_LIBERATOR.description": "拾起时，移除你[gold]牌组[/gold]里每一对未[gold]升级[/gold]的相同卡牌。每移除一对，将一张[gold]升级[/gold]后的对应卡牌加入你的[gold]牌组[/gold]。",
