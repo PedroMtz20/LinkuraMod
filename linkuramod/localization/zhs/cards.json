@@ -155,5 +155,9 @@
   "RURIMEGU-MAY_DREAMS_BLOOM.title": "愿梦想绽放一生",
   "RURIMEGU-MAY_DREAMS_BLOOM.description": "每溢出{RURIMEGU-MAX_HEARTS_THRESHOLD:diff()}颗❤️，获得1层[gold]自然爆心[/gold]。不计算[gold]自然爆心[/gold]溢出。",
   "RURIMEGU-BLOOM_GARDEN_PARTY.title": "Bloom Garden Party",
-  "RURIMEGU-BLOOM_GARDEN_PARTY.description": "你的[gold]幕后[/gold]效果在[gold]弃牌堆[/gold]中也可以触发。"
+  "RURIMEGU-BLOOM_GARDEN_PARTY.description": "你的[gold]幕后[/gold]效果在[gold]弃牌堆[/gold]中也可以触发。",
+  "RURIMEGU-HAPPY_SUPREMACY.title": "快乐至上主义！",
+  "RURIMEGU-HAPPY_SUPREMACY.description": "将你所有的❤️随机转化为[gold]力量[/gold]或[gold]敏捷[/gold]，分配给所有角色。（升级后：仅分配给所有玩家。）",
+  "RURIMEGU-HINOSHITA_INSTALL.title": "日野下安装",
+  "RURIMEGU-HINOSHITA_INSTALL.description": "另一名玩家使用卡牌时，触发你的[gold]自然爆心[/gold]。"
 }

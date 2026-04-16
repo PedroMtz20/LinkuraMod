@@ -89,5 +89,8 @@
   "RURIMEGU-SUGAR_MELT_POWER.smartDescription": "Whenever you [gold]Auto Burst[/gold], gain {Amount} [gold]Block[/gold].",
   "RURIMEGU-COLORFUL_CANDY_POT_POWER.title": "Colorful Candy Pot",
   "RURIMEGU-COLORFUL_CANDY_POT_POWER.description": "This turn, whenever you [gold]Burst[/gold], [gold]Collect[/gold].",
-  "RURIMEGU-COLORFUL_CANDY_POT_POWER.smartDescription": "This turn, whenever you [gold]Burst[/gold], [gold]Collect[/gold]."
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.smartDescription": "This turn, whenever you [gold]Burst[/gold], [gold]Collect[/gold].",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.title": "Hinoshita Install",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.description": "When another player plays a card, trigger your [gold]Auto Burst[/gold].",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.smartDescription": "When another player plays a card, trigger your [gold]Auto Burst[/gold]."
 }
