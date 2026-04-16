@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using RuriMegu.Core.Utils;
@@ -16,10 +16,9 @@ public class HinoshitaInstallPower : KahoPower {
   public override PowerStackType StackType => PowerStackType.Single;
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
-    if (cardPlay.Card.Owner == null) return;
-    if (cardPlay.Card.Owner == Owner.Player) return;
+    if (cardPlay.Card.Owner == null || cardPlay.Card.Owner == Owner.Player) return;
     if (cardPlay.Card.Owner.Creature.Side != CombatSide.Player) return;
     Flash();
-    await LinkuraCmd.TriggerAutoBurst(Owner.Player, context, null);
+    await LinkuraCmd.TriggerAutoBurst(Owner.Player, context, cardPlay.Card);
   }
 }

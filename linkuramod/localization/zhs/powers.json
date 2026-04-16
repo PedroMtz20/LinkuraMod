@@ -91,6 +91,6 @@
   "RURIMEGU-COLORFUL_CANDY_POT_POWER.description": "本回合中，每当你[gold]爆心[/gold]时，[gold]收心[/gold]。",
   "RURIMEGU-COLORFUL_CANDY_POT_POWER.smartDescription": "本回合中，每当你[gold]爆心[/gold]时，[gold]收心[/gold]。",
   "RURIMEGU-HINOSHITA_INSTALL_POWER.title": "日野下安装",
-  "RURIMEGU-HINOSHITA_INSTALL_POWER.description": "另一名玩家使用卡牌时，触发你的[gold]自然爆心[/gold]。",
-  "RURIMEGU-HINOSHITA_INSTALL_POWER.smartDescription": "另一名玩家使用卡牌时，触发你的[gold]自然爆心[/gold]。"
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.description": "其他玩家使用卡牌时也会触发你的[gold]自然爆心[/gold]",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.smartDescription": "其他玩家使用卡牌时也会触发你的[gold]自然爆心[/gold]。"
 }

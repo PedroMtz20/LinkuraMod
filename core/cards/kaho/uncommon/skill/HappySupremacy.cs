@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using RuriMegu.Core.Utils;
@@ -16,6 +15,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 /// all characters (base) or all players only (upgraded). Exhaust.
 /// </summary>
 public class HappySupremacy() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
+  public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
   public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
@@ -23,24 +23,37 @@ public class HappySupremacy() : KahoCard(0, CardType.Skill, CardRarity.Uncommon,
     if (hearts <= 0) return;
 
     await Owner.PlayCollectAnim();
-    await HeartsState.SetHearts(Owner, ctx, 0, this);
 
     var targets = (IsUpgraded
-        ? Owner.CombatState.PlayerCreatures
-        : Owner.CombatState.Creatures)
+        ? Owner.Creature.CombatState.PlayerCreatures
+        : Owner.Creature.CombatState.Creatures)
       .Where(c => c.IsAlive)
       .ToList();
 
     if (targets.Count == 0) return;
 
     var rng = Owner.RunState.Rng.CombatTargets;
+    var strengths = new int[targets.Count];
+    var dexterities = new int[targets.Count];
     for (int i = 0; i < hearts; i++) {
-      var target = rng.NextItem(targets);
+      var target = rng.NextInt(targets.Count);
       if (rng.NextBool()) {
-        await PowerCmd.Apply<StrengthPower>(target, 1, Owner.Creature, this);
+        strengths[target]++;
       } else {
-        await PowerCmd.Apply<DexterityPower>(target, 1, Owner.Creature, this);
+        dexterities[target]++;
       }
     }
+
+    var tasks = new List<Task>();
+    for (int i = 0; i < targets.Count; i++) {
+      if (strengths[i] > 0) {
+        tasks.Add(PowerCmd.Apply<StrengthPower>(targets[i], strengths[i], Owner.Creature, this));
+      }
+      if (dexterities[i] > 0) {
+        tasks.Add(PowerCmd.Apply<DexterityPower>(targets[i], dexterities[i], Owner.Creature, this));
+      }
+    }
+    await Task.WhenAll(tasks);
+    await HeartsState.SetHearts(Owner, ctx, 0, this);
   }
 }
