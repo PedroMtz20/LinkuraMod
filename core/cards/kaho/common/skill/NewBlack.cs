@@ -23,7 +23,7 @@ public class NewBlack() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Co
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new BlockVar(6, ValueProp.Move),
-    new DynamicVar(BACKSTAGE_BLOCK_VAR, 4),
+    new BlockVar(BACKSTAGE_BLOCK_VAR, 4, ValueProp.Move),
     new DynamicVar(TRACKER_VAR, 0),
   ];
 
@@ -50,7 +50,7 @@ public class NewBlack() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Co
       int newTrackerVar = DynamicVars[TRACKER_VAR].IntValue - BURST_PER_TRIGGER;
       var triggerEv = await TriggerWithAction(ev.Context, async () => {
         DynamicVars[TRACKER_VAR].BaseValue = newTrackerVar;
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars[BACKSTAGE_BLOCK_VAR].IntValue, ValueProp.Move, null);
+        await CreatureCmd.GainBlock(Owner.Creature, (BlockVar)DynamicVars[BACKSTAGE_BLOCK_VAR], null);
       });
       if (triggerEv == null) break;
     }

@@ -54,8 +54,7 @@ public class BunnyEars : KahoRelic {
       await CreatureCmd.Damage(
         ev.Context,
         Owner.Creature.CombatState.HittableEnemies,
-        DynamicVars.Damage.BaseValue,
-        DynamicVars.Damage.Props,
+        DynamicVars.Damage,
         Owner.Creature,
         null
       );

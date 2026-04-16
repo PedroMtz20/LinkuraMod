@@ -20,7 +20,7 @@ public class Encore() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetT
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DynamicVar(TRACKER_VAR, 0),
-    new BlockVar(2, ValueProp.Move | ValueProp.Unpowered),
+    new BlockVar(2, ValueProp.Move),
   ];
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -28,9 +28,9 @@ public class Encore() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetT
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    int block = DynamicVars[TRACKER_VAR].IntValue * DynamicVars.Block.IntValue;
-    if (block > 0) {
-      await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, play);
+    int times = DynamicVars[TRACKER_VAR].IntValue;
+    for (int i = 0; i < times; i++) {
+      await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
     }
   }
 

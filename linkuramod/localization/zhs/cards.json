@@ -62,7 +62,7 @@
   "RURIMEGU-AGILE_STEPS.title": "灵动舞步",
   "RURIMEGU-AGILE_STEPS.description": "[gold]爆心[/gold]{RURIMEGU-BURST:diff()}。你的下一张攻击牌耗能减少{Energy:energyIcons()}。",
   "RURIMEGU-LOVE_IT.title": "Love it！",
-  "RURIMEGU-LOVE_IT.description": "[gold]爆心[/gold]{RURIMEGU-BURST:diff()}。抽{Cards:diff()}张牌。[gold]幕后[/gold]：每当你[gold]收心[/gold]，获得{BACKSTAGE_BLOCK:diff()}点[gold]格挡[/gold]。",
+  "RURIMEGU-LOVE_IT.description": "[gold]爆心[/gold]{RURIMEGU-BURST:diff()}。抽{Cards:diff()}张牌。[gold]幕后[/gold]：每当你[gold]收心[/gold]，获得{Block:diff()}点[gold]格挡[/gold]。",
   "RURIMEGU-MIX_SHAKE.title": "Mix shake!!",
   "RURIMEGU-MIX_SHAKE.description": "获得{Block:diff()}点[gold]格挡[/gold]。你每拥有6颗❤️，便额外触发一次。",
   "RURIMEGU-FAN_SERVICE.title": "饭撒",

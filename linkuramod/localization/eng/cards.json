@@ -62,7 +62,7 @@
   "RURIMEGU-AGILE_STEPS.title": "Agile Steps",
   "RURIMEGU-AGILE_STEPS.description": "[gold]Burst[/gold] {RURIMEGU-BURST:diff()}. Your next Attack card costs {Energy:energyIcons()} less.",
   "RURIMEGU-LOVE_IT.title": "Love it!",
-  "RURIMEGU-LOVE_IT.description": "[gold]Burst[/gold] {RURIMEGU-BURST:diff()}. Draw {Cards:diff()} {Cards:plural:card|cards}. [gold]Backstage[/gold]: whenever you [gold]Collect[/gold], gain {BACKSTAGE_BLOCK:diff()} [gold]Block[/gold].",
+  "RURIMEGU-LOVE_IT.description": "[gold]Burst[/gold] {RURIMEGU-BURST:diff()}. Draw {Cards:diff()} {Cards:plural:card|cards}. [gold]Backstage[/gold]: whenever you [gold]Collect[/gold], gain {Block:diff()} [gold]Block[/gold].",
   "RURIMEGU-MIX_SHAKE.title": "Mix shake!!",
   "RURIMEGU-MIX_SHAKE.description": "Gain {Block:diff()} [gold]Block[/gold]. Triggers once more for every 6 ❤️ you have.",
   "RURIMEGU-FAN_SERVICE.title": "Fan Service",

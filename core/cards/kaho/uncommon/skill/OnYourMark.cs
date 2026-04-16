@@ -19,7 +19,7 @@ public class OnYourMark() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, Tar
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new ExpandHeartsVar(4),
-    new BlockVar(2, ValueProp.Unpowered),
+    new BlockVar(2, ValueProp.Move),
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
@@ -31,12 +31,10 @@ public class OnYourMark() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, Tar
 
   public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw) {
     if (card == this) {
-      await Cmd.Wait(0.25f);
+      await Cmd.Wait(0.5f);
       int energy = Owner.PlayerCombatState?.Energy ?? 0;
       int block = energy * DynamicVars.Block.IntValue;
-      if (block > 0) {
-        await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, null);
-      }
+      await CreatureCmd.GainBlock(Owner.Creature, block, DynamicVars.Block.Props, null);
     }
   }
 
