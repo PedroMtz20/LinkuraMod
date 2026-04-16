@@ -66,6 +66,11 @@ public static class Events {
     public bool DamageAllEnemies { get; set; } = false;
   }
 
+  public record CollectVisualEvent(
+    Player Player,
+    IReadOnlyList<Creature> Targets
+  ) : Event;
+
   public record IncreaseMaxHeartsEvent(
     Player Player,
     PlayerChoiceContext Context,
@@ -162,6 +167,12 @@ public static class Events {
       await InvokeLate(e);
       await InvokeVeryLate(e);
     }
+
+    public async Task<bool> InvokeAll(TEvent e) {
+      if (!await InvokeAllEarly(e)) return false;
+      await InvokeAllLate(e);
+      return true;
+    }
   }
 
   public static readonly PhasedEvent<HeartsChangedEvent> HeartsChanged = new();
@@ -169,6 +180,7 @@ public static class Events {
   public static readonly PhasedEvent<BurstEvent> Burst = new();
   public static readonly PhasedEvent<AutoBurstEvent> AutoBurst = new();
   public static readonly PhasedEvent<CollectEvent> Collect = new();
+  public static readonly PhasedEvent<CollectVisualEvent> CollectVisual = new();
   public static readonly PhasedEvent<IncreaseMaxHeartsEvent> IncreaseMaxHearts = new();
   public static readonly PhasedEvent<TriggerBackstageEvent> TriggerBackstage = new();
 }

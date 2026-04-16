@@ -131,7 +131,7 @@ public partial class NHeartCounter : Control {
 
     _heartsChangedSubscription = Events.HeartsChanged.SubscribeLate(OnHeartsStateChanged);
     _maxHeartsChangedSubscription = Events.MaxHeartsChanged.SubscribeLate(OnMaxHeartsStateChanged);
-    _collectSubscription = Events.Collect.SubscribeEarly(OnCollectEvent);
+    _collectSubscription = Events.CollectVisual.SubscribeLate(OnCollectVisualEvent);
 
     if (CombatManager.Instance != null)
       CombatManager.Instance.CombatEnded += OnCombatEnded;
@@ -221,7 +221,7 @@ public partial class NHeartCounter : Control {
     heart.StartSpawnAnimation();
   }
 
-  private async Task OnCollectEvent(Events.CollectEvent evt) {
+  private async Task OnCollectVisualEvent(Events.CollectVisualEvent evt) {
     if (_player is null || evt.Player != _player) return;
     await CollectAllHearts(GetTargetPositions(evt.Targets));
   }

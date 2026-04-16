@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using RuriMegu.Core.Utils;
+using System.Collections.Immutable;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
@@ -21,8 +22,6 @@ public class HappySupremacy() : KahoCard(0, CardType.Skill, CardRarity.Uncommon,
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     int hearts = HeartsState.GetHearts(Owner);
     if (hearts <= 0) return;
-
-    await Owner.PlayCollectAnim();
 
     var targets = (IsUpgraded
         ? Owner.Creature.CombatState.PlayerCreatures
@@ -44,6 +43,16 @@ public class HappySupremacy() : KahoCard(0, CardType.Skill, CardRarity.Uncommon,
       }
     }
 
+    // Build targets list for visual effect distribution
+    var collectTargets = Enumerable.Range(0, targets.Count)
+      .Where(i => strengths[i] + dexterities[i] > 0)
+      .Select(i => targets[i])
+      .ToImmutableList();
+
+    await Owner.PlayCollectAnim();
+    var visualEv = new Events.CollectVisualEvent(Owner, collectTargets);
+    await Events.CollectVisual.InvokeAll(visualEv);
+
     var tasks = new List<Task>();
     for (int i = 0; i < targets.Count; i++) {
       if (strengths[i] > 0) {
@@ -54,6 +63,7 @@ public class HappySupremacy() : KahoCard(0, CardType.Skill, CardRarity.Uncommon,
       }
     }
     await Task.WhenAll(tasks);
+
     await HeartsState.SetHearts(Owner, ctx, 0, this);
   }
 }

@@ -78,6 +78,8 @@ public static class LinkuraCmd {
     await player.PlayCollectAnim();
     if (!await Events.Collect.InvokeAllEarly(ev)) return ev;
     if (hearts <= 0) return ev;
+    var visualEv = new Events.CollectVisualEvent(player, ev.Targets);
+    await Events.CollectVisual.InvokeAll(visualEv);
     // Apply damage to the pre-resolved (and possibly Early-modified) target list.
     if (ev.Targets?.Count > 0) {
       await CreatureCmd.Damage(context, ev.Targets, hearts, ValueProp.Unpowered, player.Creature);
