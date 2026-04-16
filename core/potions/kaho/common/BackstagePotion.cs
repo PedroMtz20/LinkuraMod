@@ -32,7 +32,8 @@ public class BackstagePotion : KahoPotion {
     var card = await CardSelectCmd.FromChooseACardScreen(choiceContext, cards, Owner, canSkip: true);
     if (card == null) return;
 
-    card.GiveSingleTurnRetain();
+    if (!card.Keywords.Contains(CardKeyword.Retain))
+      card.AddKeyword(CardKeyword.Retain);
     await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
   }
 }
