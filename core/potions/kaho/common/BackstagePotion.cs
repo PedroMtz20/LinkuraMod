@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
@@ -6,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using RuriMegu.Core.Cards;
 
 namespace RuriMegu.Core.Potions.Kaho.Common;
@@ -20,6 +22,10 @@ public class BackstagePotion : KahoPotion {
   public override PotionRarity Rarity => PotionRarity.Common;
   public override PotionUsage Usage => PotionUsage.CombatOnly;
   public override TargetType TargetType => TargetType.None;
+  public override IEnumerable<IHoverTip> ExtraHoverTips => base.ExtraHoverTips.Concat([
+    HoverTipFactory.FromKeyword(LinkuraKeywords.Backstage),
+    HoverTipFactory.FromKeyword(CardKeyword.Retain)
+  ]);
 
   protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature target) {
     var poolCards = Owner.Character.CardPool

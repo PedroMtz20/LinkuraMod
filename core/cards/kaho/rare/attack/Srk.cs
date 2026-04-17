@@ -35,7 +35,6 @@ public class Srk() : KahoCard(3, CardType.Attack, CardRarity.Rare, TargetType.An
   }
 
   protected override void OnUpgrade() {
-    RemoveKeyword(CardKeyword.Exhaust);
     AddKeyword(CardKeyword.Innate);
   }
 }

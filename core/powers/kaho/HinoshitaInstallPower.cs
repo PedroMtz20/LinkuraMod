@@ -1,8 +1,12 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using RuriMegu.Core.Cards;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Powers.Kaho;
@@ -14,6 +18,11 @@ namespace RuriMegu.Core.Powers.Kaho;
 public class HinoshitaInstallPower : KahoPower {
   public override PowerType Type => PowerType.Buff;
   public override PowerStackType StackType => PowerStackType.Single;
+
+  protected override IEnumerable<IHoverTip> ExtraHoverTips => base.ExtraHoverTips.Concat([
+    HoverTipFactory.FromPower<AutoBurstPower>(),
+    BurstHeartsVar.HoverTip()
+  ]);
 
   public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay) {
     if (cardPlay.Card.Owner == null || cardPlay.Card.Owner == Owner.Player) return;

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using RuriMegu.Core.Cards;
 using RuriMegu.Core.Utils;
@@ -17,6 +19,10 @@ public class EntranceExam : KahoRelic {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new BurstHeartsVar(9m),
   ];
+
+  protected override IEnumerable<IHoverTip> ExtraHoverTips => base.ExtraHoverTips.Concat([
+    BurstHeartsVar.HoverTip()
+  ]);
 
   public override async Task BeforeCombatStartLate() {
     Flash();

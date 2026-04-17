@@ -46,15 +46,15 @@ public static class LinkuraAnimation {
   // registered trigger branches. Custom Spine animations (burst/collect) are not in the state
   // machine, so we bypass it and drive the SpineAnimationState directly.
   private static async Task PlayCustomSpineAnim(Player player, string animName, string idleAnimName, float waitTime) {
-    var spine = NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.SpineController;
-    if (spine == null || !spine.HasAnimation(animName)) {
+    var creature = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+    if (creature == null || creature.Visuals.SpineBody?.HasAnimation(animName) != true) {
       LinkuraMod.Logger.Warn($"Could not play animation '{animName}' - SpineController or animation not found");
       return;
     }
 
-    var animState = spine.GetAnimationState();
-    animState.SetAnimation(animName, false);
-    animState.AddAnimation(idleAnimName, 0f, true);
+    var spineAnim = creature.SpineAnimation;
+    spineAnim.SetAnimation(animName, false);
+    spineAnim.AddAnimation(idleAnimName, 0f, true);
 
     await Cmd.CustomScaledWait(Mathf.Min(waitTime * 0.5f, 0.25f), waitTime);
   }

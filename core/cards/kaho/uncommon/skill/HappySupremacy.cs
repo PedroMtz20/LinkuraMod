@@ -1,12 +1,13 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 using RuriMegu.Core.Utils;
-using System.Collections.Immutable;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 
@@ -18,6 +19,11 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 public class HappySupremacy() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
   public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+  protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    BurstHeartsVar.HoverTip(),
+    HoverTipFactory.FromPower<StrengthPower>(),
+    HoverTipFactory.FromPower<DexterityPower>()
+  ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
     int hearts = HeartsState.GetHearts(Owner);

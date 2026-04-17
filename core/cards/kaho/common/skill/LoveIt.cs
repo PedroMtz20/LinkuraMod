@@ -15,14 +15,14 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 /// <summary>
 /// Love it! — Cost 1, Skill, Common.
 /// Burst 6 (9). Draw 1 (2) cards.
-/// Backstage: whenever you Collect, gain 4 (6) block.
+/// Backstage: whenever you Collect, gain 3 (5) block.
 /// </summary>
 public class LoveIt() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new BurstHeartsVar(6),
     new CardsVar(1),
-    new BlockVar(4, ValueProp.Move),
+    new BlockVar(3, ValueProp.Move),
   ];
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => base.ExtraHoverTips.Concat([
