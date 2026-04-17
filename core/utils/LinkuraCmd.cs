@@ -10,7 +10,6 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using RuriMegu.Core.Characters;
 using RuriMegu.Core.Powers;
 using RuriMegu.Core.Powers.Kaho;
 
@@ -19,7 +18,7 @@ namespace RuriMegu.Core.Utils;
 public static class LinkuraCmd {
   private const int MAX_AUTO_BURST = 9999;
 
-  public static async Task<Events.IncreaseMaxHeartsEvent> IncreaseMaxHearts(Player player, PlayerChoiceContext ctx, int amount, CardModel source = null) {
+  public static async Task<Events.IncreaseMaxHeartsEvent> IncreaseMaxHearts(Player player, PlayerChoiceContext ctx, int amount, AbstractModel source = null) {
     var ev = new Events.IncreaseMaxHeartsEvent(player, ctx, amount, source);
     if (!await Events.IncreaseMaxHearts.InvokeAllEarly(ev)) return ev;
     if (amount <= 0) return ev;
@@ -79,6 +78,8 @@ public static class LinkuraCmd {
     await player.PlayCollectAnim();
     if (!await Events.Collect.InvokeAllEarly(ev)) return ev;
     if (hearts <= 0) return ev;
+    var visualEv = new Events.CollectVisualEvent(player, ev.Targets);
+    await Events.CollectVisual.InvokeAll(visualEv);
     // Apply damage to the pre-resolved (and possibly Early-modified) target list.
     if (ev.Targets?.Count > 0) {
       await CreatureCmd.Damage(context, ev.Targets, hearts, ValueProp.Unpowered, player.Creature);

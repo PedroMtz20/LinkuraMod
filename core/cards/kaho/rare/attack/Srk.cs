@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Rare.Attack;
 
@@ -36,7 +35,6 @@ public class Srk() : KahoCard(3, CardType.Attack, CardRarity.Rare, TargetType.An
   }
 
   protected override void OnUpgrade() {
-    RemoveKeyword(CardKeyword.Exhaust);
     AddKeyword(CardKeyword.Innate);
   }
 }

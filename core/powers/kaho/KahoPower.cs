@@ -1,5 +1,4 @@
 using RuriMegu.Core.Characters.Kaho;
-using RuriMegu.Core.Powers;
 
 namespace RuriMegu.Core.Powers.Kaho;
 

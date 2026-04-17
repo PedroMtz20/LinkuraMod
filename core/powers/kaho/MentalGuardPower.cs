@@ -5,14 +5,13 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Powers.Kaho;
 
 /// <summary>
-/// This turn, Burst Hearts grant Block instead of hearts.
+/// This turn, Burst grant Block instead of hearts.
 /// Applied by <see cref="RuriMegu.Core.Cards.Kaho.Uncommon.Skill.MentalGuard"/>.
 /// </summary>
 public class MentalGuardPower : KahoPower {

@@ -1,7 +1,7 @@
 {
   "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.title": "可惜夜花火",
-  "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.description": "你的❤️上限恒定为99。",
-  "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.smartDescription": "你的❤️上限恒定为99。",
+  "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.description": "当你增加❤️上限时，改为提升[blue]1[/blue]点最大生命值。",
+  "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.smartDescription": "当你增加❤️上限时，改为提升[blue]{Amount}[/blue]点最大生命值。",
   "RURIMEGU-AUTO_BURST_POWER.title": "自然爆心",
   "RURIMEGU-AUTO_BURST_POWER.description": "每打出一张牌时，[gold]爆心[/gold]。",
   "RURIMEGU-AUTO_BURST_POWER.smartDescription": "每打出一张牌时，[gold]爆心[/gold]{Amount}。",
@@ -86,5 +86,11 @@
   "RURIMEGU-BLOOM_GARDEN_PARTY_POWER.smartDescription": "你的[gold]幕后[/gold]效果也可以在[gold]弃牌堆[/gold]中触发。",
   "RURIMEGU-SUGAR_MELT_POWER.title": "甜蜜融化",
   "RURIMEGU-SUGAR_MELT_POWER.description": "每当你[gold]自然爆心[/gold]，获得1点[gold]格挡[/gold]。",
-  "RURIMEGU-SUGAR_MELT_POWER.smartDescription": "每当你[gold]自然爆心[/gold]，获得{Amount}点[gold]格挡[/gold]。"
+  "RURIMEGU-SUGAR_MELT_POWER.smartDescription": "每当你触发[gold]自然爆心[/gold]时，获得{Amount}点[gold]格挡[/gold]。",
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.title": "彩色糖果罐",
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.description": "本回合中，每当你[gold]爆心[/gold]时，[gold]收心[/gold]。",
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.smartDescription": "本回合中，每当你[gold]爆心[/gold]时，[gold]收心[/gold]。",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.title": "日野下安装",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.description": "其他玩家使用卡牌时也会触发你的[gold]自然爆心[/gold]",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.smartDescription": "其他玩家使用卡牌时也会触发你的[gold]自然爆心[/gold]。"
 }

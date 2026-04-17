@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Powers;
-using RuriMegu.Core.Powers.Kaho;
 using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
@@ -37,6 +36,7 @@ public class Soulmate() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, Targe
 
   public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw) {
     if (card == this) {
+      await Cmd.Wait(0.5f);
       await LinkuraCardActions.AutoBurst(this, choiceContext);
     }
   }

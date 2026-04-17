@@ -1,6 +1,6 @@
 # LinkuraMod — Agent Instructions
 
-STS2 mod built with the **BaseLib** framework (`Alchyr.Sts2.BaseLib` v3.0.1) on Godot 4 / .NET 9.
+STS2 mod built with the **BaseLib** framework (`Alchyr.Sts2.BaseLib`) on Godot 4 / .NET 9.
 
 ---
 
@@ -54,6 +54,8 @@ Sub-namespaces follow the folder path, e.g. `RuriMegu.Core.Cards.Kaho`.
 
 Card creation workflow lives in `.github/skills/add-linkura-card/SKILL.md`.
 
+Potion creation workflow lives in `.github/skills/add-linkura-potion/SKILL.md`.
+
 ---
 
 ## Card Base Classes
@@ -84,4 +86,5 @@ The decompiled source code of the original game is located in the `../sts2` fold
 - All gameplay actions are `async Task`. Always `await` them; never fire-and-forget.
 - Prefer guard clauses (`if (...) return;`) over nesting in hook overrides.
 - Put duplicate code in the `utils` folder. Do not repeat the same logic in different places.
+- This project does **not** use `#nullable` annotations. Do not write nullable types (`string?`, `Creature?`, etc.) — use non-nullable types throughout.
 - Do not edit / output to `.uid` or `.import` files - they are automatically generated. Only create such files with care if you know exactly why they are needed and what they do - for example, when creating new assets depending on each other, so uids must be known to reference.

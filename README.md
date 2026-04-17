@@ -26,7 +26,7 @@ Kaho is a new playable character whose gameplay revolves around a unique resourc
 ### Prerequisites
 
 - [Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/) (Latest stable)
-- [BaseLib](https://github.com/Alchyr/Sts2BaseLib) mod framework (v3.0.1)
+- [BaseLib](https://github.com/Alchyr/Sts2BaseLib) mod framework
 
 ### Steps
 
@@ -37,7 +37,7 @@ Kaho is a new playable character whose gameplay revolves around a unique resourc
    ```
 3. Launch Slay the Spire 2 and enable **LinkuraMod** in the mod list.
 
-You also need to install [BaseLib](https://github.com/Alchyr/BaseLib-StS2/releases) v3.0.1 as a dependency.
+You also need to install [BaseLib](https://github.com/Alchyr/BaseLib-StS2/releases) as a dependency.
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.title": "Tragic Night Fireworks",
-  "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.description": "Your max ❤️ is fixed at 99.",
-  "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.smartDescription": "Your max ❤️ is fixed at 99.",
+  "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.description": "When you increase Max ❤️, raise your Max HP by [blue]1[/blue] instead.",
+  "RURIMEGU-TRAGIC_NIGHT_FIREWORKS_POWER.smartDescription": "When you increase Max ❤️, raise your Max HP by [blue]{Amount}[/blue] instead.",
   "RURIMEGU-AUTO_BURST_POWER.title": "Auto Burst",
   "RURIMEGU-AUTO_BURST_POWER.description": "Whenever you play a card, [gold]Burst[/gold].",
   "RURIMEGU-AUTO_BURST_POWER.smartDescription": "Whenever you play a card, [gold]Burst[/gold] {Amount}.",
@@ -86,5 +86,11 @@
   "RURIMEGU-BLOOM_GARDEN_PARTY_POWER.smartDescription": "Your [gold]Backstage[/gold] effects can also trigger from your [gold]Discard Pile[/gold].",
   "RURIMEGU-SUGAR_MELT_POWER.title": "Sugar Melt",
   "RURIMEGU-SUGAR_MELT_POWER.description": "Whenever you [gold]Auto Burst[/gold], gain 1 [gold]Block[/gold].",
-  "RURIMEGU-SUGAR_MELT_POWER.smartDescription": "Whenever you [gold]Auto Burst[/gold], gain {Amount} [gold]Block[/gold]."
+  "RURIMEGU-SUGAR_MELT_POWER.smartDescription": "Whenever you [gold]Auto Burst[/gold], gain {Amount} [gold]Block[/gold].",
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.title": "Colorful Candy Pot",
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.description": "This turn, whenever you [gold]Burst[/gold], [gold]Collect[/gold].",
+  "RURIMEGU-COLORFUL_CANDY_POT_POWER.smartDescription": "This turn, whenever you [gold]Burst[/gold], [gold]Collect[/gold].",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.title": "Hinoshita Install",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.description": "When another player plays a card, it also triggers your [gold]Auto Burst[/gold].",
+  "RURIMEGU-HINOSHITA_INSTALL_POWER.smartDescription": "When another player plays a card, it also triggers your [gold]Auto Burst[/gold]."
 }

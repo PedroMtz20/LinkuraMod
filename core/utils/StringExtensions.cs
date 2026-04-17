@@ -1,5 +1,4 @@
 using System.IO;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -32,6 +31,10 @@ public static class StringExtensions {
 
   public static string BigRelicImagePath(this string path, string characterId = "") {
     return Path.Join(LinkuraMod.ModId, "images", "relics", characterId, "big", path);
+  }
+
+  public static string PotionImagePath(this string path, string characterId = "") {
+    return Path.Join(LinkuraMod.ModId, "images", "potions", characterId, path);
   }
 
   public static string CharacterUiPath(this string path, string characterId = "") {

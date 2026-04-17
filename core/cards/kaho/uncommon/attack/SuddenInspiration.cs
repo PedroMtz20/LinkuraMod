@@ -27,7 +27,7 @@ public class SuddenInspiration() : KahoCard(1, CardType.Attack, CardRarity.Uncom
 
   public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw) {
     if (card == this) {
-      await Cmd.Wait(0.25f);
+      await Cmd.Wait(0.5f);
       await LinkuraCardActions.CollectHearts(this, choiceContext);
     }
   }

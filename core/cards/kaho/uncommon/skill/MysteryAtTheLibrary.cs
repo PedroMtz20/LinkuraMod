@@ -12,7 +12,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 /// <summary>
 /// Mystery at the Library (与你的奇妙图书馆) — Cost 1, Skill, Uncommon.
 /// On play: Gain 8 (11) Block.
-/// Backstage: whenever you play a Skill, Burst Hearts 2 (3).
+/// Backstage: whenever you play a Skill, Burst 2 (3).
 /// </summary>
 public class MysteryAtTheLibrary() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [

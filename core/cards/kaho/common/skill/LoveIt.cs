@@ -15,16 +15,14 @@ namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 /// <summary>
 /// Love it! — Cost 1, Skill, Common.
 /// Burst 6 (9). Draw 1 (2) cards.
-/// Backstage: whenever you Collect, gain 4 (6) block.
+/// Backstage: whenever you Collect, gain 3 (5) block.
 /// </summary>
 public class LoveIt() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Common, TargetType.None) {
-  private const string BACKSTAGE_BLOCK_VAR = "BACKSTAGE_BLOCK";
-
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new BurstHeartsVar(6),
     new CardsVar(1),
-    new DynamicVar(BACKSTAGE_BLOCK_VAR, 4),
+    new BlockVar(3, ValueProp.Move),
   ];
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => base.ExtraHoverTips.Concat([
@@ -45,12 +43,12 @@ public class LoveIt() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Comm
   private async Task OnCollectHearts(Events.CollectEvent ev) {
     if (ev.Player != Owner) return;
     await TriggerWithAction(ev.Context, () =>
-      CreatureCmd.GainBlock(Owner.Creature, DynamicVars[BACKSTAGE_BLOCK_VAR].IntValue, ValueProp.Move, null));
+      CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null));
   }
 
   protected override void OnUpgrade() {
     DynamicVars.BurstHearts().UpgradeValueBy(3m);
     DynamicVars.Cards.UpgradeValueBy(1m);
-    DynamicVars[BACKSTAGE_BLOCK_VAR].UpgradeValueBy(2m);
+    DynamicVars.Block.UpgradeValueBy(2m);
   }
 }

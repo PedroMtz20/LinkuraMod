@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,7 +20,7 @@ public class Encore() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetT
 
   protected override IEnumerable<DynamicVar> CanonicalVars => [
     new DynamicVar(TRACKER_VAR, 0),
-    new BlockVar(2, ValueProp.Move | ValueProp.Unpowered),
+    new BlockVar(2, ValueProp.Move),
   ];
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -29,9 +28,9 @@ public class Encore() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetT
   ];
 
   protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play) {
-    int block = DynamicVars[TRACKER_VAR].IntValue * DynamicVars.Block.IntValue;
-    if (block > 0) {
-      await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, play);
+    int times = DynamicVars[TRACKER_VAR].IntValue;
+    for (int i = 0; i < times; i++) {
+      await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
     }
   }
 
@@ -52,9 +51,10 @@ public class Encore() : KahoCard(0, CardType.Skill, CardRarity.Uncommon, TargetT
     return base.AfterCombatEnd(room);
   }
 
-  private async Task OnBurstHearts(Events.BurstEvent ev) {
-    if (ev.Player != Owner) return;
+  private Task OnBurstHearts(Events.BurstEvent ev) {
+    if (ev.Player != Owner) return Task.CompletedTask;
     DynamicVars[TRACKER_VAR].BaseValue++;
+    return Task.CompletedTask;
   }
 
   protected override void OnUpgrade() {

@@ -12,7 +12,7 @@ namespace RuriMegu.Core.Cards.Kaho.Uncommon.Skill;
 /// <summary>
 /// Special Thanks — Cost 1, Skill, Uncommon.
 /// On play: Gain 8 (11) Block.
-/// Backstage: whenever you play an Attack, Burst Hearts 2 (3).
+/// Backstage: whenever you play an Attack, Burst 2 (3).
 /// </summary>
 public class SpecialThanks() : KahoInHandTriggerCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [

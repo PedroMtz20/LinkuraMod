@@ -3,12 +3,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Rooms;
 using RuriMegu.Core.Cards;
 using RuriMegu.Core.Characters.Kaho;
 using RuriMegu.Core.Powers;
@@ -26,9 +23,13 @@ public abstract class LinkuraSystemBase : LinkuraStarterRelic {
     BurstHeartsVar.HoverTip(),
   ];
 
+  protected override IEnumerable<DynamicVar> CanonicalVars => [
+    new AutoBurstVar(AutoBurstAmount),
+  ];
+
   public override async Task BeforeCombatStartLate() {
     await HeartsState.Reset(Owner, Events.BLOCKING_CONTEXT);
-    await LinkuraCmd.GainAutoBurst(Owner.Creature, AutoBurstAmount, Owner.Creature, null);
+    await LinkuraCmd.GainAutoBurst(Owner.Creature, DynamicVars.AutoBurst().IntValue, Owner.Creature, null);
     Flash();
     await base.BeforeCombatStartLate();
   }

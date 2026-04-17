@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
+﻿using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -10,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using RuriMegu.Core.Cards;
-using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Core.Powers.Kaho;
 
@@ -24,9 +19,11 @@ public class TrainingCampPower() : KahoPower {
 
   private int _remainingTriggersThisTurn;
 
-  public override Task AfterApplied(Creature applier, CardModel cardSource) {
-    _remainingTriggersThisTurn = (int)Amount;
-    return base.AfterApplied(applier, cardSource);
+  public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature applier, CardModel cardSource) {
+    if (power == this) {
+      _remainingTriggersThisTurn += (int)amount;
+    }
+    return base.AfterPowerAmountChanged(power, amount, applier, cardSource);
   }
 
   public override async Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player) {

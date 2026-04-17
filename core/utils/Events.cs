@@ -23,7 +23,7 @@ public static class Events {
     int NewHearts,
     int MaxHearts,
     int Delta,
-    CardModel Source
+    AbstractModel Source
   ) : Event;
 
   public record MaxHeartsChangedEvent(
@@ -33,7 +33,7 @@ public static class Events {
     int NewMaxHearts,
     int Hearts,
     int Delta,
-    CardModel Source
+    AbstractModel Source
   ) : Event;
 
   public record BurstEvent(
@@ -41,7 +41,7 @@ public static class Events {
     PlayerChoiceContext Context,
     int RequestedAmount,
     CardModel Source,
-    bool isAutoBurst
+    bool IsAutoBurst
   ) : Event {
     public int ActualAmount { get; set; } = 0;
     public HeartsChangedEvent HeartsChangedEvent { get; set; } = null;
@@ -66,11 +66,16 @@ public static class Events {
     public bool DamageAllEnemies { get; set; } = false;
   }
 
+  public record CollectVisualEvent(
+    Player Player,
+    IReadOnlyList<Creature> Targets
+  ) : Event;
+
   public record IncreaseMaxHeartsEvent(
     Player Player,
     PlayerChoiceContext Context,
     int RequestedAmount,
-    CardModel Source
+    AbstractModel Source
   ) : Event {
     public int ActualAmount { get; set; } = 0;
   }
@@ -162,6 +167,12 @@ public static class Events {
       await InvokeLate(e);
       await InvokeVeryLate(e);
     }
+
+    public async Task<bool> InvokeAll(TEvent e) {
+      if (!await InvokeAllEarly(e)) return false;
+      await InvokeAllLate(e);
+      return true;
+    }
   }
 
   public static readonly PhasedEvent<HeartsChangedEvent> HeartsChanged = new();
@@ -169,6 +180,7 @@ public static class Events {
   public static readonly PhasedEvent<BurstEvent> Burst = new();
   public static readonly PhasedEvent<AutoBurstEvent> AutoBurst = new();
   public static readonly PhasedEvent<CollectEvent> Collect = new();
+  public static readonly PhasedEvent<CollectVisualEvent> CollectVisual = new();
   public static readonly PhasedEvent<IncreaseMaxHeartsEvent> IncreaseMaxHearts = new();
   public static readonly PhasedEvent<TriggerBackstageEvent> TriggerBackstage = new();
 }

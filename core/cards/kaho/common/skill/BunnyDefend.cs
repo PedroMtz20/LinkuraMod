@@ -10,8 +10,8 @@ using RuriMegu.Core.Utils;
 namespace RuriMegu.Core.Cards.Kaho.Common.Skill;
 
 /// <summary>
-/// Bunny Defend — Cost 2, Skill, Common.
-/// Gain block equal to current max ♥. (Retain.)
+/// Bunny Defend — Cost 2 (1), Skill, Common.
+/// Gain block equal to current max ♥.
 /// </summary>
 public class BunnyDefend() : KahoCard(2, CardType.Skill, CardRarity.Common, TargetType.None) {
   protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
@@ -23,6 +23,6 @@ public class BunnyDefend() : KahoCard(2, CardType.Skill, CardRarity.Common, Targ
   }
 
   protected override void OnUpgrade() {
-    AddKeyword(CardKeyword.Retain);
+    EnergyCost.UpgradeBy(-1);
   }
 }
