@@ -48,10 +48,11 @@ public class PresentPastFuture() : KahoInHandTriggerCard(1, CardType.Skill, Card
 
     while (DynamicVars[TRACKER_VAR].IntValue >= threshold) {
       int newTracker = DynamicVars[TRACKER_VAR].IntValue - threshold;
-      await TriggerWithAction(ev.Context, () => {
+      var triggerEv = await TriggerWithAction(ev.Context, () => {
         DynamicVars[TRACKER_VAR].BaseValue = newTracker;
         return LinkuraCardActions.DiscardAndDraw(this, ev.Context);
       });
+      if (triggerEv.IsNullOrCancelled()) break;
     }
   }
 

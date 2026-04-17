@@ -52,7 +52,7 @@ public class SayoShigure() : KahoInHandTriggerCard(1, CardType.Attack, CardRarit
         DynamicVars[TRACKER_VAR].BaseValue = newTrackerVar;
         await LinkuraCardActions.BurstHearts(this, ev.Context);
       });
-      if (triggerEv == null) break;
+      if (triggerEv.IsNullOrCancelled()) break;
     }
   }
 
