@@ -36,8 +36,11 @@ jobs:
         # Run headless import so the .godot/ cache is populated before export
         run: godot --headless --import || true
 
+      - name: Restore .NET packages
+        run: dotnet restore LinkuraMod.csproj
+
       - name: Build .NET (ExportRelease)
-        run: dotnet build LinkuraMod.sln --configuration ExportRelease
+        run: dotnet build LinkuraMod.sln --configuration ExportRelease --no-restore
 
       - name: Get BaseLib version
         id: baselib
