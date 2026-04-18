@@ -168,7 +168,10 @@ public partial class NHeartCounter : Control {
   }
 
   private void OnHeartsChanged(int newHearts, int newMaxHearts) {
-    SetLabelText($"{newHearts}/{newMaxHearts}");
+    if (newMaxHearts >= 100 || newHearts >= 100)
+      SetLabelText($"{newHearts}/\n{newMaxHearts}");
+    else
+      SetLabelText($"{newHearts}/{newMaxHearts}");
     RefreshVisibility();
   }
 
