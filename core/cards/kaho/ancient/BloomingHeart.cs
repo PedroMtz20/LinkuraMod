@@ -10,7 +10,7 @@ namespace RuriMegu.Core.Cards.Kaho.Ancient;
 
 /// <summary>
 /// Blooming Heart (绽放之心) — Cost 0, Skill, Ancient (Transcendence upgrade of Wide Heart).
-/// Increase max ❤️ by 4 (8). Draw 2 (3) cards; they each cost 1 less next time played.
+/// Increase max ❤️ by 4 (6). Draw 2 (3) cards; they each cost 1 less next time played.
 /// </summary>
 public class BloomingHeart() : KahoCard(0, CardType.Skill, CardRarity.Ancient, TargetType.None) {
   protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -28,7 +28,7 @@ public class BloomingHeart() : KahoCard(0, CardType.Skill, CardRarity.Ancient, T
   }
 
   protected override void OnUpgrade() {
-    DynamicVars.ExpandHearts().UpgradeValueBy(4m);
+    DynamicVars.ExpandHearts().UpgradeValueBy(2m);
     DynamicVars.Cards.UpgradeValueBy(1m);
   }
 }
