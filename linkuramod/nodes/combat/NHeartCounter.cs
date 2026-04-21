@@ -10,8 +10,8 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Pooling;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
-using RuriMegu.Core.Utils;
 using RuriMegu.Core.Config;
+using RuriMegu.Core.Utils;
 
 namespace RuriMegu.Nodes.Combat;
 
@@ -83,7 +83,11 @@ public partial class NHeartCounter : Control {
 
     // Register FloatingHeart with the node pool if not already done.
     // GeneratedNodePool adds to the shared NodePool, so Get<FloatingHeart>() works globally.
-    GeneratedNodePool.Init<FloatingHeart>(() => new FloatingHeart(), prewarmCount: 0);
+    try {
+      GeneratedNodePool.Init<FloatingHeart>(() => new FloatingHeart(), prewarmCount: 0);
+    } catch (InvalidOperationException) {
+      // Already initialized or failed, safe to ignore if already present.
+    }
   }
 
   public override void _ExitTree() {
